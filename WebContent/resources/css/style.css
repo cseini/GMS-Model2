@@ -1,0 +1,46 @@
+table, tr, th, td {
+	border: 1px solid black ;
+	border-collapse: collapse;
+	text-align: center;
+	}
+.height-100{height: 100px}
+.margin-auto{margin:0 auto}
+.width-90{width:90%}
+.text-align-left{text-align:left}
+.text-align-center{text-align:center}
+.search_team{border:1px solid black}
+.search_team tr{border:1px solid black}
+.search_team tr th{border:1px solid black}
+.search_team tr td{border:1px solid black}
+
+.search_id_result{border:1px solid black}
+.search_id_result tr{border:1px solid black}
+.search_id_result tr th{border:1px solid black}
+.search_id_result tr td{border:1px solid black}
+
+.team_list{border:1px solid black}
+.team_list tr{border:1px solid black}
+.team_list tr th{border:1px solid black}
+.team_list tr td{border:1px solid black}
+
+
+/* main */
+#main-tab-layout{width:90%}
+#main-tab-layout-td{width: 150px; vertical-align: top; padding-top: 10px}
+#main-tab-layout-tr{height: 530px}
+
+/* user-login */
+#user-login-layout{margin:150px auto; width:250px}
+#user-login-form{border:1px solid black; padding:10px}
+
+/* admin-login */ 
+#admin-login-layout{margin:150px auto; width:250px}
+#admin-login-form{border:1px solid black; padding:10px}
+
+/* mypage */
+#mypage-table-layout-tr{height:530px}
+#mypage-table-layout-td{width:150px; vertical-align: top; padding-top:10px} 
+
+/* join-login */ 
+#join-layout{margin:150px auto; width:300px}
+#join-form{border:1px solid black; padding:10px}
