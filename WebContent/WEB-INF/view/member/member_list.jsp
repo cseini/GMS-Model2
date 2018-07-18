@@ -5,12 +5,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="ㄴUTF-8" />
+	<meta charset="UTF-8" />
 	<title>회원목록</title>
-	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" href="<%=ctx %>/resources/css/style.css" />
 </head>
 <body>
-	<form action="<%=ctx %>/index.jsp"><input type="submit" value="초기화면"/></form>
+	<form action="<%=ctx %>"><input type="submit" value="초기화면"/></form>
 	<h2>회원명단</h2>
 	<table>
 		<tr>

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>USER LOGIN</title>
-	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" href="<%=ctx %>/resources/css/style.css" />
 </head>
 <body>
 	<div id="user-login-layout">
@@ -15,8 +15,8 @@
 		<form id="user-login-form" action="<%=ctx %>/member.do">
 			ID <input type="text" name="userid" /><br />
 			PASS <input type="password" name="password" /><br />
-			<input type="hidden" name="action" value="move" />
-			<input type="hidden" name="page" value="user_login_result" />
+			<input type="hidden" name="action" value="login" />
+			<input type="hidden" name="page" value="login_result" />
 			<input type="submit" value="전송"/>
 		</form>
 	</div>

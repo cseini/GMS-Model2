@@ -22,12 +22,12 @@
 			<td id="main-tab-layout-td">
 				<ul>
 					<li><a href="<%=ctx%>/member.do?action=move&page=join_form">회원가입</a></li>
-					<li><a href="<%=ctx%>/member.do?action=move&page=user_login_form" >사용자 로그인</a></li>
-					<li><a href="<%=ctx%>/member.do?action=move&page=update_form">비밀번호 변경</a></li>
-					<li><a href="<%=ctx%>/member.do?action=move&page=delete_form">회원 탈퇴</a></li>
+					<li><a href="<%=ctx%>/member.do?action=move&page=login_form" >사용자 로그인</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=member_list">회원 목록</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=search_team_form">팀이름 검색</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=search_id_form">아이디 검색</a></li>
+					<li><a href="<%=ctx%>/member.do?action=move&page=update_form">비밀번호 변경</a></li>
+					<li><a href="<%=ctx%>/member.do?action=move&page=delete_form">회원 탈퇴</a></li>
 					<li><a href="jsp/login/admin_login_form.jsp">관리자 로그인</a></li>
 					<li><a href="jsp/create/create_team_form.jsp">팀 생성</a></li>
 					<li><a href="jsp/update/update_team_form.jsp">팀명 변경</a></li>

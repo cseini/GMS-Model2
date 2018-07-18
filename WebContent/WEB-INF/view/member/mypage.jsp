@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
+<%
+ String ctx = application.getContextPath();
+%>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<title>Mypage</title>
-	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" href="<%=ctx %>/resources/css/style.css" />
 </head>
 <body>
-	<%= new SimpleDateFormat("HH시 mm분 ss초").format(new Date()) %>
 	<table id="mypage-table-layout" class="width-90 margin-auto">
 		<tr class="height-100">
 			<th colspan="2"><h1>초특가 야놀자!</h1></th>
@@ -29,7 +29,7 @@
 				<li>거구장</li>
 			</ol>
 			</td>
-			<td id="mypage-table-layout-td"><a href="../../main.jsp">로그아웃</a></td>
+			<td id="mypage-table-layout-td"><a href="<%=ctx %>">로그아웃</a></td>
 		</tr>
 		<tr class="height-100 text-align-left">
 			<td colspan="2">
