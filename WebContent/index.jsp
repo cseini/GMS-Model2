@@ -23,15 +23,16 @@
 				<ul>
 					<li><a href="<%=ctx%>/member.do?action=move&page=join_form">회원가입</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=login_form" >사용자 로그인</a></li>
-					<li><a href="<%=ctx%>/member.do?action=move&page=member_list">회원 목록</a></li>
+					<li><a href="<%=ctx%>/member.do?action=list&page=member_list">회원 목록</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=search_team_form">팀이름 검색</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=search_id_form">아이디 검색</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=update_form">비밀번호 변경</a></li>
 					<li><a href="<%=ctx%>/member.do?action=move&page=delete_form">회원 탈퇴</a></li>
-					<li><a href="jsp/login/admin_login_form.jsp">관리자 로그인</a></li>
-					<li><a href="jsp/create/create_team_form.jsp">팀 생성</a></li>
-					<li><a href="jsp/update/update_team_form.jsp">팀명 변경</a></li>
-					<li><a href="jsp/delete/delete_team_form.jsp">팀 삭제</a></li>
+					<li><a href="<%=ctx%>/member.do?action=count&page=delete_form">카운트</a></li><br>
+					<li><a href="<%=ctx%>/projectTeam.do?action=move&page=create_team_form">팀 생성</a></li>
+					<li><a href="<%=ctx%>/projectTeam.do?action=move&page=admin_login_form">관리자 로그인</a></li>
+					<li><a href="<%=ctx %>/projectTeam.do?action=move&page=update_team_form">팀명 변경</a></li>
+					<li><a href="<%=ctx %>/projectTeam.do?action=move&page=delete_team_form">팀 삭제</a></li>
 					<li><a href="jsp/mypage/team_list.jsp">팀 목록</a></li>
 					<li><a href="jsp/mypage/search_teamid_form.jsp">팀 아이디검색</a></li>
 					<li><a href="jsp/mypage/search_teamname_form.jsp">팀 이름검색</a></li>

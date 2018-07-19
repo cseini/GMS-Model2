@@ -1,13 +1,7 @@
 package service;
 import domain.*;
 import java.util.List;
-
-import javax.security.auth.Subject;
-
-import dao.ExamDao;
-import dao.ExamDaoImpl;
-import dao.RecordDaoImpl;
-import dao.SubjectDaoImpl;
+import dao.*;
 public class ExamServiceImpl implements ExamService{
 	private static ExamService instance = new ExamServiceImpl();
 	public static ExamService getInstance() {return instance;}
