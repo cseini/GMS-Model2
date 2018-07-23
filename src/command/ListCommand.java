@@ -1,11 +1,6 @@
 package command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
-import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
@@ -20,11 +15,10 @@ public class ListCommand extends Command{
 	
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(getDomain().toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			System.out.println("리스트진입");
-			List<MemberBean> lst = MemberServiceImpl.getInstance().listMember();
-			System.out.println(lst.size());
+			request.setAttribute("memberList",MemberServiceImpl.getInstance().listMember());
 			System.out.println("리스트출력성공");
 			break;
 

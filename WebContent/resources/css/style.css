@@ -1,46 +1,115 @@
-table, tr, th, td {
-	border: 1px solid black ;
-	border-collapse: collapse;
+body{
+	font-family: 'Malgun Gothic', 'Verdana'	;
+	background-color: #fff;
+	color: #808080;
+	margin: 0;
+	padding: 0;
+};
+h1, h2, h3, h4, h5, h6{
+	font-size: 1.5em;
+}
+h1{
+	font-size: 2em;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+div#wrapper{
+	width: 100%;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#header{
+	position: relative;
+	margin-bottom: 0;
+	padding: 0;
+	color: #fff;
+}
+div#title-box{
 	text-align: center;
-	}
-.height-100{height: 100px}
-.margin-auto{margin:0 auto}
-.width-90{width:90%}
-.text-align-left{text-align:left}
-.text-align-center{text-align:center}
-.search_team{border:1px solid black}
-.search_team tr{border:1px solid black}
-.search_team tr th{border:1px solid black}
-.search_team tr td{border:1px solid black}
+}
+div#login-box{
+	float: right;
+	margin: 2px;
+	font-size: 1.1em;
+	display: block;
+	color: #fff;
+	
+}
+div#login-box a:hover{
+	color: #ff80ff;
+	text-decoration: none;
+}
+div#login-box a:active{
+	color: #ff44ff;
+	text-decoration: none;
+}
+div#header h1{
+    color: #666666;
+	padding: 5px 0;
+	margin: none;
+	line-height: 2em;
+	font-weight: bold;
+	font-size: 32px;
+}
+div#content{
+	padding: 5px 30px;
+	background-color: #fff;
+	margin-bottom: 10px;
+	min-height: 400px;
+	color: black;
+	text-align: center;
+	align-content: center;
+}
+div#content-box{
+	clear: both;
+	margin-top: 30px;
+}
+div#menu-box{
+	margin-top: 30px;
+	clear: both;
+}
+ul#menu{
+	text-align: right;
+	margin: 0;
+	border-bottom: 1px #8000ff;
+	position: relative;	
+}
+ul#menu li{
+	display: inline;
+	list-style: none;
+	background-color: #0080ff;
+}
+ul#menu li a{
+	padding: 10px 20px;
+	background-color: #e985e9;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
+ul#menu li a:hover{
+	padding: 10px 20px;
+	background-color: #e25fe2;
+}
+ul#menu li a:active{
+	padding: 10px 20px;
+	background-color: #de45de;
+}
+div#footer{
+	clear:both;
+	color: #aaa;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0;
+	line-height: normal;
+	font-size: 1.0em;
+	background-color: #292929;
+}
 
-.search_id_result{border:1px solid black}
-.search_id_result tr{border:1px solid black}
-.search_id_result tr th{border:1px solid black}
-.search_id_result tr td{border:1px solid black}
-
-.team_list{border:1px solid black}
-.team_list tr{border:1px solid black}
-.team_list tr th{border:1px solid black}
-.team_list tr td{border:1px solid black}
+table, th, td{border:1px solid gray}
 
 
-/* main */
-#main-tab-layout{width:90%}
-#main-tab-layout-td{width: 150px; vertical-align: top; padding-top: 10px}
-#main-tab-layout-tr{height: 530px}
 
-/* user-login */
-#user-login-layout{margin:150px auto; width:250px}
-#user-login-form{border:1px solid black; padding:10px}
 
-/* admin-login */ 
-#admin-login-layout{margin:150px auto; width:250px}
-#admin-login-form{border:1px solid black; padding:10px}
-
-/* mypage */
-#mypage-table-layout-tr{height:530px}
-#mypage-table-layout-td{width:150px; vertical-align: top; padding-top:10px} 
-
-/* join-login */ 
-#join-layout{margin:150px auto; width:300px}
-#join-form{border:1px solid black; padding:10px}

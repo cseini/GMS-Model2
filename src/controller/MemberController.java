@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,7 @@ import enums.*;
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
@@ -25,16 +24,25 @@ public class MemberController extends HttpServlet {
 			System.out.println("JOIN");
 			Carrier.redirect(request, response,"/member.do?action=move&page=login_form");
 			break;
+		case LOGIN:
+			System.out.println("LOGIN");
+			if(request.getAttribute("match").equals("TRUE")) {
+				Carrier.forword(request, response);
+			}else {
+				Carrier.redirect(request,  response, "/member.do?action=move&page=login_form" );
+			}
+			break;
 		case LIST:
 			System.out.println("LIST");
-			Carrier.redirect(request, response, "");
+			Carrier.forword(request, response);
 			break;
 		case SEARCH:
 			System.out.println("SEARCH");
-			Carrier.redirect(request, response, "");
+			Carrier.forword(request, response);
 			break;
 		case RETRIEVE:
 			System.out.println("RETRIEVE");
+			Carrier.forword(request, response);
 			Carrier.redirect(request, response, "");
 			break;
 		case COUNT:
@@ -43,24 +51,15 @@ public class MemberController extends HttpServlet {
 			break;
 		case UPDATE:
 			System.out.println("UPDATE");
-			Carrier.redirect(request, response, "/member.do?action=move&page=mypage");
+			Carrier.forword(request, response);
 			break;
 		case DELETE:
 			System.out.println("DELETE");
 			Carrier.redirect(request, response,"");
 			break;
-		case LOGIN:
-			System.out.println("LOGIN");
-			Carrier.redirect(request, response, "/member.do?action=move&page=mypage");
-			break;
 		default:
 			Carrier.redirect(request, response, "");
 			break;
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 }

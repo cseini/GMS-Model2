@@ -12,7 +12,7 @@
 <body>
 	<h2>아이디 검색</h2>
 <form action="<%=ctx %>/member.do">
-	<input type="text" name="memid"/>
+	<input type="text" name="userid"/>
 	<input type="hidden" name="action" value="retrieve" />
 	<input type="hidden" name="page" value="search_id_result" />
 	<input type="submit" value="검색"/>

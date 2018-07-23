@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="domain.MemberBean"%>
+
 <%
  String ctx = application.getContextPath();
 %>
@@ -15,21 +17,13 @@
 			<th colspan="2"><h1>초특가 야놀자!</h1></th>
 		</tr>
 		<tr  id="mypage-table-layout-tr">
-			<td class="text-align-left">
-			<h1 class="text-align-center">마이페이지</h1>
-			<ul>
-				<li>성명</li>
-				<li>생년월일</li>
-				<li>주소</li>
-			</ul>
-			<ol>
-				<li>신촌모텔</li>
-				<li>서강모텔</li>
-				<li>연세모텔</li>
-				<li>거구장</li>
-			</ol>
+			<td>
+			<% MemberBean user = (MemberBean)request.getAttribute("user"); %>
+			<h3><%=user.getName() %>님의 마이페이지 진입</h3>			
 			</td>
-			<td id="mypage-table-layout-td"><a href="<%=ctx %>">로그아웃</a></td>
+			<td id="mypage-table-layout-td">
+			<a href="<%=ctx %>">로그아웃</a>
+			</td>
 		</tr>
 		<tr class="height-100 text-align-left">
 			<td colspan="2">

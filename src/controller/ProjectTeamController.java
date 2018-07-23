@@ -14,7 +14,7 @@ import enums.Action;
 @WebServlet("/projectTeam.do")
 public class ProjectTeamController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
@@ -48,8 +48,4 @@ public class ProjectTeamController extends HttpServlet {
 			break;
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
 }

@@ -1,10 +1,6 @@
 package command;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
-import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
@@ -19,11 +15,10 @@ public class SearchCommand extends Command{
 	
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(getDomain().toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			System.out.println("팀검색진입");
-			List<MemberBean> lst = MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("team_name"));
-			System.out.println(lst.size());
+			request.setAttribute("search", MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("team_name"))); 
 			System.out.println("팀검색성공");
 			break;
 		default:

@@ -15,7 +15,7 @@ public class CountCommand extends Command{
 	}
 		@Override
 		public void execute() {
-			switch (Domain.valueOf(getDomain().toUpperCase())) {
+			switch (Domain.valueOf(domain.toUpperCase())) {
 			case MEMBER:
 				int count = MemberServiceImpl.getInstance().countMember();
 				System.out.println(count);

@@ -2,7 +2,6 @@ package command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
@@ -17,11 +16,10 @@ public class RetrieveCommand extends Command{
 	
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(getDomain().toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			System.out.println("아이디검색들어옴");
-			MemberBean mem = MemberServiceImpl.getInstance().findMemberBySeq(request.getParameter("memid"));
-			System.out.println(mem.getName());
+			request.setAttribute("retrieve", MemberServiceImpl.getInstance().findMemberBySeq(request.getParameter("userid")));
 			System.out.println("아이디검색성공");
 			break;
 		default:
