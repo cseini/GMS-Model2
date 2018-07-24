@@ -6,13 +6,13 @@
 <div id="wrapper">
 	<div id="header">
 		<jsp:include page="../common/titleBox.jsp"/>
-		<jsp:include page="menuBox.jsp"></jsp:include>
+		<jsp:include page="../admin/menuBox.jsp"/>
 	</div>
 	<div id="content">
-		<jsp:include page="contentBox.jsp"></jsp:include>
+		<jsp:include page="contentBox.jsp"/>
 	</div>
 	<div id="footer">
-		<jsp:include page="../common/footer.jsp"></jsp:include>	
+		<jsp:include page="../common/footer.jsp"/>	
 	</div>
 </div>
 <script>

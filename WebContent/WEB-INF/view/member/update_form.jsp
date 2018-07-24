@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
- String ctx = application.getContextPath();
-%>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<title>비밀번호 변경</title>
-	<link rel="stylesheet" href="<%=ctx %>/resources/css/style.css" />
+	<link rel="stylesheet" href="${context }/resources/css/style.css" />
 </head>
 <body>
 <h3> 비밀번호 변경 </h3>
-	<form action="<%=ctx %>/member.do">
-	아이디 <input type="text" name="userid"/> <br />
-	현재비밀번호 <input type="password" name="old_password"/>  <br />
-	바꿀비밀번호 <input type="password" name="new_password"/>  <br />
-	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page" value="update_result" />
-	<input type="submit" value="변경"/>
+	<form action="${context }/member.do" onsubmit="return sendForm()" method="get">
+		아이디 <input type="text" name="userid"/> <br />
+		현재비밀번호 <input type="password" name="old_password"/>  <br />
+		바꿀비밀번호 <input type="password" name="new_password"/>  <br />
+		<input type="hidden" name="action" value="update" />
+		<input type="hidden" name="page" value="update_result" />
+		<input type="submit" value="변경"/>
 	</form>	
+<script>
+	function sendForm(){
+	alert('alert 비밀번호변경에서 sendform 성공!! ${context}');
+	return true;
+}
+</script>
 </body>
 </html>
