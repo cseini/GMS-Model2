@@ -15,15 +15,5 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>	
 	</div>
 </div>
-<script>
-function move(domain, action, page) {
-	alert('alert admin에서 클릭 테스트 성공!! ${context}');
-	location.href = "${context}/"+domain+".do?action="+action+"&page="+page;
-}
-function moveHome(){
-	alert('홈으로 이동 클릭')
-	location.href ="${context}";
-}
-</script>
 </body>
 </html>

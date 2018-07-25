@@ -41,5 +41,5 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(MemberBean bean) {
 		return (MemberDaoImpl.getInstance().login(bean)!=null);
 	}
-
 }
+

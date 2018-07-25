@@ -107,7 +107,14 @@ div#footer{
 	font-size: 1.0em;
 	background-color: #292929;
 }
-
+div#loginForm{
+	padding: 10px 20px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+	align-content: center;
+}
 table, th, td{border:1px solid gray}
 
 

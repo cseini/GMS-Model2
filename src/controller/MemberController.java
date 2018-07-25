@@ -25,7 +25,7 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response,"/member.do?action=move&page=login_form");
 			break;
 		case LOGIN:
-			System.out.println("LOGIN");
+			System.out.println("폼태그에서 온 로그인 성공?");
 			if(request.getAttribute("match").equals("TRUE")) {
 				Carrier.forword(request, response);
 			}else {
