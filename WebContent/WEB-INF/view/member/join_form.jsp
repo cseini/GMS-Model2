@@ -17,6 +17,7 @@
 	</div>
 <script>
 	document.getElementById('join_form_btn').addEventListener('click',function(){
+		var member = new Member();
 		var form = document.getElementById('join_form');
 		form.action = "${context}/member.do";
 		form.method = "post";
@@ -24,7 +25,7 @@
 		member.setPassword(form.password.value);
 		member.setName(form.name.value);
 		member.setSsn(form.ssn.value);
-		if(member.joinValidation()){
+		if(service.joinValidation(member)){
 			form.submit();
 		}
 	})

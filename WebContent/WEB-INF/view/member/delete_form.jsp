@@ -13,12 +13,13 @@
 	</form>	
 <script>
 	document.getElementById('delete_form_btn').addEventListener('click',function(){
+		var member = new Member();
 		var form = document.getElementById('delete_form');
 		form.action = "${context}/member.do";
 		form.method = "post";
 		member.setUserid(form.userid.value);
 		member.setPassword(form.password.value);
-		if(member.deleteValidation()){
+		if(service.deleteValidation(member)){
 			form.submit();
 		}
 	})

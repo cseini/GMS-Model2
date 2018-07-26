@@ -21,7 +21,7 @@
 		form.method = "post";
 		member.setUserid(form.userid.value);
 		member.setPassword(form.password.value);
-		if(member.loginValidation()){
+		if(service.loginValidation(member)){
 			form.submit();
 		}
 	})

@@ -10,7 +10,7 @@
 		<jsp:include page="common/menuBox.jsp"/>
 	</div>
 	<div id="content">
-		<jsp:include page="common/contentBox.jsp"></jsp:include>
+		<jsp:include page="common/contentBox.jsp"/>
 	</div>
 	<div id="footer">
 		<jsp:include page="common/footer.jsp"/>
