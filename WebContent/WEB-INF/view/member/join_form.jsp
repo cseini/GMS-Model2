@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>회원가입 화면</title>
-	<link rel="stylesheet" href="${conterxt}/resources/css/style.css" />
-</head>
+	<jsp:include page="../common/head.jsp"/>
 <body>
 	<div id="join-layout">
 	<h3>회원가입</h3>
@@ -16,8 +12,9 @@
 			주민등록번호<input type="text" name="ssn"/><br />
 			<input type="hidden" name="action" value="join"/>
 			<input type="hidden" name="page" value="mypage" />
-			<input id="join_form_btn" type="submit" value="전송"/>		
+			<input id="join_form_btn" type="button" value="전송"/>		
 		</form>
+	</div>
 <script>
 	document.getElementById('join_form_btn').addEventListener('click',function(){
 		var form = document.getElementById('join_form');
@@ -27,9 +24,10 @@
 		member.setPassword(form.password.value);
 		member.setName(form.name.value);
 		member.setSsn(form.ssn.value);
-		form.submit();
+		if(member.joinValidation()){
+			form.submit();
+		}
 	})
 </script>
-	</div>
 </body>
 </html>

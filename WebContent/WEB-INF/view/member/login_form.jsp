@@ -15,6 +15,7 @@
 	</div>
 	<script>
 	document.getElementById('login_form_btn').addEventListener('click',function(){
+		var member = new Member();
 		var form = document.getElementById('login_form');
 		form.action = "${context}/member.do";
 		form.method = "post";
