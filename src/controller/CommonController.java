@@ -23,7 +23,7 @@ public class CommonController extends HttpServlet {
 			} else {
 				request.getSession().setAttribute(r.toString().toLowerCase(), request.getContextPath()+Term.RESOURCES.toString()+r.toString().toLowerCase());
 			}*/
-			request.getSession().setAttribute(r.toString().toLowerCase(),(i==0)?request.getContextPath():Term.RESOURCES.toString()+r.toString().toLowerCase());
+			request.getSession().setAttribute(r.toString().toLowerCase(),(i==0)?request.getContextPath():request.getContextPath()+Term.RESOURCES.toString()+r.toString().toLowerCase());
             i++;
 		}
 		request.getRequestDispatcher(Term.WEBPATH.toString()+Term.MAIN.toString()).forward(request, response);
