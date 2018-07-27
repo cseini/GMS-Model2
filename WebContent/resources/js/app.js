@@ -10,86 +10,78 @@ var router = (()=> {
 })();
 var service = (()=>{
 	return{
-		loginValidation : x=>{
-			var ok = false;
-			if (x.getUserid() === "") {
-				alert("아이디를 입력하세요.");
-				document.getElementById('login_form').userid.focus();
-				return ok;
-			} else if (x.getPassword() === "") {
-				alert("비밀번호를 입력하세요.");
-				document.getElementById('login_form').password.focus();
-				return ok;
-			} else {
-				ok = true;
-				return ok;
+		nullChecker : x=>{
+			var i = 0;
+			var j = {
+					checker : true,
+					text : '필수 입력값이 없습니다.'
+			};
+			for (i in x){
+				if(x[i]===''){
+					j.checker = false;
+				}
 			}
-		},
-		joinValidation : x=>{
-			var ok = false;
-			if (x.getUserid() === "") {
-				alert("아이디를 입력하세요.");
-				document.getElementById('join_form').userid.focus();
-			} else if (x.getPassword() === "") {
-				alert("비밀번호를 입력하세요.");
-				document.getElementById('join_form').password.focus();
-				return ok;
-			} else if (x.getName() === "") {
-				alert("이름 입력하세요.");
-				document.getElementById('join_form').name.focus();
-				return ok;
-			} else if (x.getSsn() === "") {
-				alert("주민등록번호를 입력하세요.");
-				document.getElementById('join_form').ssn.focus();
-				return ok;
-			} else {
-				ok = true;
-				return ok;
-			}
-		},
-		deleteValidation : x=>{
-			var ok = false;
-			if (x.getUserid() === "") {
-				alert("아이디를 입력하세요.");
-				document.getElementById('delete_form').userid.focus();
-				return ok;
-			} else if (x.getPassword() === "") {
-				alert("비밀번호를 입력하세요.");
-				document.getElementById('delete_form').password.focus();
-				return ok;
-			} else {
-				ok = true;
-				return ok;
-			}
+			return j;
 		}
 	};
 })();
 // anonymous function
-function Member() {
-	var userId, ssn, password, name;
-	this.setUserid = function(x) {
-		this.userId = x;
-	}
-	this.setSsn = function(x) {
-		this.ssn = x;
-	}
-	this.setPassword = function(x) {
-		this.password = x;
-	}
-	this.setName = function(x) {
-		this.name = x;
-	}
-	this.getUserid = function() {
-		return this.userId;
-	}
-	this.getSsn = function() {
-		return this.ssn;
-	}
-	this.getPassword = function() {
-		return this.password;
-	}
-	this.getName = function(x) {
-		return this.name;
-	}
-}
-
+var member =(()=>{
+	var _userid,_ssn,_password,_name,_age,_roll,_teamid,_gender,_subject;
+	var setUserid = (userid)=>{this._userid = userid;}
+	var setSsn = (ssn)=> {this._ssn = ssn;}
+	var setPassword = (password)=> {this._password = password;}
+	var setName = (name)=> {this._name =name;}
+	var setAge = (x)=>{
+		this._age= Number(new Date().getFullYear())-(Number(x.substring(0,2))+1900-1);
+		}
+	var setRoll = (roll)=>{this._roll=roll;}
+	var setTeamid = (teamid)=>{this._teamid=teamid;}
+	var setGender = (x)=>{
+		switch (x.substring(7,8)) {
+		case "1": case "3":
+			this._gender= "남";
+			break;
+		case "2": case "4":
+			this._gender= "여";
+			break;
+		case "5": case "6":
+			this._gender= "외국인";
+			break;
+		default:
+			alert("주민등록번호를 잘못입력하셨습니다.")
+			break;
+		};}
+	var setSubject = (subject)=> {this._subject=subject;}	
+	var getUserid = ()=> {return this._userid;}
+	var getSsn = ()=> {return this._ssn;}
+	var getPassword = ()=> {return this._password;}
+	var getName = ()=> {return this._name;}
+	var getAge = ()=>{return this._age;}
+	var getRoll = ()=>{return this._roll;}
+	var getTeamid = ()=>{return this._teamid;}
+	var getGender = ()=>{return this._gender;}
+	var getSubject = ()=> {return this._subject;}	
+	return{
+		setUserid : setUserid,
+		setSsn : setSsn,
+		setPassword : setPassword,
+		setName : setName,
+		setAge : setAge,
+		setRoll : setRoll,
+		setTeamid : setTeamid,
+		setGender : setGender,
+		getUserid : getUserid,
+		getSsn : getSsn,
+		getPassword : getPassword,
+		getName : getName,
+		getAge : getAge,
+		getRoll : getRoll,
+		getTeamid : getTeamid,
+		getGender : getGender,
+		join : x =>{
+			member.setAge(x);
+			member.setGender(x);
+		}
+	};
+})();

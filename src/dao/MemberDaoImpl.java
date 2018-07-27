@@ -19,7 +19,7 @@ public class MemberDaoImpl implements MemberDao {
 			.getConnection()
 			.createStatement()
 			.executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
-							Member.getUserId(), Member.getName(), Member.getPassword(), Member.getSsn()));
+							Member.getUserId(), Member.getName(), Member.getPassword(), Member.getSsn(), Member.getAge(), Member.getRoll(), Member.getGender(), Member.getTeamId()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

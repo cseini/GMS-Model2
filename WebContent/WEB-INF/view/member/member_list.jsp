@@ -3,11 +3,7 @@
 <%@ page import="java.util.*" %>
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>회원목록</title>
-	<link rel="stylesheet" href="${context }/resources/css/style.css" />
-</head>
+	<jsp:include page="../common/head.jsp"/>
 <body>
 	<form action="${context }"><input type="submit" value="초기화면"/></form>
 	<h2>회원명단</h2>

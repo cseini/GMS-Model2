@@ -17,15 +17,12 @@ public class MemberController extends HttpServlet {
 		Sentry.init(request);
 		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
 		case MOVE:
-			System.out.println("MOVE");
 			Carrier.forword(request, response);
 			break;
 		case JOIN:
-			System.out.println("JOIN");
 			Carrier.redirect(request, response,"/member.do?action=move&page=login_form");
 			break;
 		case LOGIN:
-			System.out.println("폼태그에서 온 로그인 성공?");
 			if(request.getAttribute("match").equals("TRUE")) {
 				Carrier.forword(request, response);
 			}else {
@@ -33,28 +30,22 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 		case LIST:
-			System.out.println("LIST");
 			Carrier.forword(request, response);
 			break;
 		case SEARCH:
-			System.out.println("SEARCH");
 			Carrier.forword(request, response);
 			break;
 		case RETRIEVE:
-			System.out.println("RETRIEVE");
 			Carrier.forword(request, response);
 			Carrier.redirect(request, response, "");
 			break;
 		case COUNT:
-			System.out.println("COUNT");
 			Carrier.redirect(request, response, "");
 			break;
 		case UPDATE:
-			System.out.println("UPDATE");
 			Carrier.forword(request, response);
 			break;
 		case DELETE:
-			System.out.println("DELETE");
 			Carrier.redirect(request, response,"");
 			break;
 		default:

@@ -19,9 +19,9 @@ public enum MemberQuery {
 		break;
 		case INSERT_MEMBER:
 			query = "INSERT INTO MEMBER    " + 
-					"   (MEM_ID, NAME, PASSWORD, SSN)    " +
+					"   (MEM_ID, NAME, PASSWORD, SSN, AGE, ROLL, GENDER, TEAM_ID)    " +
 					"   VALUES    "+
-					"   ('%s', '%s', '%s', '%s')";
+					"   ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 			break;
 		case SELECT_MEMBER_BY_SEQ:
 			query = "SELECT MEM_ID MEMID, TEAM_ID TEAMID ,NAME,SSN,PASSWORD,ROLL FROM MEMBER WHERE MEM_ID LIKE '%s'";

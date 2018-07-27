@@ -5,7 +5,7 @@
 <body>
 	<div>
 		<h1>로그인</h1>
-		<form id="login_form">
+		<form id="login_form" name="login_form" >
 			ID <input type="text" name="userid" /><br />
 			PASS <input type="password" name="password" /><br />
 			<input type="hidden" name="action" value="login" />
@@ -15,14 +15,14 @@
 	</div>
 	<script>
 	document.getElementById('login_form_btn').addEventListener('click',function(){
-		var member = new Member();
-		var form = document.getElementById('login_form');
-		form.action = "${context}/member.do";
-		form.method = "post";
-		member.setUserid(form.userid.value);
-		member.setPassword(form.password.value);
-		if(service.loginValidation(member)){
+		var x = service.nullChecker([document.login_form.userid.value,document.login_form.password.value]);
+		if(x.checker){
+			var form = document.getElementById('login_form');
+			form.action = "${context}/member.do";
+			form.method = "post";
 			form.submit();
+		} else {
+			alert(x.text);
 		}
 	})
 	</script>

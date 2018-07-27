@@ -21,27 +21,21 @@ public class ProjectTeamController extends HttpServlet {
 			Carrier.forword(request, response);
 			break;
 		case CREATE:
-			System.out.println("JOIN");
 			Carrier.redirect(request, response,"");
 			break;
 		case LIST:
-			System.out.println("DELETE");
 			Carrier.redirect(request, response,"");
 			break;
 		case SEARCH:
-			System.out.println("UPDATE");
 			Carrier.redirect(request, response,"");
 			break;
 		case RETRIEVE:
-			System.out.println("RETRIEVE");
 			Carrier.redirect(request, response,"");
 			break;
 		case DELETE:
-			System.out.println("DELETE");
 			Carrier.redirect(request, response,"");
 			break;
 		case UPDATE:
-			System.out.println("UPDATE");
 			Carrier.redirect(request, response,"");
 			break;
 		default:

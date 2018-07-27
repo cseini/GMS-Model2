@@ -1,24 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>회원 id 검색</title>
-	<link rel="stylesheet" href="${context }/resources/css/style.css" />
-</head>
+  <jsp:include page="../common/head.jsp"/>
 <body>
 	<h2>아이디 검색</h2>
-	<form action="${context }/member.do" onsubmit="return sendForm()" method="get">
+	<form id="search_id_form" name="search_id_form">
 		<input type="text" name="userid"/>
 		<input type="hidden" name="action" value="retrieve" />
 		<input type="hidden" name="page" value="search_id_result" />
-		<input type="submit" value="검색"/>
+		<input id="search_id_form_btn" type="button" value="검색"/>
 	</form>
 <script>
-function sendForm(){
-	alert('alert search id에서 sendform 성공!! ${context}');
-	return true;
-}
+	document.getElementById('search_id_form_btn').addEventListener('click',function(){
+		var x = service.nullChecker([document.search_id_form.userid.value]);
+		if(x.checker){
+			var form = document.getElementById('search_id_form');
+			form.action="${context }/member.do";
+			form.method="get";
+			form.submit();
+		} else {
+			alert(x.text);
+		};
+	})
 </script>
 </body>
 </html>

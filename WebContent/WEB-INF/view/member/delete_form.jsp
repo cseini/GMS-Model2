@@ -4,7 +4,7 @@
 	<jsp:include page="../common/head.jsp"/>
 <body>
 	<h3> 회원 탈퇴 </h3>
-	<form id="delete_form">
+	<form id="delete_form" name="delete_form">
 	아이디 <input type="text" name="userid"/> <br />
 	비밀번호 <input type="password" name="password"/>  <br />
 	<input type="hidden" name="action" value="delete" />
@@ -13,14 +13,14 @@
 	</form>	
 <script>
 	document.getElementById('delete_form_btn').addEventListener('click',function(){
-		var member = new Member();
-		var form = document.getElementById('delete_form');
-		form.action = "${context}/member.do";
-		form.method = "post";
-		member.setUserid(form.userid.value);
-		member.setPassword(form.password.value);
-		if(service.deleteValidation(member)){
+		var x = service.nullChecker([document.delete_form.userid.value,document.delete_form.password.value]);
+		if(x.checker){
+			var form = document.getElementById('delete_form');
+			form.action = "${context}/member.do";
+			form.method = "post";
 			form.submit();
+		} else {
+			alert(x.text);
 		}
 	})
 </script>

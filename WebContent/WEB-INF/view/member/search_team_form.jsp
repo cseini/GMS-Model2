@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>팀이름 검색</title>
-	<link rel="stylesheet" href="${context }/resources/css/style.css" />
-</head>
+	<jsp:include page="../common/head.jsp"/>
 <body>
-	<form action="${context }/member.do" onsubmit="return sendForm()" method="get">
+	<form id="search_team" name="search_team">
 		팀 이름<input type="text" name="team_name"/>
 		<input type="hidden" name="action" value="search" />
 		<input type="hidden" name="page" value="search_team_result" />
-		<input type="submit" value="검색" />
+		<input id="search_team_btn"type="button" value="검색" />
 	</form>
 <script>
-function sendForm(){
-	alert('alert 팀찾기에서 sendform 성공!! ${context}');
-	return true;
-}
+	document.getElementById('search_team_btn').addEventListener('click', function(){
+		var x = service.nullChecker([document.search_team.team_name.value]);
+		if(x.checker){
+			var form = document.getElementById('search_team');
+			form.action="${context }/member.do";
+			form.method="get";
+			form.submit();
+		} else {
+			alert(x.text);
+		}
+	})
 </script>
 </body>
 </html>
