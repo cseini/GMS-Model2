@@ -67,6 +67,8 @@ public class MemberDaoImpl implements MemberDao {
 				m.setSsn(rs.getString("SSN"));
 				m.setRoll(rs.getString("ROLL"));
 				m.setPassword(rs.getString("PASSWORD"));
+				m.setAge(rs.getString("AGE"));
+				m.setGender(rs.getString("GENDER"));
 				lst.add(m);
 			}
 		} catch (Exception e) {
@@ -90,6 +92,8 @@ public class MemberDaoImpl implements MemberDao {
 				m.setSsn(rs.getString("SSN"));
 				m.setRoll(rs.getString("ROLL"));
 				m.setPassword(rs.getString("PASSWORD"));
+				m.setAge(rs.getString("AGE"));
+				m.setGender(rs.getString("GENDER"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -119,7 +123,7 @@ public class MemberDaoImpl implements MemberDao {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement()
-					.executeUpdate(String.format(MemberQuery.UPDATE_PASSWORD.toString(),bean.getPassword().split("/")[1],bean.getUserId(),bean.getPassword().split("/")[0]));
+					.executeUpdate(String.format(MemberQuery.UPDATE_MEMBER.toString(),bean.getPassword(),bean.getTeamId(),bean.getRoll(),bean.getUserId()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

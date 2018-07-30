@@ -50,8 +50,6 @@
 			member.join(form.ssn.value);
 			form.gender.value = member.getGender();
 			form.age.value = member.getAge();
-			alert("나이 : "+member.getAge()+" 성별 : "+member.getGender());
-			alert("나이 : "+form.age.value+" 성별 : "+form.gender.value);
 			form.submit();
 		} else {
 			alert(x.text);

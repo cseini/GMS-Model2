@@ -11,21 +11,21 @@
 </div>
 <script>
 	document.getElementById("move_member_list").addEventListener('click',function(){
-		router.move(['${context}','member','list','member_list']);
+		router.move({context:'${context}',domain:'member',action:'list',page:'member_list'});
 	});
 	document.getElementById("move_find_by_id").addEventListener('click',function(){
-		router.move(['${context}','member','move','search_id_form']);
+		router.move({context:'${context}',domain:'member',action:'move',page:'search_id_form'});
 	});
 	document.getElementById("move_find_by_team").addEventListener('click',function(){
-		router.move(['${context}','member','move','search_team_form']);
+		router.move({context:'${context}',domain:'member',action:'move',page:'search_team_form'});
 	});
 	document.getElementById("move_update").addEventListener('click',function(){
-		router.move(['${context}','member','move','update_form']);
+		router.move({context:'${context}',domain:'member',action:'move',page:'update_form'});
 	});
 	document.getElementById("move_delete").addEventListener('click',function(){
-		router.move(['${context}','member','move','delete_form']);
+		router.move({context:'${context}',domain:'member',action:'move',page:'delete_form'});
 	});
 	document.getElementById("move_home").addEventListener('click',function(){
-		router.moveHome('${context}');
+		router.moveHome({context:'${context}'});
 	});
 </script>

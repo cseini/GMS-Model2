@@ -1,10 +1,11 @@
+"use strict";
 var router = (()=> {
 	return {move: x=> {
-		location.href = x[0] +"/"+ x[1] + ".do?action=" + x[2]
-		+ "&page=" + x[3];
+		location.href = x.context +"/"+ x.domain + ".do?action=" + x.action
+		+ "&page=" + x.page;
 		},
 		moveHome: x=> {
-		location.href = x+"/";
+		location.href = x.context+"/";
 		}
 	};
 })();

@@ -8,12 +8,12 @@
 </div>
 <script>
 	document.getElementById('move_home').addEventListener('click',function(){ //콜백함수
-	router.moveHome('${context}');
+	router.moveHome({context:'${context}'});
 	});
 	document.getElementById('move_about').addEventListener('click',function(){ //콜백함수
-	router.move(['${context}','member','move','main']);
+	router.move({context:'${context}',domain:'member',action:'move',page:'mypage'});
 	});
 	document.getElementById('move_admin').addEventListener('click',function(){ //콜백함수
-	router.move(['${context}','admin','move','main']);
+	router.move({context:'${context}',domain:'admin',action:'move',page:'main'});
 	});
 </script>

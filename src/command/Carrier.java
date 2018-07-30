@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Carrier {
 	public static void forword(HttpServletRequest request,HttpServletResponse response) {
 			try {
-				System.out.println("뷰:"+Sentry.cmd.getView());
 				request.getRequestDispatcher(Sentry.cmd.getView()).forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

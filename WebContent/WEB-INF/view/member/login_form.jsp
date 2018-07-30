@@ -3,15 +3,17 @@
 <html lang="en">
 	<jsp:include page="../common/head.jsp"/>
 <body>
-	<div>
-		<h1>로그인</h1>
+	<div id="div_login_form">
+		<h1><b>로그인</b>하고 혜택 받으세요!</h1><br />
 		<form id="login_form" name="login_form" >
-			ID <input type="text" name="userid" /><br />
-			PASS <input type="password" name="password" /><br />
-			<input type="hidden" name="action" value="login" />
-			<input type="hidden" name="page" value="main" />
-			<input id="login_form_btn" type="button" value="전송"/>
+			<h2>
+			<input type="text" name="userid"  placeholder="아이디를 입력하세요."/><br /><br />
+			<input type="password" name="password" placeholder="비밀번호를 입력하세요."/><br /></h2>
+			<input type="hidden" name="action" value="login" /><br />
 		</form>
+	</div>
+	<div id="login_btn_style">
+		<h2><a id="login_form_btn">로그인</a></h2>
 	</div>
 	<script>
 	document.getElementById('login_form_btn').addEventListener('click',function(){

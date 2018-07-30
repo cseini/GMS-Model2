@@ -115,8 +115,66 @@ div#loginForm{
 	color: black;
 	align-content: center;
 }
+table#mypage-table table, td, th{
+	padding: 10px 20px;
+	font-weight: bold;
+	height: 50px;
+	width: 100px;
+	}
 table, th, td{border:1px solid gray}
 
+#move_uapdate_btn a{
+	background-color: #e985e9;
+	padding: 10px 20px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
 
+#move_uapdate_btn a:hover{
+	padding: 10px 20px;
+	background-color: #e25fe2;
+}
+#move_uapdate_btn a:active{
+	padding: 10px 20px;
+	background-color: #de45de;
+}
+form#update_member td{
+	width: 700px;
+}
+div#div_login_form{
+	margin: 200px;
+	margin-bottom:0;
+	text-align: center;
+}
+div#div_login_form input{
+	margin:auto;
+	text-align: center;
+	width:300px;
+	height: 50px;
+}
 
+div#login_btn_style {
+	margin:auto;
+	text-align: center;
+	background-color: #e985e9;
+	width:300px;
+	
+}
+div#login_btn_style a{
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
+
+div#login_btn_style a:hover{
+	padding: inherit;
+	background-color: #e25fe2;
+}
+div#login_btn_style a:active{
+	padding: inherit;
+	background-color: #de45de;
+}
 

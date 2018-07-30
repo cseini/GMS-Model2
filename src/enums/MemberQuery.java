@@ -1,7 +1,7 @@
 package enums;
 
 public enum MemberQuery {
-	LOGIN, INSERT_MEMBER, SELECT_MEMBER_BY_SEQ, MEMBER_COUNT, UPDATE_PASSWORD, MEMBER_DELETE, SELECT_ALL, SELECT_TEAM;
+	LOGIN, INSERT_MEMBER, SELECT_MEMBER_BY_SEQ, MEMBER_COUNT, UPDATE_MEMBER, MEMBER_DELETE, SELECT_ALL, SELECT_TEAM;
 	@Override
 	public String toString() {
 		String query ="";
@@ -24,13 +24,13 @@ public enum MemberQuery {
 					"   ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 			break;
 		case SELECT_MEMBER_BY_SEQ:
-			query = "SELECT MEM_ID MEMID, TEAM_ID TEAMID ,NAME,SSN,PASSWORD,ROLL FROM MEMBER WHERE MEM_ID LIKE '%s'";
+			query = "SELECT MEM_ID MEMID, TEAM_ID TEAMID ,NAME,SSN,PASSWORD,ROLL,AGE,GENDER FROM MEMBER WHERE MEM_ID LIKE '%s'";
 			break;
 		case MEMBER_COUNT:
 			query = "SELECT COUNT(*) as count FROM MEMBER";
 			break;
-		case UPDATE_PASSWORD:
-			query = "UPDATE member SET password = '%s' WHERE mem_id LIKE '%s' AND password like '%s'";
+		case UPDATE_MEMBER:
+			query = "UPDATE member SET password = '%s', team_id='%s', roll='%s' WHERE mem_id LIKE '%s'";
 			break;
 		case MEMBER_DELETE:
 			query = "DELETE FROM member WHERE mem_id like '%s' AND password like '%s'";
@@ -41,7 +41,7 @@ public enum MemberQuery {
 					"	NAME,  " +
 					"	SSN,  "	+
 					"	 ROLL,  " +
-					"	 PASSWORD  " +
+					"	 PASSWORD, AGE, GENDER  " +
 					"   FROM MEMBER  ";
 			break;
 		case SELECT_TEAM:
@@ -50,7 +50,7 @@ public enum MemberQuery {
 					"	NAME,  " +
 					"	SSN,  "	+
 					"	 ROLL,  " +
-					"	 PASSWORD  " +
+					"	 PASSWORD  , AGE, GENDER" +
 					"   FROM MEMBER  " +
 					" WHERE TEAM_ID LIKE '%s' "
 					;
