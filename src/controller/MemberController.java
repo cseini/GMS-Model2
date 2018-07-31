@@ -24,9 +24,6 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN:
 			if(request.getAttribute("match").equals("TRUE")) {
-				request.getSession().setAttribute("user", request.getAttribute("user"));
-				Sentry.cmd.setPage("mypage");
-				Sentry.cmd.execute();
 				Carrier.forword(request, response);
 			}else {
 				Carrier.redirect(request,  response, "/member.do?action=move&page=login_form" );

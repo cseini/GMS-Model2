@@ -115,15 +115,24 @@ div#loginForm{
 	color: black;
 	align-content: center;
 }
-table#mypage-table table, td, th{
+table#mypage-table{
+	margin : 100px auto;
+	margin-bottom :30px;
 	padding: 10px 20px;
+	text-align: center;
+	}
+table#mypage-table tr, td{
 	font-weight: bold;
 	height: 50px;
 	width: 100px;
-	}
+}
 table, th, td{border:1px solid gray}
-
-#move_uapdate_btn a{
+#move_update_btn{
+	clear:both;
+	margin:0 auto;
+	text-align: center;
+}
+#move_update_btn a{
 	background-color: #e985e9;
 	padding: 10px 20px;
 	font-weight: bold;
@@ -132,20 +141,18 @@ table, th, td{border:1px solid gray}
 	color: black;
 }
 
-#move_uapdate_btn a:hover{
+#move_update_btn a:hover{
 	padding: 10px 20px;
 	background-color: #e25fe2;
 }
-#move_uapdate_btn a:active{
+#move_update_btn a:active{
 	padding: 10px 20px;
 	background-color: #de45de;
-}
-form#update_member td{
-	width: 700px;
 }
 div#div_login_form{
 	margin: 200px;
 	margin-bottom:0;
+	margin-top:0;
 	text-align: center;
 }
 div#div_login_form input{
@@ -156,13 +163,13 @@ div#div_login_form input{
 }
 
 div#login_btn_style {
-	margin:auto;
+	clear:both;
+	margin:0 auto;
 	text-align: center;
-	background-color: #e985e9;
-	width:300px;
-	
 }
 div#login_btn_style a{
+	background-color: #e985e9;
+	padding: 13px 115px;
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 2.8em;
@@ -170,11 +177,100 @@ div#login_btn_style a{
 }
 
 div#login_btn_style a:hover{
-	padding: inherit;
 	background-color: #e25fe2;
 }
 div#login_btn_style a:active{
-	padding: inherit;
 	background-color: #de45de;
 }
 
+div#join_form_style{
+	margin: 100px;
+	margin-bottom:0;
+	margin-top:0;
+	text-align: center;
+}
+.join_textbox {
+	margin:auto;
+	text-align: center;
+	width:300px;
+	height: 50px;
+}
+
+div#join_form_btn_style{
+	clear:both;
+	width:300px;
+	margin:0 auto;
+	text-align: center;
+}
+div#join_form_btn_style a{
+	background-color: #e985e9;
+	padding: 13px 115px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
+
+div#join_form_style a:hover{
+	background-color: #e25fe2;
+}
+div#join_form_style a:active{
+	background-color: #de45de;
+}
+div#update_member_style table{
+	margin:0 auto;
+	align-content: center;
+	width : 800px;
+}
+
+div#update_member_btn_style{
+	clear:both;
+	width:300px;
+	margin:0 auto;
+	text-align: center;
+}
+div#update_member_btn_style a{
+	background-color: #e985e9;
+	padding: 13px 115px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
+
+div#update_member_btn_style a:hover{
+	background-color: #e25fe2;
+}
+div#update_member_btn_style a:active{
+	background-color: #de45de;
+}
+
+form#delete_form input{
+	clear:both;
+	margin:auto;
+	text-align: center;
+	width:250px;;
+	line-height: 2.8em;
+}
+
+div#delete_form_btn_style{
+	clear:both;
+	width:300px;
+	margin:0 auto;
+	text-align: center;
+}
+div#delete_form_btn_style a{
+	background-color: #e985e9;
+	padding: 13px 115px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: black;
+}
+
+div#delete_form_btn_style a:hover{
+	background-color: #e25fe2;
+}
+div#delete_form_btn_style a:active{
+	background-color: #de45de;
+}

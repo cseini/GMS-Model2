@@ -3,26 +3,43 @@
 <html lang="en">
 	<jsp:include page="../common/head.jsp"/>
 <body>
+<div id="wrapper">
+	<div id="header">
+		<jsp:include page="../common/titleBox.jsp"/>
+		<jsp:include page="../common/menuBox.jsp"/>
+	</div>
+	<div id="content">
 	<h3> 회원 탈퇴 </h3>
-	<form id="delete_form" name="delete_form">
-	아이디 <input type="text" name="userid"/> <br />
-	비밀번호 <input type="password" name="password"/>  <br />
-	<input type="hidden" name="action" value="delete" />
-	<input type="hidden" name="page" value="delete_result" />
-	<input id="delete_form_btn" type="button" value="탈퇴"/>
+	<form id="delete_form">
+	<input type="password" name="password" placeholder="비밀번호를 입력하세요."/>  <br /><br />
 	</form>	
+	<div id="delete_form_btn_style">
+	<a id="delete_form_btn">탈퇴</a>
+	</div>
+	</div></div>
+		<div id="footer">
+		<jsp:include page="../common/footer.jsp"/>
+	</div>
 <script>
+	var form = document.getElementById('delete_form');
 	document.getElementById('delete_form_btn').addEventListener('click',function(){
-		var x = service.nullChecker([document.delete_form.userid.value,document.delete_form.password.value]);
-		if(x.checker){
-			var form = document.getElementById('delete_form');
-			form.action = "${context}/member.do";
-			form.method = "post";
-			form.submit();
-		} else {
-			alert(x.text);
-		}
-	})
+		var val = form.password.value;
+		if(val=='${user.password}'){
+		form.action = "${context}/member.do";
+		form.method = "post";
+		/*var node = document.createElement('input');
+ 		node.innerHTML = 
+			'<input type="hidden" name="action" value="delete" />'; */
+		var node = document.createElement('input');
+			node.setAttribute('type','hidden');
+			node.setAttribute('name','action');
+			node.setAttribute('value','delete');
+		form.appendChild(node);
+		form.submit();
+	} else{
+		alert('비밀번호가 다릅니다!!');
+	};
+});
 </script>
 </body>
 </html>

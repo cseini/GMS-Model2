@@ -20,7 +20,7 @@ public class UpdateCommand extends Command{
 		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			MemberBean mem = new MemberBean();
-			mem.setUserId(request.getParameter("userid"));
+			mem.setUserId(((MemberBean)request.getSession().getAttribute("user")).getUserId());
 			mem.setPassword(request.getParameter("password"));
 			mem.setTeamId(request.getParameter("teamid"));
 			mem.setRoll(request.getParameter("roll"));

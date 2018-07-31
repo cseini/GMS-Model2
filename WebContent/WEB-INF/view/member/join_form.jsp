@@ -1,26 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-<jsp:include page="../common/head.jsp" />
+	<jsp:include page="../common/head.jsp"/>
 <body>
-	<div id="join-layout">
+<div id="wrapper">
+	<div id="header">
+		<jsp:include page="../common/titleBox.jsp"/>
+		<jsp:include page="../common/menuBox.jsp"/>
+	</div>
+	<div id="content">
+	<div id="join_form_style">
 		<h3>회원가입</h3>
-		<form id="join_form" name="join_form">
-			아이디 <input type="text" name="userid" /><br />
-			비밀번호 <input type="password" name="password" /><br />
-			이름 <input type="text" name="name" /><br />
-			주민등록번호<input type="text" name="ssn" /><br />
-			<input type="hidden" name="action" value="join" />
-			<input type="hidden" name="page" value="mypage" />
-			<input type="hidden" name="gender" />
-			<input type="hidden" name="age" />
+		<form id="join_form">
+			<input class="join_textbox" type="text" name="userid" placeholder="아이디를 입력하세요."/><br /><br />
+			<input class="join_textbox" type="password" name="password" placeholder="비밀번호를 입력하세요."/><br /><br />
+			<input class="join_textbox" type="text" name="name" placeholder="이름을 입력하세요."/><br /><br />
+			<input class="join_textbox" type="text" name="ssn" placeholder="주민등록번호를 입력하세요.(예: xxxxxx-x)"/><br /><br /><br />
 			소속팀
 			<input type="radio" name="teamid" value="none" checked="checked" /> 없음
 			<input type="radio" name="teamid" value="nolja" /> 걍놀자
 			<input type="radio" name="teamid" value="jienHouse" /> 지은이네
 			<input type="radio" name="teamid" value="turtleKing" /> 왕거북이
-			<input type="radio" name="teamid" value="coddingZzang" /> 코딩짱<br />
+			<input type="radio" name="teamid" value="coddingZzang" /> 코딩짱<br /><br />
 			프로젝트역할
 			<select name="roll" id="roll">
 				<option value="leader">팀장</option>
@@ -28,7 +29,7 @@
 				<option value="back">백단개발</option>
 				<option value="android">안드로이드개발</option>
 				<option value="minfe">민폐</option>
-			</select><br />
+			</select><br /><br />
 			수강과목
 			<input type="checkbox" name="subject" value="Java" checked="checked"  /> Java
 			<input type="checkbox" name="subject" value="JSP" checked="checked" /> JSP
@@ -36,9 +37,14 @@
 			<input type="checkbox" name="subject" value="nodejs" checked="checked"/> NodeJS
 			<input type="checkbox" name="subject" value="linux" checked="checked"/> Linux
 			<input type="checkbox" name="subject" value="HTML" checked="checked"/> HTML
-			<input type="checkbox" name="subject" value="Spring" checked="checked"/> Spring<br />
-			<input id="join_form_btn" type="button" value="전송" /><br />
+			<input type="checkbox" name="subject" value="Spring" checked="checked"/> Spring<br /><br />
 		</form>
+		<div id="join_form_btn_style">
+			<a id="join_form_btn">가입하기</a>
+		</div>
+	</div></div></div>
+		<div id="footer">
+		<jsp:include page="../common/footer.jsp"/>
 	</div>
 	<script>
 	document.getElementById('join_form_btn').addEventListener('click',function() {
@@ -48,9 +54,27 @@
 			form.action = "${context}/member.do";
 			form.method = "post";
 			member.join(form.ssn.value);
-			form.gender.value = member.getGender();
-			form.age.value = member.getAge();
+			var arr =[{name:'action', value:'join'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
+			for(var i in arr){
+				var node = document.createElement('input');
+					node.setAttribute('type','hidden');
+					node.setAttribute('name', arr[i].name);
+					node.setAttribute('value', arr[i].value);
+				form.appendChild(node);
+			}
+			/* [배열{제이슨}] */
+			/* var arr={name:['action','gender','age'],value:['join']};
+			for(i in arr.name){
+				var node=document.createElement('input');
+				node.setAttribute("type","hidden");
+				node.setAttribute("name", arr.name[i]);
+				node.setAttribute("value", arr.value[i]);
+			form.appendChild(node);
+			} */
+			/* form.gender.value = member.getGender();
+			form.age.value = member.getAge();  */
 			form.submit();
+			/* {제이슨[배열]} */
 		} else {
 			alert(x.text);
 		}

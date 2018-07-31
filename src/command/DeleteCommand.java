@@ -13,7 +13,6 @@ public class DeleteCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		execute();
 	}
 	
@@ -21,12 +20,11 @@ public class DeleteCommand extends Command{
 	public void execute() {
 		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
-			System.out.println("회원탈퇴 들어옴");
 			MemberBean mem = new MemberBean();
-			mem.setUserId(request.getParameter("userid"));
+			mem.setUserId(((MemberBean)request.getSession().getAttribute("user")).getUserId());
 			mem.setPassword(request.getParameter("password"));
 			MemberServiceImpl.getInstance().removeMember(mem);
-			System.out.println("회원탈퇴 성공");
+			request.getSession().invalidate();
 			break;
 		case PROJECTTEAM:
 			System.out.println("팀삭제 들어옴");
