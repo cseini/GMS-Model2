@@ -11,9 +11,13 @@
 	router.moveHome({context:'${context}'});
 	});
 	document.getElementById('move_about').addEventListener('click',function(){ //콜백함수
-	router.move({context:'${context}',domain:'member',action:'move',page:'mypage'});
+	router.move({
+		context:'${context}',
+		domain:'member',
+		action:'move',
+		page:'mypage'});
 	});
 	document.getElementById('move_admin').addEventListener('click',function(){ //콜백함수
-	router.move({context:'${context}',domain:'admin',action:'move',page:'main'});
+		admin.check('${context}');
 	});
 </script>

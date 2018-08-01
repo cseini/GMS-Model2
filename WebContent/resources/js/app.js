@@ -9,6 +9,27 @@ var router = (()=> {
 		}
 	};
 })();
+var admin = (()=>{
+	return{
+		check : x=>{
+			var isAdmin = confirm('관리자입니까');
+			if(isAdmin){
+				var password = prompt('관리자 비번을 입력 바랍니다.');
+				if(password == 1){
+					router.move({
+						context:x,
+						domain:'admin',
+						action:'list',
+						page:'main'
+					});
+				}else{
+					alert('비밀번호가 틀렸습니다.');
+				}
+			}else{
+				alert('관리자만 접근이 허용됩니다');
+			}
+		}
+	};})();
 var service = (()=>{
 	return{
 		nullChecker : x=>{

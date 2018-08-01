@@ -44,7 +44,6 @@
 			roll.options[i].setAttribute("selected","selected");
 		}
 	};
-
 	var team = document.getElementsByName('teamid');
 	for(var i=0;i<team.length;i++){
 		if(team[i].value==='${user.teamId}'){
@@ -61,6 +60,7 @@
 			node.setAttribute("name","action");
 			node.setAttribute("value","update");
 			form.appendChild(node);
+			alert("변경 완료");
 			form.submit();
 		} else {
 			alert(x.text);

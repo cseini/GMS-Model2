@@ -73,6 +73,7 @@
 			} */
 			/* form.gender.value = member.getGender();
 			form.age.value = member.getAge();  */
+			alert("회원가입 완료");
 			form.submit();
 			/* {제이슨[배열]} */
 		} else {

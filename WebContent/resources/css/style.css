@@ -31,7 +31,7 @@ div#title-box{
 }
 div#login-box{
 	float: right;
-	margin: 2px;
+	margin-right:30px;
 	font-size: 1.1em;
 	display: block;
 	color: #000000;
@@ -65,6 +65,12 @@ div#content{
 div#content-box{
 	clear: both;
 	margin-top: 30px;
+	align-items: center;
+}
+div#content-box table tr td{
+	border: solid 1px black;
+	height: 25px;
+	width: 100px;
 }
 div#menu-box{
 	margin-top: 30px;
@@ -72,7 +78,7 @@ div#menu-box{
 }
 ul#menu{
 	text-align: right;
-	margin: 0;
+	margin-right: 30px;
 	border-bottom: 1px #8000ff;
 	position: relative;	
 }
@@ -126,7 +132,9 @@ table#mypage-table tr, td{
 	height: 50px;
 	width: 100px;
 }
-table, th, td{border:1px solid gray}
+table, th, td{border:1px solid gray;
+}
+.bg_color_is_yellow{background-color: #ffff00;}
 #move_update_btn{
 	clear:both;
 	margin:0 auto;

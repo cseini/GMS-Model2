@@ -29,15 +29,11 @@ public class MemberController extends HttpServlet {
 				Carrier.redirect(request,  response, "/member.do?action=move&page=login_form" );
 			}
 			break;
-		case LIST:
-			Carrier.forword(request, response);
-			break;
 		case SEARCH:
 			Carrier.forword(request, response);
 			break;
 		case RETRIEVE:
 			Carrier.forword(request, response);
-			Carrier.redirect(request, response, "");
 			break;
 		case COUNT:
 			Carrier.redirect(request, response, "");

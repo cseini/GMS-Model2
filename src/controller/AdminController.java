@@ -21,6 +21,12 @@ public class AdminController extends HttpServlet {
 		case MOVE:
 			Carrier.forword(request, response);
 			break;
+		case LIST:
+			Carrier.forword(request, response);
+			break;
+		case RETRIEVE:
+			Carrier.forword(request, response);
+			break;
 		default:
 			Carrier.redirect(request, response, "");
 			break;

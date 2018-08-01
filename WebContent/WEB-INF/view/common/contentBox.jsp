@@ -3,3 +3,6 @@
 	<h1>WELCOME MY HOMEPAGE!!</h1>
 	<img src="${img}/home/test.jpg" alt="" />
 </div>
+<script>
+
+</script>

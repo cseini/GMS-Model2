@@ -41,6 +41,8 @@ public class MemberDaoImpl implements MemberDao {
 				mem.setSsn(rs.getString("SSN"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setAge(rs.getString("AGE"));
+				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
 		} catch (Exception e) {

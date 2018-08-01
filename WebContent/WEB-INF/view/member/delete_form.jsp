@@ -24,7 +24,9 @@
 	var form = document.getElementById('delete_form');
 	document.getElementById('delete_form_btn').addEventListener('click',function(){
 		var val = form.password.value;
-		if(val=='${user.password}'){
+		if(form.password.value.ckecker){
+			alert('비밀번호를 입력해주세요');
+		} else if(val=='${user.password}'){
 		form.action = "${context}/member.do";
 		form.method = "post";
 		/*var node = document.createElement('input');
@@ -35,6 +37,7 @@
 			node.setAttribute('name','action');
 			node.setAttribute('value','delete');
 		form.appendChild(node);
+		alert("탈퇴 완료");
 		form.submit();
 	} else{
 		alert('비밀번호가 다릅니다!!');
