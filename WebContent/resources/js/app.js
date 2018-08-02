@@ -13,7 +13,13 @@ var admin = (()=>{
 	return{
 		check : x=>{
 			var isAdmin = confirm('관리자입니까');
-			if(isAdmin){
+			router.move({
+				context:x,
+				domain:'admin',
+				action:'list',
+				page:'main'
+			});
+/*			if(isAdmin){
 				var password = prompt('관리자 비번을 입력 바랍니다.');
 				if(password == 1){
 					router.move({
@@ -27,7 +33,29 @@ var admin = (()=>{
 				}
 			}else{
 				alert('관리자만 접근이 허용됩니다');
-			}
+			}*/
+		},
+		main : x=>{
+			service.addClass(document.getElementById('search_box'),'width80pt center ');
+			service.addClass(document.getElementById('search_word'),'width100px floatRight ');
+			service.addClass(document.getElementById('search_option'),'floatRight ');
+			service.addClass(document.getElementById('search_btn'),'button_style floatRight ');
+			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
+			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
+			for(var i of document.querySelectorAll('.username')){
+				service.addClass(
+					i,'cursor fontColorBlue '
+				);
+				i.addEventListener('click',function(){
+				location.href = x+'/admin.do?action=retrieve&page=memberDetail&userid='+this.getAttribute('id');
+				});
+			};
+			document.getElementById("search_btn").addEventListener('click',function(){
+			     location.href = (document.getElementById('search_option').value==='id') ?
+		        x+'/admin.do?action=retrieve&page=memberDetail&userid='+document.getElementById('search_word').value
+		        :
+		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value+'&search_domain=member';
+			});
 		}
 	};})();
 var service = (()=>{
@@ -44,6 +72,12 @@ var service = (()=>{
 				}
 			}
 			return j;
+		},
+		addClass : (dom,cName)=>{
+			var arr = cName.split(" ");
+				if(arr.indexOf(cName)==-1){
+					dom.className += " " +cName;
+				}
 		}
 	};
 })();

@@ -1,7 +1,6 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
-import enums.Domain;
 import service.MemberServiceImpl;
 
 public class SearchCommand extends Command{
@@ -15,15 +14,7 @@ public class SearchCommand extends Command{
 	
 	@Override
 	public void execute() {
-		switch (Domain.valueOf(domain.toUpperCase())) {
-		case MEMBER:
-			System.out.println("팀검색진입");
-			request.setAttribute("search", MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("team_name"))); 
-			System.out.println("팀검색성공");
-			break;
-		default:
-			break;
-		}
+		request.setAttribute("list", MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("search_domain")+"/"+request.getParameter("search_option")+"/"+request.getParameter("search_word"))); 
 		super.execute();
 	}
 }

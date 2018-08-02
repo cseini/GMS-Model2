@@ -59,7 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement()
-					.executeQuery(String.format(MemberQuery.SELECT_TEAM.toString(),word));
+					.executeQuery(String.format(MemberQuery.SELECT_WORD.toString(),word.split("/")[0],word.split("/")[1],word.split("/")[2]));
 			MemberBean m = null;
 			while(rs.next()) {
 				m = new MemberBean();
@@ -154,10 +154,6 @@ public class MemberDaoImpl implements MemberDao {
 			while (rs.next()){
 				result = new MemberBean();
 				result.setUserId(rs.getString("MEMID"));
-				result.setTeamId(rs.getString("TEAMID"));
-				result.setName(rs.getString("NAME"));
-				result.setSsn(rs.getString("SSN"));
-				result.setRoll(rs.getString("ROLL"));
 				result.setPassword(rs.getString("PASSWORD"));
 			}
 		} catch (Exception e) {

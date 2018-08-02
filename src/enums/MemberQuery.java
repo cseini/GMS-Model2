@@ -1,7 +1,7 @@
 package enums;
 
 public enum MemberQuery {
-	LOGIN, INSERT_MEMBER, SELECT_MEMBER_BY_SEQ, MEMBER_COUNT, UPDATE_MEMBER, MEMBER_DELETE, SELECT_ALL, SELECT_TEAM;
+	LOGIN, INSERT_MEMBER, SELECT_MEMBER_BY_SEQ, MEMBER_COUNT, UPDATE_MEMBER, MEMBER_DELETE, SELECT_ALL, SELECT_TEAM, SELECT_WORD;
 	@Override
 	public String toString() {
 		String query ="";
@@ -44,17 +44,17 @@ public enum MemberQuery {
 					"	 PASSWORD, AGE, GENDER  " +
 					"   FROM MEMBER  ";
 			break;
-		case SELECT_TEAM:
+		case SELECT_WORD:
 			query = "SELECT MEM_ID MEMID,  " + 
 					" TEAM_ID TEAMID,  " +
 					"	NAME,  " +
 					"	SSN,  "	+
 					"	 ROLL,  " +
 					"	 PASSWORD  , AGE, GENDER" +
-					"   FROM MEMBER  " +
-					" WHERE TEAM_ID LIKE '%s' "
-					;
+					"   FROM %s  " +
+					" WHERE %s LIKE '%%%s%%' ";
 			break;
+			
 		default:
 			break;
 		}

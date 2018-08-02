@@ -7,6 +7,8 @@
 	</ul>
 </div>
 <script>
+	service.addClass(document.getElementById('menu-box'),'menu-box ');
+	service.addClass(document.getElementById('menu'),'menu ');
 	document.getElementById('move_home').addEventListener('click',function(){ //콜백함수
 	router.moveHome({context:'${context}'});
 	});

@@ -4,6 +4,7 @@
 	<a id="move_join_form">JOIN</a>
 </div>
 <script>
+	service.addClass(document.getElementById('login-box'),'cursor height50px fontColorBlack floatRight marginRight30px ');
 	document.getElementById('move_login_form').addEventListener('click',function(){ //콜백함수
 		router.move({context : '${context}',domain : 'member',action : 'move',page : 'login_form'});
 	});

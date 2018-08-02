@@ -4,5 +4,5 @@
 	<img src="${img}/home/test.jpg" alt="" />
 </div>
 <script>
-
+	service.addClass(document.getElementById('content-box'),'textCenter ');
 </script>

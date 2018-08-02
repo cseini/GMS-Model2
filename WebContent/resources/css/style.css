@@ -29,22 +29,7 @@ div#header{
 div#title-box{
 	text-align: center;
 }
-div#login-box{
-	float: right;
-	margin-right:30px;
-	font-size: 1.1em;
-	display: block;
-	color: #000000;
-	
-}
-div#login-box a:hover{
-	color: #ff80ff;
-	text-decoration: none;
-}
-div#login-box a:active{
-	color: #ff44ff;
-	text-decoration: none;
-}
+
 div#header h1{
     color: #666666;
 	padding: 5px 0;
@@ -53,41 +38,35 @@ div#header h1{
 	font-weight: bold;
 	font-size: 32px;
 }
-div#content{
-	padding: 5px 30px;
-	background-color: #fff;
-	margin-bottom: 10px;
-	min-height: 400px;
-	color: black;
+
+div#footer{
+	color: #aaa;
 	text-align: center;
-	align-content: center;
+	width:100%;
+	font-size: 1.0em;
+	background-color: #292929;
+	bottom: 0;
+	position: fixed;
 }
-div#content-box{
-	clear: both;
-	margin-top: 30px;
-	align-items: center;
+table, th, td{
+	border:1px solid gray;
 }
-div#content-box table tr td{
-	border: solid 1px black;
-	height: 25px;
-	width: 100px;
-}
-div#menu-box{
+.menu-box{
 	margin-top: 30px;
 	clear: both;
 }
-ul#menu{
+.menu{
 	text-align: right;
 	margin-right: 30px;
 	border-bottom: 1px #8000ff;
 	position: relative;	
 }
-ul#menu li{
+.menu li{
 	display: inline;
 	list-style: none;
 	background-color: #0080ff;
 }
-ul#menu li a{
+.menu li a{
 	padding: 10px 20px;
 	background-color: #e985e9;
 	font-weight: bold;
@@ -95,190 +74,70 @@ ul#menu li a{
 	line-height: 2.8em;
 	color: black;
 }
-ul#menu li a:hover{
+.menu li a:hover{
 	padding: 10px 20px;
 	background-color: #e25fe2;
 }
-ul#menu li a:active{
+.menu li a:active{
 	padding: 10px 20px;
 	background-color: #de45de;
 }
-div#footer{
-	clear:both;
-	color: #aaa;
-	text-align: center;
-	margin: 0;
-	padding: 10px 0;
-	line-height: normal;
-	font-size: 1.0em;
-	background-color: #292929;
-}
-div#loginForm{
-	padding: 10px 20px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 2.8em;
-	color: black;
-	align-content: center;
-}
-table#mypage-table{
-	margin : 100px auto;
-	margin-bottom :30px;
-	padding: 10px 20px;
-	text-align: center;
-	}
-table#mypage-table tr, td{
-	font-weight: bold;
-	height: 50px;
-	width: 100px;
-}
-table, th, td{border:1px solid gray;
-}
-.bg_color_is_yellow{background-color: #ffff00;}
-#move_update_btn{
+.btnStyle {
 	clear:both;
 	margin:0 auto;
 	text-align: center;
 }
-#move_update_btn a{
+.btnStyle a{
 	background-color: #e985e9;
-	padding: 10px 20px;
+	/* padding: 13px 115px; */
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 2.8em;
 	color: black;
 }
-
-#move_update_btn a:hover{
-	padding: 10px 20px;
+.btnStyle a:hover{
 	background-color: #e25fe2;
 }
-#move_update_btn a:active{
-	padding: 10px 20px;
+.btnStyle a:active{
 	background-color: #de45de;
 }
-div#div_login_form{
-	margin: 200px;
-	margin-bottom:0;
-	margin-top:0;
-	text-align: center;
-}
-div#div_login_form input{
-	margin:auto;
-	text-align: center;
-	width:300px;
-	height: 50px;
-}
+.bgColorYellow{background-color: #ffff00;}
+.center{margin: 0 auto}
+.floatRight{float: right}
+.width50pt{width: 50%}
+.width50px{width: 50px}
+.width80pt{width: 80%}
+.width90pt{width: 90%}
+.width100pt{width: 100%}
+.width150px a{width: 150px}
+.width200pt{width: 200%}
+.width200px{width: 200px}
+.width300px{width: 300px}
+.width400px{width: 400px}
+.width400px td{width: 400px}
+.width300px input{width: 300px}
+.height50px{height: 50px}
+.height100pt{height: 100%}
+.height50px input{height: 50px}
+.height50px td{height: 50px}
+.height100px{height: 100px}
+.height400px{height: 400px}
+.marginTop30px{margin-top: 30px}
+.marginTop50px{margin-top: 50px}
+.marginTop300px{margin-top: 250px}
+.marginRight30px{margin-right: 30px}
+.marginLeft200px{margin-left: 200px}
+.marginRight200px{margin-right: 200px}
+.marginBottom30px{margin-bottom: 30px}
+.marginBottom50px{margin-bottom: 50px}
+.floatRight{float: right}
+.cursor{cursor: pointer}
+.fontColorBlue{color:blue}
+.fontColorBlack{color:black}
+.textCenter{text-align: center}
+.textCenter input{text-align: center}
+.clearBoth{clear:both}\
+.borderCollapse{border-collapse:collapse}
+.padding13px115px a{padding: 13px 115px}
+.padding13px40px a{padding: 13px 40px}
 
-div#login_btn_style {
-	clear:both;
-	margin:0 auto;
-	text-align: center;
-}
-div#login_btn_style a{
-	background-color: #e985e9;
-	padding: 13px 115px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 2.8em;
-	color: black;
-}
-
-div#login_btn_style a:hover{
-	background-color: #e25fe2;
-}
-div#login_btn_style a:active{
-	background-color: #de45de;
-}
-
-div#join_form_style{
-	margin: 100px;
-	margin-bottom:0;
-	margin-top:0;
-	text-align: center;
-}
-.join_textbox {
-	margin:auto;
-	text-align: center;
-	width:300px;
-	height: 50px;
-}
-
-div#join_form_btn_style{
-	clear:both;
-	width:300px;
-	margin:0 auto;
-	text-align: center;
-}
-div#join_form_btn_style a{
-	background-color: #e985e9;
-	padding: 13px 115px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 2.8em;
-	color: black;
-}
-
-div#join_form_style a:hover{
-	background-color: #e25fe2;
-}
-div#join_form_style a:active{
-	background-color: #de45de;
-}
-div#update_member_style table{
-	margin:0 auto;
-	align-content: center;
-	width : 800px;
-}
-
-div#update_member_btn_style{
-	clear:both;
-	width:300px;
-	margin:0 auto;
-	text-align: center;
-}
-div#update_member_btn_style a{
-	background-color: #e985e9;
-	padding: 13px 115px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 2.8em;
-	color: black;
-}
-
-div#update_member_btn_style a:hover{
-	background-color: #e25fe2;
-}
-div#update_member_btn_style a:active{
-	background-color: #de45de;
-}
-
-form#delete_form input{
-	clear:both;
-	margin:auto;
-	text-align: center;
-	width:250px;;
-	line-height: 2.8em;
-}
-
-div#delete_form_btn_style{
-	clear:both;
-	width:300px;
-	margin:0 auto;
-	text-align: center;
-}
-div#delete_form_btn_style a{
-	background-color: #e985e9;
-	padding: 13px 115px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 2.8em;
-	color: black;
-}
-
-div#delete_form_btn_style a:hover{
-	background-color: #e25fe2;
-}
-div#delete_form_btn_style a:active{
-	background-color: #de45de;
-}

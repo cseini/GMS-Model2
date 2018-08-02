@@ -8,9 +8,9 @@
 		<jsp:include page="../common/titleBox.jsp"/>
 		<jsp:include page="../common/menuBox.jsp"/>
 	</div>
-	<div id="content">
-<div id="update_member_style">
-<h3> 정보 변경 </h3>
+<div id="content">
+<div id="content-box">
+<h1> 정보 변경 </h1><br />
 	<form id="update_member" name="update_member" >
 	<input type="hidden" name="userid" value="${user.userId }" />
 		<input type="password" id="password" name="password" placeholder="이전비밀번호:${user.password}"/><br /><br />
@@ -27,16 +27,19 @@
 			<option value="back">백단개발</option>
 			<option value="android">안드로이드개발</option>
 			<option value="minfe">민폐</option>
-		</select><br /><br />
+		</select><br /><br /><br />
 	</form>	
 	<div id="update_member_btn_style">
 		<a id="update_member_btn"> 업데이트 </a>
 	</div>
-</div></div></div>
+	</div>
+</div></div>
 	<div id="footer">
 		<jsp:include page="../common/footer.jsp"/>
 	</div>
 <script>
+	service.addClass(document.getElementById('content-box'),'textCenter ');
+	service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
 	var form = document.getElementById('update_member');
 	var roll = document.getElementById('roll');
 	for(var i=0;i<roll.options.length;i++){

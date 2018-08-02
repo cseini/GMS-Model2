@@ -7,6 +7,8 @@
 	</ul>
 </div>
 <script>
+	service.addClass(document.getElementById('menu-box'),'menu-box ');
+	service.addClass(document.getElementById('menu'),'menu ');
 	document.getElementById("move_update").addEventListener('click',function(){
 		router.move(['${context}','member','move','update_form']);
 	});

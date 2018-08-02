@@ -9,13 +9,16 @@
 		<jsp:include page="../common/menuBox.jsp"/>
 	</div>
 	<div id="content">
-	<div id="join_form_style">
-		<h3>회원가입</h3>
+	<div id="content-box">
+		<h1>회원가입</h1><br />
 		<form id="join_form">
-			<input class="join_textbox" type="text" name="userid" placeholder="아이디를 입력하세요."/><br /><br />
-			<input class="join_textbox" type="password" name="password" placeholder="비밀번호를 입력하세요."/><br /><br />
-			<input class="join_textbox" type="text" name="name" placeholder="이름을 입력하세요."/><br /><br />
-			<input class="join_textbox" type="text" name="ssn" placeholder="주민등록번호를 입력하세요.(예: xxxxxx-x)"/><br /><br /><br />
+		<div id="join_form_textbox">
+			<input type="text" name="userid" placeholder="아이디를 입력하세요."/><br /><br />
+			<input type="password" name="password" placeholder="비밀번호를 입력하세요."/><br /><br />
+			<input type="text" name="name" placeholder="이름을 입력하세요."/><br /><br />
+			<input type="text" name="ssn" placeholder="주민등록번호를 입력하세요.(예: xxxxxx-x)"/><br /><br /><br />
+		</div>
+		<div id="join_form_otherbox">
 			소속팀
 			<input type="radio" name="teamid" value="none" checked="checked" /> 없음
 			<input type="radio" name="teamid" value="nolja" /> 걍놀자
@@ -38,13 +41,18 @@
 			<input type="checkbox" name="subject" value="linux" checked="checked"/> Linux
 			<input type="checkbox" name="subject" value="HTML" checked="checked"/> HTML
 			<input type="checkbox" name="subject" value="Spring" checked="checked"/> Spring<br /><br />
+			</div>
 		</form>
 		<div id="join_form_btn_style">
 			<a id="join_form_btn">가입하기</a>
-		</div>
-	</div></div></div>
+		</div><br />
+		
+	
 		<div id="footer">
 		<jsp:include page="../common/footer.jsp"/>
+	</div>
+	</div>
+	</div>
 	</div>
 	<script>
 	document.getElementById('join_form_btn').addEventListener('click',function() {
@@ -62,24 +70,16 @@
 					node.setAttribute('value', arr[i].value);
 				form.appendChild(node);
 			}
-			/* [배열{제이슨}] */
-			/* var arr={name:['action','gender','age'],value:['join']};
-			for(i in arr.name){
-				var node=document.createElement('input');
-				node.setAttribute("type","hidden");
-				node.setAttribute("name", arr.name[i]);
-				node.setAttribute("value", arr.value[i]);
-			form.appendChild(node);
-			} */
-			/* form.gender.value = member.getGender();
-			form.age.value = member.getAge();  */
 			alert("회원가입 완료");
 			form.submit();
-			/* {제이슨[배열]} */
 		} else {
 			alert(x.text);
 		}
 	})
+	service.addClass(document.getElementById('content-box'),'textCenter ');
+	service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
+	service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
+	service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
 	</script>
 </body>
 </html>
