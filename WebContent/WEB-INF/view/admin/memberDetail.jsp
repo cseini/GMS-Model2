@@ -9,7 +9,7 @@
 		<jsp:include page="../common/menuBox.jsp"/>
 	</div>
 	<div id="content">
-<div>
+<div id="content-box">
 	<table id="mypage-table">
 		<tr>
 			<td colspan="2" rowspan="3"></td>
@@ -47,6 +47,9 @@
 		<jsp:include page="../common/footer.jsp"/>
 	</div>
 <script>
+	service.addClass(document.getElementById('content-box'),'textCenter ');
+	service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
+	service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px ');
 	document.getElementById('move_update_form').addEventListener('click', function(){
 		router.move({context:'${context}', domain:'member', action:'move',page:'update_form'});
 	});

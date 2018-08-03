@@ -19,7 +19,6 @@ public class ColumnFinder {
 		for (int i = 0; i < f.length; i++) {
 			s+=(i!=(f.length-1))?f[i].getName()+",":f[i].getName();
 		}
-		System.out.println("----컬럼파인더 진입----");
 		return s;
 	}
 }

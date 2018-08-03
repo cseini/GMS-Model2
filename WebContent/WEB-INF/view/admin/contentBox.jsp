@@ -7,7 +7,7 @@
 			<option value="none">검색조건</option>
 			<option value="id">아이디</option>
 			<option value="name">이      름 </option>
-			<option value="team_id">팀이름</option>
+			<option value="teamid">팀이름</option>
 		</select>
 		<input id="search_word" name="search_word" type="text" placeholder="검색어 입력" />
 	</div>

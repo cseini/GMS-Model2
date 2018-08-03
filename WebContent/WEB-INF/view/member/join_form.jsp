@@ -46,9 +46,9 @@
 		<div id="join_form_btn_style">
 			<a id="join_form_btn">가입하기</a>
 		</div><br />
-		<%-- <div id="footer">
+		<div id="footer">
 		<jsp:include page="../common/footer.jsp"/>
-	</div> --%>
+	</div> 
 	</div>
 	</div>
 	</div>

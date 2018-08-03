@@ -26,7 +26,7 @@ public class PstmtQuery extends QueryTemplate{
 		System.out.println("======"+aa+"=======");
 		try {
 			pstmt = DatabaseFactory.createDatabase2(map).getConnection()
-					.prepareStatement((String) map.get("sql"));
+					.prepareStatement((String)map.get("sql"));
 			pstmt.setString(1, "%"+map.get("value").toString()+"%");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class PstmtQuery extends QueryTemplate{
 			MemberBean mem = null;
 			while(rs.next()) {
 				mem = new MemberBean();
-				mem.setUserId(rs.getString("MEMID"));
+				mem.setUserId(rs.getString("USERID"));
 				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setSsn(rs.getString("SSN"));

@@ -65,6 +65,7 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("value", word.split("/")[1]);
 		map.put("table", Domain.MEMBER);
 		q.play(map);
+		System.out.println(q.toString());
 		for (Object s : q.getList()) {
 			list.add((MemberBean)s);
 		}
