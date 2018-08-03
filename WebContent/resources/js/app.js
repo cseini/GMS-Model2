@@ -42,6 +42,7 @@ var admin = (()=>{
 			service.addClass(document.getElementById('search_btn'),'button_style floatRight ');
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
+			service.addClass(document.getElementById('content'),'marginBottom150px ' );
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(
 					i,'cursor fontColorBlue '

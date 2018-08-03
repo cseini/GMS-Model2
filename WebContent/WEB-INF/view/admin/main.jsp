@@ -15,5 +15,7 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>	
 	</div>
 </div>
+<script>
+</script>
 </body>
 </html>

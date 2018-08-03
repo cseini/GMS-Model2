@@ -16,5 +16,9 @@
 		<jsp:include page="common/footer.jsp"/>
 	</div>
 </div>
+<script>
+	service.addClass(document.getElementById('wrapper'),'width100pt padding0px margetnLeftAuto margetnRightAuto ')
+	service.addClass(document.getElementById('body'),'fontDefault backgroundColorWhite margin0px padding0px fontColorGray ')
+</script>
 </body>
 </html>

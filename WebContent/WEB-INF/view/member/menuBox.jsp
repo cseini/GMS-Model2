@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="menu-box">
-	<ul id="menu">
-		<li><a id="move_update">UPDATE PASSWORD</a></li>
-		<li><a id="move_delete">DELETE MEMBER</a></li>
-		<li><a id="move_home">HOME</a></li>
-	</ul>
+	<a id="move_update">UPDATE PASSWORD</a>
+	<a id="move_delete">DELETE MEMBER</a>
+	<a id="move_home">HOME</a>
 </div>
 <script>
-	service.addClass(document.getElementById('menu-box'),'menu-box ');
-	service.addClass(document.getElementById('menu'),'menu ');
+	service.addClass(document.getElementById('menu-box'),'btnStyle ');
 	document.getElementById("move_update").addEventListener('click',function(){
 		router.move(['${context}','member','move','update_form']);
 	});
