@@ -5,7 +5,7 @@ public enum MemberQuery {
 	@Override
 	public String toString() {
 		String query ="";
-		switch (this) {
+		switch (this) { 
 		case LOGIN:
 			query = "SELECT MEM_ID MEMID,  " + 
 					" TEAM_ID TEAMID,  " +
