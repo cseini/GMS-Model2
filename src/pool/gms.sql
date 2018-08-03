@@ -1,6 +1,5 @@
-select * from member;
-update member 
-set team_id='none'
-where team_id is null;
-select * from project_team;
-update member set roll='minfe' where roll is null;
+SELECT T.*
+FROM (SELECT ROWNUM RNUM, m.*
+      FROM member m
+      ORDER BY RNUM DESC) T
+WHERE T.RNUM BETWEEN 1 AND 5;

@@ -55,7 +55,7 @@ var admin = (()=>{
 			     location.href = (document.getElementById('search_option').value==='id') ?
 		        x+'/admin.do?action=retrieve&page=memberDetail&userid='+document.getElementById('search_word').value
 		        :
-		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value+'&search_domain=member';
+		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
 			});
 		}
 	};})();

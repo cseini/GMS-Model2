@@ -14,7 +14,7 @@ public class SearchCommand extends Command{
 	
 	@Override
 	public void execute() {
-		request.setAttribute("list", MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("search_domain")+"/"+request.getParameter("search_option")+"/"+request.getParameter("search_word"))); 
+		request.setAttribute("list", MemberServiceImpl.getInstance().findMemberByWord(request.getParameter("search_option")+"/"+request.getParameter("search_word"))); 
 		super.execute();
 	}
 }

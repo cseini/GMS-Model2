@@ -3,6 +3,8 @@ package dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.MemberBean;
 import domain.ProjectTeamBean;
 import enums.TeamQuery;
 import enums.Vendor;
@@ -22,7 +24,7 @@ public class ProjectTeamDaoImpl implements ProjectTeamDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
 	}
 	@Override
 	public List<ProjectTeamBean> selectAllProjectTeam() {

@@ -31,6 +31,14 @@
 			<td>${i.teamId}</td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6"> 
+			카운트커맨드 : (${count1})
+			<c:forEach begin="1" end="${count%5==0? count/5:count/5+1}" step="1" var="page">
+				<span> ${page } </span>
+			</c:forEach>
+			</td>
+		</tr>
 	</table><br />
 </div>
 <script>

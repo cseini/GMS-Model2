@@ -1,10 +1,14 @@
 package dao;
 import java.util.*;
 import domain.*;
+import enums.Domain;
 import enums.MemberQuery;
 import enums.Vendor;
 import factory.*;
 import pool.DBConstant;
+import template.PstmtQuery;
+import template.QueryTemplate;
+
 import java.sql.*;
 
 public class MemberDaoImpl implements MemberDao {
@@ -54,30 +58,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public List<MemberBean> selectMemberByWord(String word) {
-		List<MemberBean> lst = new ArrayList<>();
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(String.format(MemberQuery.SELECT_WORD.toString(),word.split("/")[0],word.split("/")[1],word.split("/")[2]));
-			MemberBean m = null;
-			while(rs.next()) {
-				m = new MemberBean();
-				m.setUserId(rs.getString("MEMID"));
-				m.setTeamId(rs.getString("TEAMID"));
-				m.setName(rs.getString("NAME"));
-				m.setSsn(rs.getString("SSN"));
-				m.setRoll(rs.getString("ROLL"));
-				m.setPassword(rs.getString("PASSWORD"));
-				m.setAge(rs.getString("AGE"));
-				m.setGender(rs.getString("GENDER"));
-				lst.add(m);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("column", word.split("/")[0]);
+		map.put("value", word.split("/")[1]);
+		map.put("table", Domain.MEMBER);
+		q.play(map);
+		for (Object s : q.getList()) {
+			list.add((MemberBean)s);
 		}
-		return lst;
+		return list;
 	}
 
 	@Override

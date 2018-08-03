@@ -1,7 +1,6 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
-import enums.Domain;
 import service.MemberServiceImpl;
 
 public class CountCommand extends Command{
@@ -15,14 +14,8 @@ public class CountCommand extends Command{
 	}
 		@Override
 		public void execute() {
-			switch (Domain.valueOf(domain.toUpperCase())) {
-			case MEMBER:
-				int count = MemberServiceImpl.getInstance().countMember();
-				System.out.println(count);
-				break;
-			default:
-				break;
-			}
+			request.setAttribute("count1",MemberServiceImpl.getInstance().countMember());
+			System.out.println("카운트 커맨드 진입");
 			super.execute();
 		}
 }

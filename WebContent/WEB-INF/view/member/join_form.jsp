@@ -46,11 +46,9 @@
 		<div id="join_form_btn_style">
 			<a id="join_form_btn">가입하기</a>
 		</div><br />
-		
-	
-		<div id="footer">
+		<%-- <div id="footer">
 		<jsp:include page="../common/footer.jsp"/>
-	</div>
+	</div> --%>
 	</div>
 	</div>
 	</div>
@@ -76,7 +74,7 @@
 			alert(x.text);
 		}
 	})
-	service.addClass(document.getElementById('content-box'),'textCenter ');
+	service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
 	service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
 	service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
 	service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
