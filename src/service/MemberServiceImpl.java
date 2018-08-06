@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import dao.MemberDaoImpl;
 import domain.MemberBean;
@@ -40,6 +41,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean login(MemberBean bean) {
 		return (MemberDaoImpl.getInstance().login(bean)!=null);
+	}
+	@Override
+	public List<MemberBean> getList(Map<?,?>param) {
+		return MemberDaoImpl.getInstance().selectList(param);
 	}
 }
 

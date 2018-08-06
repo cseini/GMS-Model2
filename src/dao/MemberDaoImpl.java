@@ -65,7 +65,6 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("value", word.split("/")[1]);
 		map.put("table", Domain.MEMBER);
 		q.play(map);
-		System.out.println(q.toString());
 		for (Object s : q.getList()) {
 			list.add((MemberBean)s);
 		}
@@ -153,5 +152,48 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	@Override
+	public List<MemberBean> selectList(Map<?,?> param) {
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list = new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("beginRow", param.get("beginRow"));
+		map.put("endRow", param.get("endRow"));
+		q.play(map);
+		for (Object s : q.getList()) {
+			list.add((MemberBean)s);
+		}
+		return list;
+		
+		/*String sql = " SELECT T.*  "+ 
+				"	FROM (SELECT ROWNUM RNUM, m.*  " + 
+				"      FROM member m  " + 
+				"      ORDER BY RNUM DESC) T  " + 
+				" WHERE T.RNUM BETWEEN  "+ beginRow +"  AND  "+ endRow;
+		
+		MemberBean mem = null;
+		List<MemberBean> lst = new ArrayList<>();
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE,DBConstant.USERNAME,DBConstant.PASSWORD)
+					.getConnection().createStatement()
+					.executeQuery(sql);
+			while(rs.next()) {
+				mem = new MemberBean();
+				mem.setUserId(rs.getString("USERID"));
+				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setName(rs.getString("NAME"));
+				mem.setSsn(rs.getString("SSN"));
+				mem.setRoll(rs.getString("ROLL"));
+				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setAge(rs.getString("AGE"));
+				mem.setGender(rs.getString("GENDER"));
+				lst.add(mem);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lst;*/
 	}
 }

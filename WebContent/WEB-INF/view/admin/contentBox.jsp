@@ -33,10 +33,23 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6"> 
-			카운트커맨드 : (${count1})
-			<c:forEach begin="1" end="${count%5==0? count/5:count/5+1}" step="1" var="page">
-				<span> ${page } </span>
+			카운트커맨드 : (${count}명) <br />
+			<ul class="pageBox">
+			<%-- <c:forEach begin="1" end="${count%5==0? count/5:count/5+1}" step="1" varStatus="i">
+				<li>
+				<span> <a href="#">${i.index }</a> </span>
+				</li>
 			</c:forEach>
+			</ul> --%>
+			<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="i">
+				<li>
+				<span> <a href="#">${i.index }</a> </span>
+				</li>
+			</c:forEach>
+			<c:if test="${count gt 25}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
+				<li><a id="nextButton" href="#">다음 ▶</a></li> 
+			</c:if>
+			</ul>
 			</td>
 		</tr>
 	</table><br />

@@ -54,7 +54,6 @@ public enum MemberQuery {
 					"   FROM MEMBER  " +
 					" WHERE %s LIKE '%%%s%%' ";
 			break;
-			
 		default:
 			break;
 		}

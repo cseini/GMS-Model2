@@ -8,26 +8,35 @@ import factory.DatabaseFactory;
 public class PstmtQuery extends QueryTemplate{
 	@Override
 	void initialize() {
-		map.put("sql", String.format(
-				" select " +
-				ColumnFinder.find(Domain.MEMBER)
-				+" FROM %s"
-				+" WHERE %s "
-				+" LIKE ? "
-				, map.get("table"),map.get("column")));
+		if(map.get("beginRow")==null) {
+			map.put("sql", String.format(
+					" select " +
+					ColumnFinder.find(Domain.MEMBER)
+					+" FROM %s"
+					+" WHERE %s "
+					+" LIKE ? "
+					, map.get("table"),map.get("column")));
+		} else {
+			map.put("sql", (
+					"  SELECT T.*  "+ 
+					"	FROM (SELECT ROWNUM RNUM, m.*  " + 
+					"      FROM member m   " + 
+					"      ORDER BY RNUM DESC) T   " + 
+					"   WHERE T.RNUM BETWEEN  ?  AND  ?  "));
+		}
 	}
 
 	@Override
 	void startPlay() {
-		System.out.println("=================");
-		System.out.println(map.get("sql"));
-		System.out.println(map.get("value"));
-		String aa = "%" +map.get("value").toString()+"%";
-		System.out.println("======"+aa+"=======");
 		try {
 			pstmt = DatabaseFactory.createDatabase2(map).getConnection()
 					.prepareStatement((String)map.get("sql"));
-			pstmt.setString(1, "%"+map.get("value").toString()+"%");
+			if(map.get("sql").toString().contains("LIKE")) {
+				pstmt.setString(1, "%"+map.get("value").toString()+"%");
+			}else {
+				pstmt.setString(1, (String) map.get("beginRow"));
+				pstmt.setString(2, (String) map.get("endRow"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

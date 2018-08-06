@@ -57,6 +57,9 @@ var admin = (()=>{
 		        :
 		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
 			});
+			document.getElementById('nextButton').addEventListenera('click',function(){
+				
+			});
 		}
 	};})();
 var service = (()=>{
