@@ -32,6 +32,7 @@ public class ListCommand extends Command{
 				endRow=String.valueOf(Integer.parseInt("i")*5);
 			}
 		}*/
+		
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
 		request.setAttribute("count",count);
