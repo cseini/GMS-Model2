@@ -37,13 +37,7 @@ public class ListCommand extends Command{
 		int prevBlock = beginPage - blockSize;
 		int nextBlock = beginPage + blockSize;
 		boolean existPrev=(prevBlock>=0);
-/*		if(prevBlock>=0) {
-			existPrev =true;
-		}*/
 		boolean existNext=(nextBlock<=pageCount);
-/*		if(nextBlock<=pageCount) {
-			existNext =true;
-		}*/
 		Map<String,Object> param=new HashMap<>();
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
