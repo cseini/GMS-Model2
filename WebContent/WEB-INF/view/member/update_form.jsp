@@ -38,37 +38,7 @@
 		<jsp:include page="../common/footer.jsp"/>
 	</div>
 <script>
-	service.addClass(document.getElementById('content-box'),'textCenter ');
-	service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
-	var form = document.getElementById('update_member');
-	var roll = document.getElementById('roll');
-	for(var i=0;i<roll.options.length;i++){
-		if(roll.options[i].value==='${user.roll}'){
-			roll.options[i].setAttribute("selected","selected");
-		}
-	};
-	var team = document.getElementsByName('teamid');
-	for(var i=0;i<team.length;i++){
-		if(team[i].value==='${user.teamId}'){
-				team[i].checked=true;
-		}
-	};
-	document.getElementById('update_member_btn').addEventListener('click',function(){
-	var x = service.nullChecker([document.update_member.password.value,document.update_member.teamid.value,document.update_member.roll.value]);
-		if(x.checker){
-			form.action="${context }/member.do";
-			form.method="post";
-			var node = document.createElement('input');
-			node.setAttribute("type","hidden");
-			node.setAttribute("name","action");
-			node.setAttribute("value","update");
-			form.appendChild(node);
-			alert("변경 완료");
-			form.submit();
-		} else {
-			alert(x.text);
-		}
-	});
+	member.update('${context}');
 </script>
 </body>
 </html>

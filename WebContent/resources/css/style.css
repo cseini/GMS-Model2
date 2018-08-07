@@ -96,6 +96,7 @@ table, th, td{
 .margetnRightAuto{margin-right: auto}
 .floatRight{float: right}
 .cursor{cursor: pointer}
+.cursor li{cursor: pointer}
 .fontColorBlue{color:blue}
 .fontColorBlack{color:black}
 .textCenter{text-align: center}

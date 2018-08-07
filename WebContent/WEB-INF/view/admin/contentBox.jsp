@@ -41,8 +41,8 @@
 				</li>
 			</c:forEach>
 			</ul> --%>
-			<c:if test="${existPrev}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
-				<li><a id="prevBtn">이전 ◀</a></li> 
+			<c:if test="${existPrev}"> <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
+				<li><a id="prevBtn" name="${prevBlock}"> ◀ 이전 |</a></li> 
 			</c:if>
 			<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="i">
 				<li>
@@ -50,7 +50,7 @@
 				</li>
 			</c:forEach>
 			<c:if test="${existNext}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
-				<li><a id="nextBtn">다음 ▶</a></li> 
+				<li><a id="nextBtn" name="${nextBlock} "> | 다음 ▶</a></li> 
 			</c:if>
 			</ul>
 			</td>

@@ -20,10 +20,8 @@ public class LoginCommand extends Command{
 		if(MemberServiceImpl.getInstance().login(mem)) {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().findMemberBySeq(request.getParameter("userid")));
-			System.out.println("로그인 성공!!!");
 		} else {
 			request.setAttribute("match", "FALSE");
-			System.out.println("로그인 실패!!!");
 		}
 	}
 }

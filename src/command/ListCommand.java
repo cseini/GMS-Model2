@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.taglibs.standard.lang.jstl.BooleanLiteral;
-
 import service.MemberServiceImpl;
 
 public class ListCommand extends Command{
@@ -20,35 +18,44 @@ public class ListCommand extends Command{
 	@Override
 	public void execute() {
 		String pageNum = request.getParameter("pageNumber");
+		int pageNumber = 0;
 		if(pageNum==null) {
-			pageNum="1";
+			pageNumber=1;
+		} else {
+			pageNumber=Integer.parseInt(pageNum);
 		}
 		int count =MemberServiceImpl.getInstance().countMember();
 		int pageSize=5;
 		int blockSize=5;
+		int beginRow = pageNumber*pageSize-(pageSize-1);
+		int endRow = pageNumber*pageSize;
 		int pageCount = count/pageSize==0?count/pageSize:count/pageSize+1;
 		int blockCount = pageCount/blockSize==0?pageCount/blockSize:pageCount/blockSize+1;
-		int beginPage= Integer.parseInt(pageNum)-((Integer.parseInt(pageNum)-1)%blockSize);
+		int beginPage= pageNumber-((pageNumber-1)%blockSize);
+		int lastBlockPage=pageCount-((pageCount-1)%blockSize);
+		int endPage=((lastBlockPage+pageSize)>pageNumber&&pageNumber>=lastBlockPage)?pageCount:beginPage+(pageSize-1);
 		int prevBlock = beginPage - blockSize;
 		int nextBlock = beginPage + blockSize;
-		boolean existPrev=false;
-		if(prevBlock>=0) {
+		boolean existPrev=(prevBlock>=0);
+/*		if(prevBlock>=0) {
 			existPrev =true;
-		}
-		boolean existNext=false;
-		if(nextBlock<=pageCount) {
+		}*/
+		boolean existNext=(nextBlock<=pageCount);
+/*		if(nextBlock<=pageCount) {
 			existNext =true;
-		}
+		}*/
 		Map<String,Object> param=new HashMap<>();
-		param.put("beginRow", Integer.parseInt(pageNum)*pageSize-(pageSize-1));
-		param.put("endRow", Integer.parseInt(pageNum)*pageSize);
+		param.put("beginRow", beginRow);
+		param.put("endRow", endRow);
 		request.setAttribute("count",count);
 		request.setAttribute("beginPage",beginPage);
-		request.setAttribute("endPage",count/pageSize<pageSize+1?(count/pageSize==0?count/pageSize:count/pageSize+1):beginPage+(pageSize-1));
-		request.setAttribute("list",MemberServiceImpl.getInstance().getList(param));
+		request.setAttribute("endPage",endPage);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("existPrev", existPrev);
 		request.setAttribute("existNext", existNext);
+		request.setAttribute("prevBlock", prevBlock);
+		request.setAttribute("nextBlock", nextBlock);
+		request.setAttribute("list",MemberServiceImpl.getInstance().getList(param));
 		super.execute();
 	}
 }

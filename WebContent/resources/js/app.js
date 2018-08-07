@@ -40,7 +40,6 @@ var admin = (()=>{
 			service.addClass(document.getElementById('search_word'),'width100px floatRight ');
 			service.addClass(document.getElementById('search_option'),'floatRight ');
 			service.addClass(document.getElementById('search_btn_style'),'cursor floatRight ');
-			service.addClass(document.getElementById('nextBtn'),'cursor ');
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
 			service.addClass(document.getElementById('content'),'marginBottom150px ' );
@@ -66,13 +65,18 @@ var admin = (()=>{
 				location.href=x+'/admin.do?action=list&page=main&pageNumber='+this.getAttribute('id');
 				});
 			};
-			document.getElementById("prevBtn").addEventListener('click',function(){
-				
+			if(document.getElementById("nextBtn")!== null){
+				service.addClass(document.getElementById('nextBtn'),'cursor fontColorBlue ' );
+				document.getElementById("nextBtn").addEventListener('click',function(){
+				location.href=x+'/admin.do?action=list&page=main&pageNumber='+document.getElementById('nextBtn').getAttribute('name');
 			});
-			document.getElementById("nextBtn").addEventListener('click',function(){
-				location.href=x+'/admin.do?action=list&page=main&pageMove=next'
+			}
+			if(document.getElementById("prevBtn")!== null){
+				service.addClass(document.getElementById('prevBtn'),'cursor fontColorBlue ' );
+				document.getElementById("prevBtn").addEventListener('click',function(){
+				location.href=x+'/admin.do?action=list&page=main&pageNumber='+document.getElementById('prevBtn').getAttribute('name');
 			});
-			
+			}
 		}
 	};})();
 var service = (()=>{
@@ -155,6 +159,63 @@ var member =(()=>{
 		join : x =>{
 			member.setAge(x);
 			member.setGender(x);
+		},
+		login : x=>{
+			service.addClass(document.getElementById('content-box'),'textCenter ');
+			service.addClass(document.getElementById('login_form'),'textCenter ');
+			for(var i of document.querySelectorAll('input')){
+				service.addClass(i,'width300px height50px textCenter ');
+			}
+			service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px ');
+			document.getElementById('login_form_btn').addEventListener('click',function(){
+				var z = service.nullChecker([document.login_form.userid.value,document.login_form.password.value]);
+				if(z.checker){
+					var form = document.getElementById('login_form');
+					form.action = x+"/member.do";
+					form.method = "post";
+					var node = document.createElement('input');
+					node.setAttribute("type","hidden");
+					node.setAttribute("name","action");
+					node.setAttribute("value","login");
+					form.appendChild(node);
+					form.submit();
+				} else {
+					alert(z.text);
+				}
+			})
+		},
+		update : x=>{
+			service.addClass(document.getElementById('content-box'),'textCenter ');
+			service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
+			var form = document.getElementById('update_member');
+			var roll = document.getElementById('roll');
+			for(var i=0;i<roll.options.length;i++){
+				if(roll.options[i].value==='${user.roll}'){
+					roll.options[i].setAttribute("selected","selected");
+				}
+			};
+			var team = document.getElementsByName('teamid');
+			for(var i=0;i<team.length;i++){
+				if(team[i].value==='${user.teamId}'){
+						team[i].checked=true;
+				}
+			};
+			document.getElementById('update_member_btn').addEventListener('click',function(){
+			var z = service.nullChecker([document.update_member.password.value,document.update_member.teamid.value,document.update_member.roll.value]);
+				if(z.checker){
+					form.action=x+"/member.do";
+					form.method="post";
+					var node = document.createElement('input');
+					node.setAttribute("type","hidden");
+					node.setAttribute("name","action");
+					node.setAttribute("value","update");
+					form.appendChild(node);
+					alert("변경 완료");
+					form.submit();
+				} else {
+					alert(z.text);
+				}
+			});
 		}
 	};
 })();

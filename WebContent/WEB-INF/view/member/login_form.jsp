@@ -25,28 +25,7 @@
 		<jsp:include page="../common/footer.jsp"/>
 	</div>
 	<script>
-	service.addClass(document.getElementById('content-box'),'textCenter ');
-	service.addClass(document.getElementById('login_form'),'textCenter ');
-	for(var i of document.querySelectorAll('input')){
-		service.addClass(i,'width300px height50px textCenter ');
-	}
-	service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px ');
-	document.getElementById('login_form_btn').addEventListener('click',function(){
-		var x = service.nullChecker([document.login_form.userid.value,document.login_form.password.value]);
-		if(x.checker){
-			var form = document.getElementById('login_form');
-			form.action = "${context}/member.do";
-			form.method = "post";
-			var node = document.createElement('input');
-			node.setAttribute("type","hidden");
-			node.setAttribute("name","action");
-			node.setAttribute("value","login");
-			form.appendChild(node);
-			form.submit();
-		} else {
-			alert(x.text);
-		}
-	})
+	member.login('${context}');
 	</script>
 </body>
 </html>
