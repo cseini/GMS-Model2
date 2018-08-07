@@ -34,8 +34,8 @@ public class PstmtQuery extends QueryTemplate{
 			if(map.get("sql").toString().contains("LIKE")) {
 				pstmt.setString(1, "%"+map.get("value").toString()+"%");
 			}else {
-				pstmt.setString(1, (String) map.get("beginRow"));
-				pstmt.setString(2, (String) map.get("endRow"));
+				pstmt.setString(1, (String) map.get("beginRow").toString());
+				pstmt.setString(2, (String) map.get("endRow").toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

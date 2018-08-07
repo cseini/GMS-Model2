@@ -3,6 +3,9 @@ package command;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.taglibs.standard.lang.jstl.BooleanLiteral;
+
 import service.MemberServiceImpl;
 
 public class ListCommand extends Command{
@@ -16,31 +19,36 @@ public class ListCommand extends Command{
 	
 	@Override
 	public void execute() {
-		/*request.setAttribute("count",MemberServiceImpl.getInstance().countMember());*/
+		String pageNum = request.getParameter("pageNumber");
+		if(pageNum==null) {
+			pageNum="1";
+		}
 		int count =MemberServiceImpl.getInstance().countMember();
-		int page=1;
-		int beginPage=1;
-		String beginRow="1";
-		String endRow ="5";
+		int pageSize=5;
+		int blockSize=5;
+		int pageCount = count/pageSize==0?count/pageSize:count/pageSize+1;
+		int blockCount = pageCount/blockSize==0?pageCount/blockSize:pageCount/blockSize+1;
+		int beginPage= Integer.parseInt(pageNum)-((Integer.parseInt(pageNum)-1)%blockSize);
+		int prevBlock = beginPage - blockSize;
+		int nextBlock = beginPage + blockSize;
+		boolean existPrev=false;
+		if(prevBlock>=0) {
+			existPrev =true;
+		}
+		boolean existNext=false;
+		if(nextBlock<=pageCount) {
+			existNext =true;
+		}
 		Map<String,Object> param=new HashMap<>();
-	/*	for(int i=1;i<(count/5==0?count/5:count/5+1);i++) {
-			if(page==1) {
-				beginRow="1";
-				endRow="5";
-			} else if(page==i) {
-				beginRow=String.valueOf(Integer.parseInt("i")*i);
-				endRow=String.valueOf(Integer.parseInt("i")*5);
-			}
-		}*/
-		param.put("beginRow", beginRow);
-		param.put("endRow", endRow);
+		param.put("beginRow", Integer.parseInt(pageNum)*pageSize-(pageSize-1));
+		param.put("endRow", Integer.parseInt(pageNum)*pageSize);
 		request.setAttribute("count",count);
 		request.setAttribute("beginPage",beginPage);
-		request.setAttribute("endPage",count/5<6?(count/5==0?count/5:count/5+1):beginPage+4);
-		/*다음 버튼 누르면 beginPage=beginPage+4*/
-		/*request.setAttribute("list",MemberServiceImpl.getInstance().listMember());*/
+		request.setAttribute("endPage",count/pageSize<pageSize+1?(count/pageSize==0?count/pageSize:count/pageSize+1):beginPage+(pageSize-1));
 		request.setAttribute("list",MemberServiceImpl.getInstance().getList(param));
-		request.setAttribute("page", "5");
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("existPrev", existPrev);
+		request.setAttribute("existNext", existNext);
 		super.execute();
 	}
 }

@@ -39,7 +39,8 @@ var admin = (()=>{
 			service.addClass(document.getElementById('search_box'),'width80pt center ');
 			service.addClass(document.getElementById('search_word'),'width100px floatRight ');
 			service.addClass(document.getElementById('search_option'),'floatRight ');
-			service.addClass(document.getElementById('search_btn'),'button_style floatRight ');
+			service.addClass(document.getElementById('search_btn_style'),'cursor floatRight ');
+			service.addClass(document.getElementById('nextBtn'),'cursor ');
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
 			service.addClass(document.getElementById('content'),'marginBottom150px ' );
@@ -57,9 +58,21 @@ var admin = (()=>{
 		        :
 		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
 			});
-			document.getElementById('nextButton').addEventListenera('click',function(){
+			for(var i of document.querySelectorAll('.pageNumber')){
+				service.addClass(
+						i,'cursor fontColorBlue '
+					);
+				i.addEventListener('click',function(){
+				location.href=x+'/admin.do?action=list&page=main&pageNumber='+this.getAttribute('id');
+				});
+			};
+			document.getElementById("prevBtn").addEventListener('click',function(){
 				
 			});
+			document.getElementById("nextBtn").addEventListener('click',function(){
+				location.href=x+'/admin.do?action=list&page=main&pageMove=next'
+			});
+			
 		}
 	};})();
 var service = (()=>{

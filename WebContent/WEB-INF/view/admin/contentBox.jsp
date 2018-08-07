@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="content-box">
 	<div id="search_box">
-		<a id="search_btn">검색</a>
+		<div id="search_btn_style"><a id="search_btn">검색</a></div>
 		<select name="search_option" id="search_option">
 			<option value="none">검색조건</option>
 			<option value="id">아이디</option>
@@ -41,13 +41,16 @@
 				</li>
 			</c:forEach>
 			</ul> --%>
+			<c:if test="${existPrev}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
+				<li><a id="prevBtn">이전 ◀</a></li> 
+			</c:if>
 			<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="i">
 				<li>
-				<span> <a href="#">${i.index }</a> </span>
+				<span> <a class="pageNumber" id="${i.index }">${i.index }</a> </span>
 				</li>
 			</c:forEach>
-			<c:if test="${count gt 25}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
-				<li><a id="nextButton" href="#">다음 ▶</a></li> 
+			<c:if test="${existNext}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
+				<li><a id="nextBtn">다음 ▶</a></li> 
 			</c:if>
 			</ul>
 			</td>
