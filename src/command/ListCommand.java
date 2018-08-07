@@ -15,6 +15,7 @@ public class ListCommand extends Command{
 		execute();
 	}
 	
+	
 	@Override
 	public void execute() {
 		String pageNum = request.getParameter("pageNumber");
