@@ -1,11 +1,10 @@
 package command;
-
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-
+import proxy.PageProxy;
+import proxy.Pagination;
 import service.MemberServiceImpl;
-
 public class ListCommand extends Command{
 	public ListCommand(HttpServletRequest request) {
 		setRequest(request);
@@ -16,39 +15,17 @@ public class ListCommand extends Command{
 	}
 	@Override
 	public void execute() {
-		String pageNum = request.getParameter("pageNumber");
-		int pageNumber = 0;
-		if(pageNum==null) {
-			pageNumber=1;
-		} else {
-			pageNumber=Integer.parseInt(pageNum);
-		}
-		int count =MemberServiceImpl.getInstance().countMember();
-		int pageSize=5;
-		int blockSize=5;
-		int beginRow = pageNumber*pageSize-(pageSize-1);
-		int endRow = pageNumber*pageSize;
-		int pageCount = count/pageSize==0?count/pageSize:count/pageSize+1;
-		int blockCount = pageCount/blockSize==0?pageCount/blockSize:pageCount/blockSize+1;
-		int beginPage= pageNumber-((pageNumber-1)%blockSize);
-		int lastBlockPage=pageCount-((pageCount-1)%blockSize);
-		int endPage=((lastBlockPage+pageSize)>pageNumber&&pageNumber>=lastBlockPage)?pageCount:beginPage+(pageSize-1);
-		int prevBlock = beginPage - blockSize;
-		int nextBlock = beginPage + blockSize;
-		boolean existPrev=(prevBlock>=0);
-		boolean existNext=(nextBlock<=pageCount);
 		Map<String,Object> param=new HashMap<>();
-		param.put("beginRow", beginRow);
-		param.put("endRow", endRow);
-		request.setAttribute("count",count);
-		request.setAttribute("beginPage",beginPage);
-		request.setAttribute("endPage",endPage);
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("existPrev", existPrev);
-		request.setAttribute("existNext", existNext);
-		request.setAttribute("prevBlock", prevBlock);
-		request.setAttribute("nextBlock", nextBlock);
+		String pageNum = request.getParameter("pageNumber");
+		String rowOption = request.getParameter("rowOption");
+		PageProxy pxy = new PageProxy();
+		/*pxy.carryOut((pageNum==null)?1:Integer.parseInt(pageNum));*/
+		pxy.carryOut((pageNum==null)?1:Integer.parseInt(pageNum),(rowOption==null)?5:Integer.parseInt(request.getParameter("rowOption")));
+		Pagination page = pxy.getPagination();
+		param.put("beginRow", page.getBeginRow());
+		param.put("endRow", page.getEndRow());
 		request.setAttribute("list",MemberServiceImpl.getInstance().getList(param));
+		request.setAttribute("page",page);
 		super.execute();
 	}
 }

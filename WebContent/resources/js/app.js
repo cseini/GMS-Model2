@@ -43,6 +43,7 @@ var admin = (()=>{
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
 			service.addClass(document.getElementById('content'),'marginBottom150px ' );
+			service.addClass(document.getElementById('select_row_box'),'floatRight ' );
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(
 					i,'cursor fontColorBlue '
@@ -51,7 +52,7 @@ var admin = (()=>{
 				location.href = x+'/admin.do?action=retrieve&page=memberDetail&userid='+this.getAttribute('id');
 				});
 			};
-			document.getElementById("search_btn").addEventListener('click',function(){
+			document.getElementById("search_btn").addEventListener('click',()=>{
 			     location.href = (document.getElementById('search_option').value==='id') ?
 		        x+'/admin.do?action=retrieve&page=memberDetail&userid='+document.getElementById('search_word').value
 		        :
@@ -65,18 +66,9 @@ var admin = (()=>{
 				location.href=x+'/admin.do?action=list&page=main&pageNumber='+this.getAttribute('id');
 				});
 			};
-			if(document.getElementById("nextBtn")!== null){
-				service.addClass(document.getElementById('nextBtn'),'cursor fontColorBlue ' );
-				document.getElementById("nextBtn").addEventListener('click',function(){
-				location.href=x+'/admin.do?action=list&page=main&pageNumber='+document.getElementById('nextBtn').getAttribute('name');
+			document.getElementById('row_option').addEventListener('change',()=>{
+				location.href=x+'/admin.do?action=list&page=main&pageNumber=1&rowOption='+document.getElementById('row_option').value;
 			});
-			}
-			if(document.getElementById("prevBtn")!== null){
-				service.addClass(document.getElementById('prevBtn'),'cursor fontColorBlue ' );
-				document.getElementById("prevBtn").addEventListener('click',function(){
-				location.href=x+'/admin.do?action=list&page=main&pageNumber='+document.getElementById('prevBtn').getAttribute('name');
-			});
-			}
 		}
 	};})();
 var service = (()=>{

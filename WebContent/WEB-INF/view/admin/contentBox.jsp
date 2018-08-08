@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="content-box">
+	<div id="select_row_box">
+		ROW
+		<select name="row_option" id="row_option" >
+			<option value="none">몇줄</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="15">15</option>
+			<option value="20">20</option>
+		</select>
+	</div><br />
 	<div id="search_box">
 		<div id="search_btn_style"><a id="search_btn">검색</a></div>
 		<select name="search_option" id="search_option">
@@ -33,7 +43,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6"> 
-			카운트커맨드 : (${count}명) <br />
+			카운트커맨드 : (${page.count}명) <br />
 			<ul class="pageBox">
 			<%-- <c:forEach begin="1" end="${count%5==0? count/5:count/5+1}" step="1" varStatus="i">
 				<li>
@@ -41,16 +51,16 @@
 				</li>
 			</c:forEach>
 			</ul> --%>
-			<c:if test="${existPrev}"> <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
-				<li><a id="prevBtn" name="${prevBlock}"> ◀ 이전 |</a></li> 
+			<c:if test="${page.existPrev}"> 
+				<li><a id="${page.prevBlock}" class="pageNumber"> ◀ 이전 |</a></li> 
 			</c:if>
-			<c:forEach begin="${beginPage }" end="${endPage }" step="1" varStatus="i">
+			<c:forEach begin="${page.beginPage }" end="${page.endPage }" step="1" varStatus="i">
 				<li>
 				<span> <a class="pageNumber" id="${i.index }">${i.index }</a> </span>
 				</li>
 			</c:forEach>
-			<c:if test="${existNext}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
-				<li><a id="nextBtn" name="${nextBlock} "> | 다음 ▶</a></li> 
+			<c:if test="${page.existNext}" > <!-- eq =,ne !=,lt <,le <=,ge >,gt >= -->
+				<li><a id="${page.nextBlock}" class="pageNumber"> | 다음 ▶</a></li> 
 			</c:if>
 			</ul>
 			</td>
