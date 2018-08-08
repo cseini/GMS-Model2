@@ -24,8 +24,10 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN:
 			if(request.getAttribute("match").equals("TRUE")) {
+				System.out.println("로그인성공");
 				Carrier.forword(request, response);
 			}else {
+				System.out.println("로그인실패");
 				Carrier.redirect(request,  response, "/member.do?action=move&page=login_form" );
 			}
 			break;
@@ -45,6 +47,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case DELETE:
 			Carrier.redirect(request, response,"");
+			break;
+		case LIST:
+			Carrier.forword(request, response);
 			break;
 		default:
 			Carrier.redirect(request, response, "");

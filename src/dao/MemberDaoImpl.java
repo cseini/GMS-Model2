@@ -1,7 +1,6 @@
 package dao;
 import java.util.*;
 import domain.*;
-import enums.Domain;
 import enums.MemberQuery;
 import enums.Vendor;
 import factory.*;
@@ -17,53 +16,43 @@ public class MemberDaoImpl implements MemberDao {
 	private MemberDaoImpl() {}
 
 	@Override
-	public void insertMember(MemberBean Member) {
-		try {
+	public void insert(MemberBean member) {
+		/*try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 			.getConnection()
 			.createStatement()
 			.executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
-							Member.getUserId(), Member.getName(), Member.getPassword(), Member.getSsn(), Member.getAge(), Member.getRoll(), Member.getGender(), Member.getTeamId()));
+							member.getUserId(), 
+							member.getName(), 
+							member.getPassword(), 
+							member.getSsn(), 
+							member.getAge(), 
+							member.getRoll(), 
+							member.getGender(), 
+							member.getTeamId()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("userid", member.getUserId());
+		map.put("name", member.getName());
+		map.put("password", member.getPassword());
+		map.put("ssn", member.getSsn());
+		map.put("age", member.getAge());
+		map.put("roll", member.getRoll());
+		map.put("gender", member.getGender());
+		map.put("teamid", member.getTeamId());
+		q.play(map);
 	}
-
 	@Override
-	public List<MemberBean> selectAllMember() {
-		List<MemberBean> lst = new ArrayList<>();
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection().createStatement().executeQuery(MemberQuery.SELECT_ALL.toString());
-			MemberBean mem = null;
-			while(rs.next()) {
-				mem = new MemberBean();
-				mem.setUserId(rs.getString("MEMID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setAge(rs.getString("AGE"));
-				mem.setGender(rs.getString("GENDER"));
-				lst.add(mem);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return lst;
-	}
-
-	@Override
-	public List<MemberBean> selectMemberByWord(String word) {
+	public List<MemberBean> selectSome(Map<?,?> param) {
 		QueryTemplate q = new PstmtQuery();
 		List<MemberBean> list = new ArrayList<>();
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("column", word.split("/")[0]);
-		map.put("value", word.split("/")[1]);
-		map.put("table", Domain.MEMBER);
+		map.put("beginRow", param.get("beginRow"));
+		map.put("endRow", param.get("endRow"));
 		q.play(map);
 		for (Object s : q.getList()) {
 			list.add((MemberBean)s);
@@ -72,7 +61,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberBean selectMemberBySeq(String seq) {
+	public MemberBean selectOne(String seq) {
 		MemberBean m = null;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -96,7 +85,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int countMember() {
+	public int count() {
 		int count = 0;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -111,19 +100,19 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateMember(MemberBean bean) {
+	public void update(Map<?,?>param) {
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement()
-					.executeUpdate(String.format(MemberQuery.UPDATE_MEMBER.toString(),bean.getPassword(),bean.getTeamId(),bean.getRoll(),bean.getUserId()));
+					.executeUpdate(String.format(MemberQuery.UPDATE_MEMBER.toString(),param.get("password"),param.get("teamid"),param.get("roll"),param.get("userid")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void deleteMember(MemberBean bean) {
+	public void delete(MemberBean bean) {
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 			.getConnection().createStatement().executeUpdate(String.format(MemberQuery.MEMBER_DELETE.toString(),bean.getUserId(),bean.getPassword()));
@@ -152,48 +141,5 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return result;
-	}
-	@Override
-	public List<MemberBean> selectList(Map<?,?> param) {
-		QueryTemplate q = new PstmtQuery();
-		List<MemberBean> list = new ArrayList<>();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("beginRow", param.get("beginRow"));
-		map.put("endRow", param.get("endRow"));
-		q.play(map);
-		for (Object s : q.getList()) {
-			list.add((MemberBean)s);
-		}
-		return list;
-		
-		/*String sql = " SELECT T.*  "+ 
-				"	FROM (SELECT ROWNUM RNUM, m.*  " + 
-				"      FROM member m  " + 
-				"      ORDER BY RNUM DESC) T  " + 
-				" WHERE T.RNUM BETWEEN  "+ beginRow +"  AND  "+ endRow;
-		
-		MemberBean mem = null;
-		List<MemberBean> lst = new ArrayList<>();
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE,DBConstant.USERNAME,DBConstant.PASSWORD)
-					.getConnection().createStatement()
-					.executeQuery(sql);
-			while(rs.next()) {
-				mem = new MemberBean();
-				mem.setUserId(rs.getString("USERID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setName(rs.getString("NAME"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setAge(rs.getString("AGE"));
-				mem.setGender(rs.getString("GENDER"));
-				lst.add(mem);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return lst;*/
 	}
 }

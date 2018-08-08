@@ -2,7 +2,6 @@ package service;
 
 import java.util.List;
 import java.util.Map;
-
 import dao.MemberDaoImpl;
 import domain.MemberBean;
 
@@ -11,40 +10,32 @@ public class MemberServiceImpl implements MemberService{
 	public static MemberService getInstance() {return instance;}
 	private MemberServiceImpl() {}
 	@Override
-	public void createMember(MemberBean Member) {
-		MemberDaoImpl.getInstance().insertMember(Member);
+	public void create(MemberBean Member) {
+		MemberDaoImpl.getInstance().insert(Member);
 	}
 	@Override
-	public List<MemberBean> listMember() {
-		return MemberDaoImpl.getInstance().selectAllMember();
+	public List<MemberBean> search(Map<?, ?> param) {
+		return MemberDaoImpl.getInstance().selectSome(param);
 	}
 	@Override
-	public List<MemberBean> findMemberByWord(String word) {
-		return MemberDaoImpl.getInstance().selectMemberByWord(word);
+	public MemberBean retrieve(String seq) {
+		return MemberDaoImpl.getInstance().selectOne(seq);
 	}
 	@Override
-	public MemberBean findMemberBySeq(String seq) {
-		return MemberDaoImpl.getInstance().selectMemberBySeq(seq);
+	public int count() {
+		return MemberDaoImpl.getInstance().count();
 	}
 	@Override
-	public int countMember() {
-		return MemberDaoImpl.getInstance().countMember();
+	public void modify(Map<?, ?> param) {
+		MemberDaoImpl.getInstance().update(param);
 	}
 	@Override
-	public void modifyMember(MemberBean bean) {
-		MemberDaoImpl.getInstance().updateMember(bean);
-	}
-	@Override
-	public void removeMember(MemberBean bean) {
-		MemberDaoImpl.getInstance().deleteMember(bean);
+	public void remove(MemberBean mem) {
+		MemberDaoImpl.getInstance().delete(mem);
 	}
 	@Override
 	public boolean login(MemberBean bean) {
 		return (MemberDaoImpl.getInstance().login(bean)!=null);
 	}
-	@Override
-	public List<MemberBean> getList(Map<?,?>param) {
-		return MemberDaoImpl.getInstance().selectList(param);
-	}
-}
 
+}

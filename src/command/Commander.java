@@ -19,14 +19,11 @@ public class Commander{
 		case UPDATE:
 			cmd = new UpdateCommand(request);
 			break;
-		case SEARCH:
-			cmd = new SearchCommand(request);
-			break;
 		case RETRIEVE:
 			cmd = new RetrieveCommand(request);
 			break;
 		case LIST:
-			cmd = new ListCommand(request);
+			cmd = new SearchCommand(request);
 			break;
 		case DELETE:
 			cmd = new DeleteCommand(request);

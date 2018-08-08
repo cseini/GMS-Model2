@@ -8,7 +8,7 @@ import factory.DatabaseFactory;
 public class PstmtQuery extends QueryTemplate{
 	@Override
 	void initialize() {
-		if(map.get("beginRow")==null) {
+	if(map.get("beginRow")==null&&map.get("userid")==null) {
 			map.put("sql", String.format(
 					" select " +
 					ColumnFinder.find(Domain.MEMBER)
@@ -16,13 +16,21 @@ public class PstmtQuery extends QueryTemplate{
 					+" WHERE %s "
 					+" LIKE ? "
 					, map.get("table"),map.get("column")));
+		} else if(map.get("userid")!=null) {
+			map.put("sql",
+					"  INSERT INTO member   " + 
+					"   (USERID, NAME, PASSWORD, SSN, AGE, ROLL, GENDER, TEAMID)  " +
+					"   VALUES    "+
+					"    ( ?, ?, ?, ?, ?, ?, ?, ? )   "
+					);
 		} else {
 			map.put("sql", (
 					"  SELECT T.*  "+ 
 					"	FROM (SELECT ROWNUM RNUM, m.*  " + 
 					"      FROM member m   " + 
 					"      ORDER BY RNUM DESC) T   " + 
-					"   WHERE T.RNUM BETWEEN  ?  AND  ?  "));
+					"   WHERE T.RNUM BETWEEN  ?  AND  ?  "
+					));
 		}
 	}
 
@@ -33,10 +41,19 @@ public class PstmtQuery extends QueryTemplate{
 					.prepareStatement((String)map.get("sql"));
 			if(map.get("sql").toString().contains("LIKE")) {
 				pstmt.setString(1, "%"+map.get("value").toString()+"%");
-			}else {
+			}else if(map.get("sql").toString().contains("INSERT")) {
+				pstmt.setString(1, (String) map.get("userid").toString());
+				pstmt.setString(2, (String) map.get("name").toString());
+				pstmt.setString(3, (String) map.get("password"));
+				pstmt.setString(4, (String) map.get("ssn").toString());
+				pstmt.setString(5, (String) map.get("age").toString());
+				pstmt.setString(6, (String) map.get("roll").toString());
+				pstmt.setString(7, (String) map.get("gender").toString());
+				pstmt.setString(8, (String) map.get("teamid").toString());
+			} else {
 				pstmt.setString(1, (String) map.get("beginRow").toString());
 				pstmt.setString(2, (String) map.get("endRow").toString());
-			}
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ public class Pagination implements Proxy {
 	@Override
 	public void carryOut(Object o, Object i) {
 		this.pageNumber = (int)o;
-		this.count =MemberServiceImpl.getInstance().countMember();
+		this.count =MemberServiceImpl.getInstance().count();
 		/*this.pageSize=5;*/
 		this.pageSize=(int) i;
 		this.blockSize=5;

@@ -14,7 +14,7 @@ public class CountCommand extends Command{
 	}
 		@Override
 		public void execute() {
-			request.setAttribute("count",MemberServiceImpl.getInstance().countMember());
+			request.setAttribute("count",MemberServiceImpl.getInstance().count());
 			System.out.println("카운트 커맨드 진입");
 			super.execute();
 		}

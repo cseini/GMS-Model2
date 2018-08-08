@@ -15,7 +15,7 @@ public class RetrieveCommand extends Command{
 	
 	@Override
 	public void execute() {
-			request.setAttribute("member", MemberServiceImpl.getInstance().findMemberBySeq(request.getParameter("userid")));
+			request.setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
 		super.execute();
 	}
 }
