@@ -1,145 +1,104 @@
 package dao;
-import java.util.*;
-import domain.*;
-import enums.MemberQuery;
-import enums.Vendor;
-import factory.*;
-import pool.DBConstant;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import domain.MemberBean;
+import enums.Action;
 import template.PstmtQuery;
 import template.QueryTemplate;
-
-import java.sql.*;
 
 public class MemberDaoImpl implements MemberDao {
 	private static MemberDao instance = new MemberDaoImpl();
 	public static MemberDao getInstance() {return instance;}
 	private MemberDaoImpl() {}
-
 	@Override
 	public void insert(MemberBean member) {
-		/*try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-			.getConnection()
-			.createStatement()
-			.executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
-							member.getUserId(), 
-							member.getName(), 
-							member.getPassword(), 
-							member.getSsn(), 
-							member.getAge(), 
-							member.getRoll(), 
-							member.getGender(), 
-							member.getTeamId()));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		QueryTemplate q = new PstmtQuery();
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String,Object> map = new HashMap<>();
 		map.put("userid", member.getUserId());
-		map.put("name", member.getName());
-		map.put("password", member.getPassword());
-		map.put("ssn", member.getSsn());
-		map.put("age", member.getAge());
-		map.put("roll", member.getRoll());
-		map.put("gender", member.getGender());
 		map.put("teamid", member.getTeamId());
+		map.put("name", member.getName());
+		map.put("ssn", member.getSsn());
+		map.put("roll", member.getRoll());
+		map.put("pass", member.getPassword());
+		map.put("subject", member.getSubject());
+		map.put("age", member.getAge());
+		map.put("gender", member.getGender());
+		map.put("flag", Action.ADD.toString());
 		q.play(map);
 	}
 	@Override
-	public List<MemberBean> selectSome(Map<?,?> param) {
+	public List<MemberBean> selectSome(Map<?, ?> param) {
 		QueryTemplate q = new PstmtQuery();
-		List<MemberBean> list = new ArrayList<>();
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String,Object> map = new HashMap<>();
 		map.put("beginRow", param.get("beginRow"));
-		map.put("endRow", param.get("endRow"));
+		map.put("endRow",  param.get("endRow"));
+		map.put("searchOption", param.get("searchOption"));
+		map.put("searchWord", param.get("searchWord"));
+		map.put("flag", Action.SEARCH.toString());
 		q.play(map);
-		for (Object s : q.getList()) {
-			list.add((MemberBean)s);
+		List<MemberBean> list = new ArrayList<>();
+		for(Object o : q.getList()) {
+			list.add((MemberBean) o);
 		}
 		return list;
 	}
-
 	@Override
 	public MemberBean selectOne(String seq) {
-		MemberBean m = null;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-			.getConnection().createStatement().executeQuery(String.format(MemberQuery.SELECT_MEMBER_BY_SEQ.toString(),seq));
-			while(rs.next()) {
-				m = new MemberBean();
-				m.setUserId(rs.getString("MEMID"));
-				m.setTeamId(rs.getString("TEAMID"));
-				m.setName(rs.getString("NAME"));
-				m.setSsn(rs.getString("SSN"));
-				m.setRoll(rs.getString("ROLL"));
-				m.setPassword(rs.getString("PASSWORD"));
-				m.setAge(rs.getString("AGE"));
-				m.setGender(rs.getString("GENDER"));
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("userid", seq);
+		map.put("flag", Action.RETRIEVE.toString());
+		q.play(map);
+		List<MemberBean> list = new ArrayList<>();
+		for(Object o : q.getList()) {
+			list.add((MemberBean) o);
 		}
-		return m;
+		return list.get(0);
 	}
-
 	@Override
 	public int count() {
-		int count = 0;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection().createStatement().executeQuery(MemberQuery.MEMBER_COUNT.toString());
-			while(rs.next()) {
-				count = rs.getInt("count");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("flag", Action.COUNT.toString());
+		int count =0;
+		q.play(map);
+		for(Object o : q.getList()) {
+			count = (int) o;
 		}
 		return count;
 	}
-
 	@Override
-	public void update(Map<?,?>param) {
-		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeUpdate(String.format(MemberQuery.UPDATE_MEMBER.toString(),param.get("password"),param.get("teamid"),param.get("roll"),param.get("userid")));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void update(Map<?, ?> param) {
+		// TODO Auto-generated method stub
+		
 	}
-	
 	@Override
 	public void delete(MemberBean bean) {
-		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-			.getConnection().createStatement().executeUpdate(String.format(MemberQuery.MEMBER_DELETE.toString(),bean.getUserId(),bean.getPassword()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		QueryTemplate q = new PstmtQuery();
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("userid", bean.getUserId());
+		map.put("pass", bean.getPassword());
+		map.put("flag", Action.REMOVE.toString());
+		q.play(map);
 	}
-
 	@Override
 	public MemberBean login(MemberBean bean) {
-		MemberBean result = null;
-		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE,DBConstant.USERNAME,DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(String.format(MemberQuery.LOGIN.toString(),
-							bean.getUserId(), bean.getPassword()));
-			while (rs.next()){
-				result = new MemberBean();
-				result.setUserId(rs.getString("MEMID"));
-				result.setPassword(rs.getString("PASSWORD"));
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		QueryTemplate q = new PstmtQuery();
+		MemberBean mem = new MemberBean();
+		HashMap<String, Object> map = new HashMap<>();
+		List<MemberBean> list = new ArrayList<>();
+		map.put("userid", bean.getUserId().toString());
+		map.put("password", bean.getPassword().toString());
+		map.put("flag", Action.LOGIN.toString());
+		q.play(map);
+		for(Object o : q.getList()) {
+			list.add((MemberBean) o);
 		}
-		return result;
+		
+		return mem;
 	}
+
+	
 }

@@ -1,6 +1,8 @@
 package template;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import enums.Vendor;
 import pool.DBConstant;
 import lombok.Data;
@@ -13,6 +15,7 @@ public abstract class QueryTemplate {
 	HashMap<String, Object>map;
 	List<Object> list;
 	PreparedStatement pstmt;
+	protected HttpServletRequest request;
 
     public final void play(HashMap<String,Object>map){
     	this.pstmt = null;

@@ -9,9 +9,9 @@ import enums.Domain;
 import service.MemberServiceImpl;
 import service.ProjectTeamServiceImpl;
 
-public class UpdateCommand extends Command{
+public class ModifyCommand extends Command{
 	
-	public UpdateCommand(HttpServletRequest request) {
+	public ModifyCommand(HttpServletRequest request) {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));

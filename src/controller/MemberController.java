@@ -14,13 +14,27 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Sentry.init(request);
-		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE:
+		Receiver.init(request);
+		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
+		case ADD:
+			Carrier.redirect(request, response,"/member.do?action=move&page=main");
+			break;
+		case SEARCH: case RETRIEVE:
 			Carrier.forword(request, response);
 			break;
-		case JOIN:
-			Carrier.redirect(request, response,"/member.do?action=move&page=login_form");
+		case COUNT:
+			Carrier.redirect(request, response, "");
+			break;
+		case MODIFY:
+			Receiver.cmd.setPage("login_form");
+			Receiver.cmd.execute();
+			Carrier.forword(request, response);
+			break;
+		case REMOVE:
+			Carrier.redirect(request, response,"");
+			break;
+		case MOVE:
+			Carrier.forword(request, response);
 			break;
 		case LOGIN:
 			if(request.getAttribute("match").equals("TRUE")) {
@@ -28,28 +42,8 @@ public class MemberController extends HttpServlet {
 				Carrier.forword(request, response);
 			}else {
 				System.out.println("로그인실패");
-				Carrier.redirect(request,  response, "/member.do?action=move&page=login_form" );
+				Carrier.redirect(request,  response, "/member.do?action=move&page=login" );
 			}
-			break;
-		case SEARCH:
-			Carrier.forword(request, response);
-			break;
-		case RETRIEVE:
-			Carrier.forword(request, response);
-			break;
-		case COUNT:
-			Carrier.redirect(request, response, "");
-			break;
-		case UPDATE:
-			Sentry.cmd.setPage("login_form");
-			Sentry.cmd.execute();
-			Carrier.forword(request, response);
-			break;
-		case DELETE:
-			Carrier.redirect(request, response,"");
-			break;
-		case LIST:
-			Carrier.forword(request, response);
 			break;
 		default:
 			Carrier.redirect(request, response, "");

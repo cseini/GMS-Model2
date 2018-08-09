@@ -9,17 +9,62 @@ var router = (()=> {
 		}
 	};
 })();
+var common = (()=>{
+	return {
+		main : x=> {
+			service.addClass(document.getElementById('content'),'marginBottom150px ')
+			service.addClass(document.getElementById('wrapper'),'width100pt padding0px margetnLeftAuto margetnRightAuto ')
+			service.addClass(document.querySelector('body'),'fontDefault backgroundColorWhite margin0px padding0px fontColorGray ')
+			service.addClass(document.getElementById('menu-box'),'menu-box ');
+			service.addClass(document.getElementById('menu'),'menu ');
+			document.getElementById('move_admin').addEventListener('click',()=>{ //콜백함수
+				router.move({
+					context:x,
+					domain:'admin',
+					action:'search',
+					page:'main'
+				});
+	/*			if(isAdmin){
+	 				var isAdmin = confirm('관리자입니까');
+					var password = prompt('관리자 비번을 입력 바랍니다.');
+					if(password == 1){
+						router.move({
+							context:x,
+							domain:'admin',
+							action:'list',
+							page:'main'
+						});
+					}else{
+						alert('비밀번호가 틀렸습니다.');
+					}
+				}else{
+					alert('관리자만 접근이 허용됩니다');
+				}*/
+			});
+			document.getElementById('move_home').addEventListener('click',()=>{ //콜백함수
+			router.moveHome({context:x});
+			});
+			document.getElementById('move_about').addEventListener('click',()=>{ //콜백함수
+			router.move({
+				context:x,
+				domain:'member',
+				action:'move',
+				page:'retrieve'});
+			});
+		}
+	}
+})();
 var admin = (()=>{
 	return{
 		check : x=>{
-			var isAdmin = confirm('관리자입니까');
 			router.move({
 				context:x,
 				domain:'admin',
-				action:'list',
+				action:'search',
 				page:'main'
 			});
 /*			if(isAdmin){
+ 				var isAdmin = confirm('관리자입니까');
 				var password = prompt('관리자 비번을 입력 바랍니다.');
 				if(password == 1){
 					router.move({
@@ -36,6 +81,8 @@ var admin = (()=>{
 			}*/
 		},
 		main : x=>{
+			service.addClass(document.getElementById('menu-box'),'menu-box ');
+			service.addClass(document.getElementById('menu'),'menu ');
 			service.addClass(document.getElementById('search_box'),'width80pt center ');
 			service.addClass(document.getElementById('search_word'),'width100px floatRight ');
 			service.addClass(document.getElementById('search_option'),'floatRight ');
@@ -43,18 +90,17 @@ var admin = (()=>{
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
 			service.addClass(document.getElementById('content'),'marginBottom150px ' );
-			service.addClass(document.getElementById('select_row_box'),'floatRight ' );
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(
 					i,'cursor fontColorBlue '
 				);
 				i.addEventListener('click',function(){
-				location.href = x+'/admin.do?action=retrieve&page=memberDetail&userid='+this.getAttribute('id');
+				location.href = x+'/admin.do?action=retrieve&page=retrieve&userid='+this.getAttribute('id');
 				});
 			};
 			document.getElementById("search_btn").addEventListener('click',()=>{
 			     location.href = (document.getElementById('search_option').value==='id') ?
-		        x+'/admin.do?action=retrieve&page=memberDetail&userid='+document.getElementById('search_word').value
+		        x+'/admin.do?action=retrieve&page=retrieve&userid='+document.getElementById('search_word').value
 		        :
 		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
 			});
@@ -63,12 +109,9 @@ var admin = (()=>{
 						i,'cursor fontColorBlue '
 					);
 				i.addEventListener('click',function(){
-				location.href=x+'/admin.do?action=list&page=main&pageNumber='+this.getAttribute('id');
+				location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id');
 				});
 			};
-			document.getElementById('row_option').addEventListener('change',()=>{
-				location.href=x+'/admin.do?action=list&page=main&pageNumber=1&rowOption='+document.getElementById('row_option').value;
-			});
 		}
 	};})();
 var service = (()=>{
@@ -148,17 +191,14 @@ var member =(()=>{
 		getRoll : getRoll,
 		getTeamid : getTeamid,
 		getGender : getGender,
-		join : x =>{
+		add : x =>{
 			member.setAge(x);
 			member.setGender(x);
 		},
 		login : x=>{
-			service.addClass(document.getElementById('content-box'),'textCenter ');
-			service.addClass(document.getElementById('login_form'),'textCenter ');
 			for(var i of document.querySelectorAll('input')){
 				service.addClass(i,'width300px height50px textCenter ');
 			}
-			service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px ');
 			document.getElementById('login_form_btn').addEventListener('click',function(){
 				var z = service.nullChecker([document.login_form.userid.value,document.login_form.password.value]);
 				if(z.checker){
@@ -208,6 +248,27 @@ var member =(()=>{
 					alert(z.text);
 				}
 			});
+		},
+		main : x=>{
+			service.addClass(document.getElementById('content'),'marginBottom150px ');
+			service.addClass(document.getElementById('wrapper'),'width100pt padding0px margetnLeftAuto margetnRightAuto ');
+			service.addClass(document.querySelector('body'),'fontDefault backgroundColorWhite margin0px padding0px fontColorGray ');
+			service.addClass(document.getElementById('menu-box'),'menu-box ');
+			service.addClass(document.getElementById('menu'),'menu ');
+			service.addClass(document.getElementById('content-box'),'textCenter ');
+			service.addClass(document.getElementById('login_form'),'textCenter ');
+			service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px ');
+			document.getElementById('move_home').addEventListener('click',()=>{ //콜백함수
+				router.moveHome({context:x});
+				});
+			document.getElementById('move_about').addEventListener('click',()=>{ //콜백함수
+			router.move({
+				context:x,
+				domain:'member',
+				action:'move',
+				page:'retrieve'});
+			});
+			member.login(x);
 		}
 	};
 })();

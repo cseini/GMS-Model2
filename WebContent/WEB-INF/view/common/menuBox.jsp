@@ -6,20 +6,3 @@
 		<li><a id="move_admin">ADMIN</a></li>
 	</ul>
 </div>
-<script>
-	service.addClass(document.getElementById('menu-box'),'menu-box ');
-	service.addClass(document.getElementById('menu'),'menu ');
-	document.getElementById('move_home').addEventListener('click',function(){ //콜백함수
-	router.moveHome({context:'${context}'});
-	});
-	document.getElementById('move_about').addEventListener('click',function(){ //콜백함수
-	router.move({
-		context:'${context}',
-		domain:'member',
-		action:'move',
-		page:'mypage'});
-	});
-	document.getElementById('move_admin').addEventListener('click',function(){ //콜백함수
-		admin.check('${context}');
-	});
-</script>

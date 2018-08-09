@@ -16,13 +16,15 @@ public class SearchCommand extends Command{
 	
 	@Override
 	public void execute() {
-		Map<String,Object> param=new HashMap<>();
 		String pageNum = request.getParameter("pageNumber");
-		String rowOption = request.getParameter("rowOption");
+		String searchOption = request.getParameter("search_option");
+		String searchWord = request.getParameter("search_word");
+		Map<String,Object> param=new HashMap<>();
 		PageProxy pxy = new PageProxy();
-		/*pxy.carryOut((pageNum==null)?1:Integer.parseInt(pageNum));*/
-		pxy.carryOut((pageNum==null)?1:Integer.parseInt(pageNum),(rowOption==null)?5:Integer.parseInt(request.getParameter("rowOption")));
+		pxy.carryOut((pageNum==null)?1:Integer.parseInt(pageNum));
 		Pagination page = pxy.getPagination();
+		param.put("searchOption", searchOption);
+		param.put("searchWord", searchWord);
 		param.put("beginRow", page.getBeginRow());
 		param.put("endRow", page.getEndRow());
 		request.setAttribute("list",MemberServiceImpl.getInstance().search(param));

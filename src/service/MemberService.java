@@ -5,7 +5,7 @@ import java.util.Map;
 import domain.*;
 
 public interface MemberService {
-	public void create(MemberBean Member);
+	public void add(MemberBean Member);
 	public List<MemberBean> search(Map<?,?>param);  /*?는 와일드카드*/
 	public MemberBean retrieve(String seq);
 	public int count();

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
-import command.Sentry;
+import command.Receiver;
 import enums.Action;
 
 @WebServlet("/admin.do")
@@ -16,21 +16,17 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Sentry.init(request);
-		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
-		case MOVE:
-			Carrier.forword(request, response);
-			break;
-		case LIST:
-			Carrier.forword(request, response);
-			break;
-		case RETRIEVE:
-			Carrier.forword(request, response);
-			break;
+		Receiver.init(request);
+		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case SEARCH:
 			Carrier.forword(request, response);
 			break;
-		case COUNT:
+		case RETRIEVE:
+			Receiver.cmd.setDomain("member");
+			Receiver.cmd.execute();
+			Carrier.forword(request, response);
+			break;
+		case MOVE:
 			Carrier.forword(request, response);
 			break;
 		default:

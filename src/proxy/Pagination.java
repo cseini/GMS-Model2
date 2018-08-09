@@ -1,8 +1,4 @@
 package proxy;
-
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import lombok.Data;
 import service.MemberServiceImpl;
 @Data
@@ -11,14 +7,13 @@ public class Pagination implements Proxy {
 	boolean existPrev, existNext;
 
 	@Override
-	public void carryOut(Object o, Object i) {
+	public void carryOut(Object o) {
 		this.pageNumber = (int)o;
-		this.count =MemberServiceImpl.getInstance().count();
-		/*this.pageSize=5;*/
-		this.pageSize=(int) i;
+		this.pageSize=5;
 		this.blockSize=5;
 		this.beginRow = pageNumber*pageSize-(pageSize-1);
 		this.endRow = pageNumber*pageSize;
+		this.count =MemberServiceImpl.getInstance().count();
 		this.pageCount = count/pageSize==0?count/pageSize:count/pageSize+1;
 		this.blockCount = pageCount/blockSize==0?pageCount/blockSize:pageCount/blockSize+1;
 		this.beginPage= pageNumber-((pageNumber-1)%blockSize);
@@ -28,6 +23,5 @@ public class Pagination implements Proxy {
 		this.nextBlock = beginPage + blockSize;
 		this.existPrev=(prevBlock>=0);
 		this.existNext=(nextBlock<=pageCount);
-		
 	}
 }

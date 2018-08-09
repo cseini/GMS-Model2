@@ -5,7 +5,6 @@
 <body>
 <div id="wrapper">
 	<div id="header">
-		<jsp:include page="../common/titleBox.jsp"/>
 		<jsp:include page="../common/menuBox.jsp"></jsp:include>
 	</div>
 	<div id="content">
@@ -16,7 +15,6 @@
 	</div>
 </div>
 <script>
-	admin.main('${context}');
 </script>
 </body>
 </html>
