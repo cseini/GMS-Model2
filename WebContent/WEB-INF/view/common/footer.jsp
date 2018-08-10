@@ -6,5 +6,4 @@
 	<p>(주)야놀자는 통신판매중개자로서, 통신판매의 당사자가 아니라는 사실을 고지하며 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.</p>
 </div>	
 <script>
-	service.addClass(document.getElementById('footer-box'),'bgColorDgray fontColorGray width100pt bottom0px height100px positionFixed textCenter ')
 </script>

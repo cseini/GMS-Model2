@@ -17,7 +17,7 @@ public class MemberController extends HttpServlet {
 		Receiver.init(request);
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case ADD:
-			Carrier.redirect(request, response,"/member.do?action=move&page=main");
+			Carrier.redirect(request, response,"/member.do?action=move&page=login");
 			break;
 		case SEARCH: case RETRIEVE:
 			Carrier.forword(request, response);
@@ -26,9 +26,7 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case MODIFY:
-			Receiver.cmd.setPage("login_form");
-			Receiver.cmd.execute();
-			Carrier.forword(request, response);
+			Carrier.redirect(request, response,"/member.do?action=move&page=login");
 			break;
 		case REMOVE:
 			Carrier.redirect(request, response,"");
@@ -39,7 +37,7 @@ public class MemberController extends HttpServlet {
 		case LOGIN:
 			if(request.getAttribute("match").equals("TRUE")) {
 				System.out.println("로그인성공");
-				Carrier.forword(request, response);
+				Carrier.redirect(request, response, "/member.do?action=move&page=retrieve");
 			}else {
 				System.out.println("로그인실패");
 				Carrier.redirect(request,  response, "/member.do?action=move&page=login" );

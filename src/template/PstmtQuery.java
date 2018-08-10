@@ -1,4 +1,4 @@
-package template;
+/*package template;
 
 import java.sql.ResultSet;
 import domain.MemberBean;
@@ -71,10 +71,10 @@ public class PstmtQuery extends QueryTemplate{
 				break;
 			case REMOVE:
 				pstmt.setString(1, map.get("userid").toString());
-				pstmt.setString(2, map.get("password").toString());				break;
+				pstmt.setString(2, map.get("pass").toString());				break;
 			case LOGIN:
 				pstmt.setString(1, map.get("userid").toString());
-				pstmt.setString(2, map.get("password").toString());
+				pstmt.setString(2, map.get("pass").toString());
 				break;
 			default:
 				break;
@@ -92,7 +92,7 @@ public class PstmtQuery extends QueryTemplate{
 			MemberBean mem = null;
 			switch (Action.valueOf((String) map.get("flag"))) {
 			case ADD: case MODIFY: case REMOVE:
-				rs = pstmt.executeQuery();
+				pstmt.executeQuery();
 				break;
 			case SEARCH: case RETRIEVE:
 				rs = pstmt.executeQuery();
@@ -120,7 +120,8 @@ public class PstmtQuery extends QueryTemplate{
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					mem = new MemberBean();
-					mem.setUserId(rs.getString("userid"));
+					mem.setUserId(rs.getString("USERID"));
+					mem.setPassword(rs.getString("PASSWORD"));
 					list.add(mem);	
 				}
 				break;
@@ -132,3 +133,4 @@ public class PstmtQuery extends QueryTemplate{
 		}
 	}
 }
+*/

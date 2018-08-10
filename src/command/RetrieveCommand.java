@@ -9,13 +9,13 @@ public class RetrieveCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		execute();
 	}
 	
 	@Override
 	public void execute() {
 			request.setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
+			request.setAttribute("pagename", "retrieve");
 		super.execute();
 	}
 }

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<jsp:include page="../common/head.jsp"/>
 <div id="content-box">
 	<h1>회원가입</h1><br />
 	<form id="join_form">
@@ -39,29 +38,24 @@
 	</div>
 </div>
 <script>
-	service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
-	service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
-	service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
-	service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
-	document.getElementById('join_form_btn').addEventListener('click',function() {
-		var x = service.nullChecker([document.getElementById('join_form').userid.value,document.getElementById('join_form').password.value]);
-			if (x.checker) {
-				var form = document.getElementById('join_form');
-				form.action = "${context}/member.do";
-				form.method = "post";
-				member.add(form.ssn.value);
-				var arr =[{name:'action', value:'add'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
-				for(var i in arr){
-					var node = document.createElement('input');
-						node.setAttribute('type','hidden');
-						node.setAttribute('name', arr[i].name);
-						node.setAttribute('value', arr[i].value);
-					form.appendChild(node);
-				}
-				alert("회원가입 완료");
-				form.submit();
-			} else {
-				alert(x.text);
-			}
-		})
+service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
+service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
+service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
+service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
+document.getElementById('join_form_btn').addEventListener('click',function() {
+	var form = document.getElementById('join_form');
+	form.action = "${context}/member.do";
+	form.method = "post";
+	member.add(form.ssn.value);
+	var arr =[{name:'action', value:'add'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
+	for(var i in arr){
+		var node = document.createElement('input');
+			node.setAttribute('type','hidden');
+			node.setAttribute('name', arr[i].name);
+			node.setAttribute('value', arr[i].value);
+		form.appendChild(node);
+	}
+	alert("회원가입 완료");
+	form.submit();
+})
 </script>

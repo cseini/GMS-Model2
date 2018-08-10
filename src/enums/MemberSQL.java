@@ -45,10 +45,10 @@ public enum MemberSQL {
 					+" LIKE ? ";
 			break;
 		case COUNT:
-			query = "SELECT COUNT(*) as count FROM MEMBER";
+			query = "SELECT COUNT(*) count FROM MEMBER";
 			break;
 		case UPDATE:
-			query = "UPDATE member SET %s = ?, WHERE USERID LIKE ? ";
+			query = "UPDATE member SET %s = ? WHERE USERID LIKE ? ";
 			break;
 		case DELETE:
 			query = "DELETE FROM member WHERE USERID like ? AND password like ?";

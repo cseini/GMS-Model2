@@ -5,3 +5,5 @@ FROM (SELECT ROWNUM RNUM, m.*
 WHERE T.RNUM BETWEEN 1 AND 5;
 
 select * from member;
+
+UPDATE member SET password = '1' WHERE USERID LIKE 'aaa'; 

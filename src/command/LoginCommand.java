@@ -8,7 +8,6 @@ public class LoginCommand extends Command{
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage("retrieve");
 		execute();
 	}
 	@Override
@@ -20,6 +19,7 @@ public class LoginCommand extends Command{
 		if(MemberServiceImpl.getInstance().login(mem)) {
 			request.setAttribute("match", "TRUE");
 			request.getSession().setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
+			request.setAttribute("pagename", request.getParameter("page"));
 		} else {
 			request.setAttribute("match", "FALSE");
 		}
