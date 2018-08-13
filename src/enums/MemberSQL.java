@@ -8,7 +8,7 @@ public enum MemberSQL {
 	LIST, SEARCH, RETRIEVE, COUNT,
 	UPDATE,
 	DELETE,
-	LOGIN;
+	LOGIN, SEARCHCOUNT;
 	@Override
 	public String toString() {
 		String query ="";
@@ -46,6 +46,9 @@ public enum MemberSQL {
 			break;
 		case COUNT:
 			query = "SELECT COUNT(*) count FROM MEMBER";
+			break;
+		case SEARCHCOUNT:
+			query = "SELECT COUNT(*) count FROM MEMBER WHERE %s LIKE ?";
 			break;
 		case UPDATE:
 			query = "UPDATE member SET %s = ? WHERE USERID LIKE ? ";

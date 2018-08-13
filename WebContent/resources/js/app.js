@@ -45,10 +45,10 @@ var common = (()=>{
 				
 			});
 
-			document.getElementById('move_login_form').addEventListener('click',function(){ //콜백함수
+			document.getElementById('move_login_form').addEventListener('click',()=>{ //콜백함수
 				router.move({context : x,domain : 'member',action : 'move',page : 'login'});
 			});
-			document.getElementById('move_join_form').addEventListener('click',function(){ //콜백함수
+			document.getElementById('move_join_form').addEventListener('click',()=>{ //콜백함수
 				router.move({context : x,domain : 'member',action : 'move',page : 'add'});
 			});
 		}
@@ -92,7 +92,11 @@ var admin = (()=>{
 						i,'cursor fontColorBlue '
 					);
 				i.addEventListener('click',function(){
-				location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id');
+					if(searchOption===""){
+						location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id');
+					} else{
+						location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id')+'&search_option='+searchOption+'&search_word='+searchWord;
+					}
 				});
 			};
 		}
@@ -185,9 +189,96 @@ var member =(()=>{
 			service.addClass(document.getElementById('footer-box'),'bgColorDgray fontColorGray width100pt bottom0px height100px positionFixed textCenter ')
 			service.addClass(document.getElementById('menu-box'),'menu-box ');
 			service.addClass(document.getElementById('menu'),'menu ');
-			switch (x) {
-			case 'login':
-				alert("로그인");
+			switch(pagename){
+			case "add":
+				service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
+				service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
+				service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
+				service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
+				document.getElementById('join_form_btn').addEventListener('click',()=> {
+					var form = document.getElementById('join_form');
+					form.action = x+"/member.do";
+					form.method = "post";
+					member.add(form.ssn.value);
+					var arr =[{name:'action', value:'add'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
+					for(var i in arr){
+						var node = document.createElement('input');
+							node.setAttribute('type','hidden');
+							node.setAttribute('name', arr[i].name);
+							node.setAttribute('value', arr[i].value);
+						form.appendChild(node);
+					}
+					alert("회원가입 완료");
+					form.submit();
+				})
+				break;
+			case "retrieve":
+				service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
+				service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px ');
+				document.getElementById('move_update_form').addEventListener('click', ()=>{
+					router.move({context:x, domain:'member', action:'move',page:'modify'});
+				});
+				document.getElementById('move_delete_form').addEventListener('click',()=>{
+					router.move({context:x, domain:'member',action:'move',page:'remove'});
+				});
+				break;
+			case "modify":
+				service.addClass(document.getElementById('content-box'),'textCenter ');
+				service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
+				var form = document.getElementById('update_member');
+				var roll = document.getElementById('roll');
+				document.getElementById('update_member_btn').addEventListener('click',()=>{
+					form.action=x+"/member.do";
+					form.method="post";
+					var node = document.createElement('input');
+					node.setAttribute("type","hidden");
+					node.setAttribute("name","action");
+					node.setAttribute("value","modify");
+					form.appendChild(node);
+					alert("변경 완료");
+					form.submit();
+				});
+				
+				for(var i=0;i<roll.options.length;i++){
+					if(roll.options[i].value===validationRoll){
+						roll.options[i].setAttribute("selected","selected");
+					}
+				};
+				var team = document.getElementsByName('teamid');
+				for(var i=0;i<team.length;i++){
+					if(team[i].value===validationTeamId){
+							team[i].checked=true;
+					}
+				};
+				break;
+			case "remove":
+				service.addClass(document.getElementById('content-box'),'textCenter ');
+				service.addClass(document.getElementById('delete_form'),'center width300px height50px ');
+				service.addClass(document.getElementById('delete_form_btn_style'),'btnStyle padding13px115px ');
+				var form = document.getElementById('delete_form');
+				document.getElementById('delete_form_btn').addEventListener('click',()=>{
+					var val = form.password.value
+					if(!service.nullChecker([val]).checker){
+						alert('비밀번호를 입력해주세요');
+					} else if(val==validationPassword){
+					form.action = x+"/member.do";
+					form.method = "post";
+					var node = document.createElement('input');
+						node.innerHTML = 
+						'<input type="hidden" name="action" value="remove" />'; 
+					var node = document.createElement('input');
+						node.setAttribute('type','hidden');
+						node.setAttribute('name','action');
+						node.setAttribute('value','remove');
+					form.appendChild(node);
+					alert("탈퇴 완료");
+					form.submit();
+				} else{
+					alert('비밀번호가 다릅니다!!');
+				};
+				});
+				break;
+			case "login":
 				for(var i of document.querySelectorAll('input')){
 					service.addClass(i,'width300px height50px textCenter ');}
 					service.addClass(document.getElementById('login_form'),'textCenter ');
@@ -208,11 +299,8 @@ var member =(()=>{
 							alert(z.text);
 						}
 					});
-				break;
-			default:
-				break;
+			break;
 			}
-				
 		}
 	};
 })();

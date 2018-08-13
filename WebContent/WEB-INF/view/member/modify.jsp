@@ -19,36 +19,16 @@
 			<option value="minfe">민폐</option>
 		</select><br /><br /><br />
 	</form>	
+	<form method="POST" enctype="multipart/form-data" action="${context }/member.do?action=fileupload&page=retrieve">
+	  파일업로드: <input type="file" name="upfile">
+	  <input type="submit" value="파일업로드">
+
+	</form><br />
 	<div id="update_member_btn_style">
 		<a id="update_member_btn"> 업데이트 </a>
 	</div>
 	</div>
 <script>
-	service.addClass(document.getElementById('content-box'),'textCenter ');
-	service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
-	var form = document.getElementById('update_member');
-	var roll = document.getElementById('roll');
-	document.getElementById('update_member_btn').addEventListener('click',()=>{
-		form.action="${context}/member.do";
-		form.method="post";
-		var node = document.createElement('input');
-		node.setAttribute("type","hidden");
-		node.setAttribute("name","action");
-		node.setAttribute("value","modify");
-		form.appendChild(node);
-		alert("변경 완료");
-		form.submit();
-	});
-	
-	for(var i=0;i<roll.options.length;i++){
-		if(roll.options[i].value==='${member.roll}'){
-			roll.options[i].setAttribute("selected","selected");
-		}
-	};
-	var team = document.getElementsByName('teamid');
-	for(var i=0;i<team.length;i++){
-		if(team[i].value==='${member.teamId}'){
-				team[i].checked=true;
-		}
-	};
+	var validationRoll ='${member.roll}';
+	var validationTeamId = '${member.teamId}';
 </script>

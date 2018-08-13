@@ -13,7 +13,7 @@
 	이동페이지 : ${pagename}
 	<c:choose>
 		<c:when test="${pagename eq 'add'}">
-			<jsp:include page="add.jsp" />
+			<jsp:include page="add.jsp"/>
 		</c:when>
 		<c:when test="${pagename eq 'search'}">
 			<jsp:include page="search.jsp" />
@@ -37,6 +37,7 @@
 	</div>
 </div>
 <script>
+	var pagename = '${pagename}';
 	member.main('${context}');
 </script>
 </body>

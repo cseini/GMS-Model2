@@ -28,7 +28,7 @@ public class ModifyCommand extends Command{
 					MemberServiceImpl.getInstance().modify(map);
 				}
 			}
-			request.setAttribute("member", MemberServiceImpl.getInstance().retrieve(map.get("userid")));
+			request.getSession().setAttribute("member", MemberServiceImpl.getInstance().retrieve(map.get("userid")));
 			break;
 		default:
 			break;

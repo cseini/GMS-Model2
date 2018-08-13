@@ -3,7 +3,7 @@
 <div id="content-box">
 	<table id="mypage-table">
 		<tr>
-			<td colspan="2" rowspan="3"></td>
+			<td colspan="2" rowspan="3"><img src="${img}/mypage/default.png" alt="" /></td>
 			<td>아이디</td>
 			<td>${member.userId }</td>
 		</tr>
@@ -34,12 +34,5 @@
 	</div>
 </div>
 <script>
-	service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
-	service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px ');
-	document.getElementById('move_update_form').addEventListener('click', function(){
-		router.move({context:'${context}', domain:'member', action:'move',page:'modify'});
-	});
-	document.getElementById('move_delete_form').addEventListener('click',function(){
-		router.move({context:'${context}',domain:'member',action:'move',page:'remove'});
-	});
+	
 </script>

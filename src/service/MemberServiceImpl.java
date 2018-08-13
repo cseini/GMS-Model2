@@ -26,6 +26,10 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDaoImpl.getInstance().count();
 	}
 	@Override
+	public int count(Map<?, ?> param) {
+		return MemberDaoImpl.getInstance().count(param);
+	}
+	@Override
 	public void modify(Map<?, ?> param) {
 		MemberDaoImpl.getInstance().update(param);
 	}
@@ -37,5 +41,6 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(MemberBean bean) {
 		return (MemberDaoImpl.getInstance().login(bean)!=null);
 	}
+
 
 }

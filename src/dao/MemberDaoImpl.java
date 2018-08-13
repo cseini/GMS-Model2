@@ -58,6 +58,12 @@ public class MemberDaoImpl implements MemberDao {
 		return q.getNumber();
 	}
 	@Override
+	public int count(Map<?, ?> param) {
+		q = new CountQuery();
+		q.play(param);
+		return q.getNumber();
+	}
+	@Override
 	public void update(Map<?, ?> param) {
 		q = new ModifyQuery();
 		q.play(param);
@@ -79,6 +85,5 @@ public class MemberDaoImpl implements MemberDao {
 		q.play(map);
 		return (MemberBean) q.getO();
 	}
-
 	
 }

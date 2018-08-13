@@ -14,8 +14,8 @@ public class RetrieveCommand extends Command{
 	
 	@Override
 	public void execute() {
-			request.setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
-			request.setAttribute("pagename", "retrieve");
+		request.getSession().setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
+		request.setAttribute("pagename", request.getParameter("page"));
 		super.execute();
 	}
 }

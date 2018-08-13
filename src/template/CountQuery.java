@@ -1,23 +1,24 @@
 package template;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import enums.MemberSQL;
-import factory.DatabaseFactory;
 
 public class CountQuery extends QueryTemplate {
 
 	@Override
 	void initialize() {
-		map.put("sql", MemberSQL.COUNT.toString());
+		map.put("sql", (!map.containsKey("column"))?
+				MemberSQL.COUNT.toString()
+				:String.format(MemberSQL.SEARCHCOUNT.toString(),map.get("column")));
 	}
 
 	@Override
 	void startPlay() {
 		try {
-			pstmt = DatabaseFactory.createDatabase2(map).getConnection()
-					.prepareStatement((String) map.get("sql"));
-		} catch (SQLException e) {
+			if(map.get("sql").toString().contains("WHERE")) {
+				pstmt.setString(1, "%"+map.get("searchWord").toString()+"%");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

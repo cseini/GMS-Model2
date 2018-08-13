@@ -33,7 +33,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="6"> 
-			카운트커맨드 : (${page.count}명) <br />
+			카운트커맨드 : (${page.countRow}명) <br />
 			<ul class="pageBox">
 			<c:if test="${page.existPrev}"> 
 				<li><a id="${page.prevBlock}" class="pageNumber"> ◀ 이전 |</a></li> 
@@ -52,4 +52,6 @@
 	</table><br />
 	</div>
 <script>
+	var searchOption = '${searchOption}';
+	var searchWord = '${searchWord}';
 </script>

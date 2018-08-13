@@ -9,29 +9,6 @@
 </div>
 </div>
 <script>
-	service.addClass(document.getElementById('delete_form'),'center width300px height50px ');
-	service.addClass(document.getElementById('delete_form_btn_style'),'btnStyle padding13px115px ');
-	var form = document.getElementById('delete_form');
-	document.getElementById('delete_form_btn').addEventListener('click',function(){
-		var val = form.password.value;
-		if(form.password.value.ckecker){
-			alert('비밀번호를 입력해주세요');
-		} else if(val=='${member.password}'){
-		form.action = "${context}/member.do";
-		form.method = "post";
-		var node = document.createElement('input');
-			node.innerHTML = 
-			'<input type="hidden" name="action" value="delete" />'; 
-		var node = document.createElement('input');
-			node.setAttribute('type','hidden');
-			node.setAttribute('name','action');
-			node.setAttribute('value','remove');
-		form.appendChild(node);
-		alert("탈퇴 완료");
-		form.submit();
-	} else{
-		alert('비밀번호가 다릅니다!!');
-	};
-	});
+	var validationPassword = '${member.password}';
 </script>
 

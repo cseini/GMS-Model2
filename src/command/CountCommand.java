@@ -1,5 +1,8 @@
 package command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import service.MemberServiceImpl;
 
@@ -13,7 +16,15 @@ public class CountCommand extends Command{
 	}
 		@Override
 		public void execute() {
-			request.setAttribute("count",MemberServiceImpl.getInstance().count());
+			Map<String, Object> map = new HashMap<>();
+			if(request.getParameter("search_option")!=null) {
+				map.put("searchOption",request.getParameter("search_option"));
+				map.put("searchWord",request.getParameter("search_word"));
+				request.setAttribute("count",MemberServiceImpl.getInstance().count(map));
+			} else {
+				request.setAttribute("count",MemberServiceImpl.getInstance().count());	
+			}
+			
 			System.out.println("카운트 커맨드 진입");
 			super.execute();
 		}

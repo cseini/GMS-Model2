@@ -23,7 +23,7 @@ public class SearchQuery extends QueryTemplate{
 				pstmt.setString(j, "%"+map.get("searchWord").toString()+"%");
 			}
 			j++;
-			pstmt.setString(j, map.get("beginRow").toString());			
+			pstmt.setString(j, map.get("beginRow").toString());
 			j++;
 			pstmt.setString(j, map.get("endRow").toString());
 		} catch (SQLException e) {
