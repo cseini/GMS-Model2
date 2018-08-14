@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<jsp:include page="../common/head.jsp"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>\
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="content-box">
 	<table id="mypage-table">
 		<tr>
-			<td colspan="2" rowspan="3"><img src="${img}/mypage/default.png" alt="" /></td>
+		<td colspan="2" rowspan="3"><img src="${img}/${profile}" alt="" height="300px"/></td> 
 			<td>아이디</td>
 			<td>${member.userId }</td>
 		</tr>
@@ -32,7 +32,7 @@
 	<a id="move_update_form">개인정보 수정 이동</a>
 	<a id="move_delete_form">회원탈퇴 이동</a>
 	</div>
-</div>
+	</div>
 <script>
 	
 </script>

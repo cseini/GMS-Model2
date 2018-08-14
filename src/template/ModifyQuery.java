@@ -6,7 +6,7 @@ public class ModifyQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
-		map.put("sql", String.format(MemberSQL.UPDATE.toString(), map.get("column")));
+		map.put("sql", String.format(MemberSQL.UPDATE.toString(), map.get("column")));	
 	}
 
 	@Override

@@ -24,7 +24,10 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import command.*;
+import domain.ImageBean;
+import domain.MemberBean;
 import enums.*;
+import service.ImageServiceImpl;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
@@ -43,7 +46,7 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case MODIFY: 
-			Carrier.redirect(request, response,"/member.do?action=move&page=retrieve");
+			Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve&userid="+((MemberBean) request.getSession().getAttribute("member")).getUserId());
 			break;
 		case FILEUPLOAD:
 			System.out.println("====[1]====");
@@ -68,13 +71,17 @@ public class MemberController extends HttpServlet {
 					FileItem item = (FileItem)iter.next();
 					if(!item.isFormField()) {
 						System.out.println("====[6]====if 진입");
-						String filedName = item.getFieldName();
 						String fileName = item.getName();
-						boolean isInMemory = item.isInMemory();
-						long sizeInBytes = item.getSize();
-						file = new File(fileName);
+						file = new File(Path.UPLOAD_PATH+fileName);
 						item.write(file);
 						System.out.println("====[7]====파일업로드 성공 !!!");
+						//image table 에 id, image name, ext 저장.
+						ImageBean bean = new ImageBean();
+						bean.setUserid(((MemberBean) request.getSession().getAttribute("member")).getUserId());
+						bean.setImgName(fileName.split("\\.")[0]);
+						bean.setExtension(fileName.split("\\.")[1]);
+						ImageServiceImpl.getInstance().insert(bean);
+						Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve&userid="+((MemberBean) request.getSession().getAttribute("member")).getUserId());
 					} else {
 						System.out.println("====[8]====파일업로드 실패 !!!");
 					}
@@ -82,9 +89,7 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 			System.out.println("====[10]====");
-			Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve");
 			break;
 		case REMOVE:
 			Carrier.redirect(request, response,"");

@@ -40,7 +40,7 @@ public class SearchCommand extends Command{
 		};
 		request.getSession().setAttribute("searchOption", param.get("column"));
 		request.getSession().setAttribute("searchWord", param.get("searchWord"));
-		request.getSession().setAttribute("list",MemberServiceImpl.getInstance().search(param));
+		request.getSession().setAttribute("member",MemberServiceImpl.getInstance().search(param));
 		request.getSession().setAttribute("page",page);
 		super.execute();
 	}

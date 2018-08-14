@@ -1,6 +1,7 @@
 "use strict";
 var router = (()=> {
-	return {move: x=> {
+	return {
+		move: x=> {
 		location.href = x.context +"/"+ x.domain + ".do?action=" + x.action
 		+ "&page=" + x.page;
 		}
@@ -47,9 +48,6 @@ var common = (()=>{
 
 			document.getElementById('move_login_form').addEventListener('click',()=>{ //콜백함수
 				router.move({context : x,domain : 'member',action : 'move',page : 'login'});
-			});
-			document.getElementById('move_join_form').addEventListener('click',()=>{ //콜백함수
-				router.move({context : x,domain : 'member',action : 'move',page : 'add'});
 			});
 		}
 	}
@@ -214,12 +212,15 @@ var member =(()=>{
 				break;
 			case "retrieve":
 				service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
-				service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px ');
+				service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px cursor ');
 				document.getElementById('move_update_form').addEventListener('click', ()=>{
 					router.move({context:x, domain:'member', action:'move',page:'modify'});
 				});
 				document.getElementById('move_delete_form').addEventListener('click',()=>{
 					router.move({context:x, domain:'member',action:'move',page:'remove'});
+				});
+				document.getElementById('main_move_btn').addEventListener('click',()=>{
+					router.move({context:x, domain:'member'});
 				});
 				break;
 			case "modify":
