@@ -1,33 +1,13 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
-
 import command.*;
-import domain.ImageBean;
-import domain.MemberBean;
 import enums.*;
-import service.ImageServiceImpl;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
@@ -46,50 +26,10 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			break;
 		case MODIFY: 
-			Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve&userid="+((MemberBean) request.getSession().getAttribute("member")).getUserId());
+			Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve");
 			break;
 		case FILEUPLOAD:
-			System.out.println("====[1]====");
-			if(!ServletFileUpload.isMultipartContent(request)){
-				System.out.println("업로드파일이 없습니다.");
-				return;
-			}
-			System.out.println("====[2]==== 업로드파일이 존재함");
-			FileItemFactory factory = new DiskFileItemFactory();
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			upload.setFileSizeMax(1024*1024*40);//40MB
-			upload.setSizeMax(1024*1024*50);//50MB
-			List<FileItem> items = null;
-			try {
-				System.out.println("====[3]====try 내부로 진입");
-				File file = null;
-				items = upload.parseRequest(new ServletRequestContext(request));
-				System.out.println("====[4]====items 생성");
-				Iterator<FileItem> iter = items.iterator();
-				while(iter.hasNext()) {
-					System.out.println("====[5]====while 진입");
-					FileItem item = (FileItem)iter.next();
-					if(!item.isFormField()) {
-						System.out.println("====[6]====if 진입");
-						String fileName = item.getName();
-						file = new File(Path.UPLOAD_PATH+fileName);
-						item.write(file);
-						System.out.println("====[7]====파일업로드 성공 !!!");
-						//image table 에 id, image name, ext 저장.
-						ImageBean bean = new ImageBean();
-						bean.setUserid(((MemberBean) request.getSession().getAttribute("member")).getUserId());
-						bean.setImgName(fileName.split("\\.")[0]);
-						bean.setExtension(fileName.split("\\.")[1]);
-						ImageServiceImpl.getInstance().insert(bean);
-						Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve&userid="+((MemberBean) request.getSession().getAttribute("member")).getUserId());
-					} else {
-						System.out.println("====[8]====파일업로드 실패 !!!");
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println("====[10]====");
+			Carrier.redirect(request, response,"/member.do?action=retrieve&page=retrieve");
 			break;
 		case REMOVE:
 			Carrier.redirect(request, response,"");
@@ -99,12 +39,13 @@ public class MemberController extends HttpServlet {
 			break;
 		case LOGIN:
 			if(request.getAttribute("match").equals("TRUE")) {
-				System.out.println("로그인성공");
 				Carrier.redirect(request, response, "/member.do?action=move&page=retrieve");
 			}else {
-				System.out.println("로그인실패");
 				Carrier.redirect(request,  response, "/member.do?action=move&page=login" );
 			}
+			break;
+		case LOGOUT:
+			Carrier.redirect(request, response, "");
 			break;
 		default:
 			Carrier.redirect(request, response, "");

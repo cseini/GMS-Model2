@@ -4,13 +4,13 @@
 	<form id="update_member" name="update_member" >
 	<input type="hidden" name="userid" value="${member.userId }" />
 		<input type="password" id="password" name="password" placeholder="이전비밀번호:${user.password}"/><br /><br />
-		팀(현재소속팀:${member.teamId})
+		팀(현재소속팀:${user.teamId})
 			<input type="radio" name="teamid" id="teamid_0" value="none" checked="checked" /> 없음
 			<input type="radio" name="teamid" id="teamid_1" value="nolja" /> 걍놀자
 			<input type="radio" name="teamid" id="teamid_2" value="jienHouse" /> 지은이네
 			<input type="radio" name="teamid" id="teamid_3" value="turtleKing" /> 왕거북이
 			<input type="radio" name="teamid" id="teamid_4" value="coddingZzang" /> 코딩짱<br /><br />
-		역할(현재 역할: ${member.roll})
+		역할(현재 역할: ${user.roll})
 		<select name="roll" id="roll">
 			<option value="leader" selected="selected">팀장</option>
 			<option value="front">프론트개발</option>
@@ -29,6 +29,4 @@
 	</div>
 	</div>
 <script>
-	var validationRoll ='${member.roll}';
-	var validationTeamId = '${member.teamId}';
 </script>

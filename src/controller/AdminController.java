@@ -17,6 +17,9 @@ public class AdminController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Receiver.init(request);
+		request.setAttribute("domain", request.getServletPath()
+				.split("/")[1]
+				.split("\\.")[0]);
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case SEARCH:
 			Carrier.forword(request, response);

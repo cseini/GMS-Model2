@@ -30,6 +30,9 @@ public class Commander{
 		case LOGIN:
 			cmd = new LoginCommand(request);
 			break;
+		case LOGOUT:
+			cmd = new LogoutCommand(request);
+			break;
 		case FILEUPLOAD:
 			cmd = new FileCommand(request);
 			break;

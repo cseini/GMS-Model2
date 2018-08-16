@@ -8,16 +8,12 @@ public class ExamServiceImpl implements ExamService{
 	private ExamServiceImpl() {}
 	@Override
 	public void createExam(ExamBean exam) {
-		System.out.println("===== ExamService ====="); 
-		System.out.println(exam);
         // 과목SEQ=null,
         // 성적표SEQ=null
-        System.out.println("----- RECORD TABLE INSERT ------");
         RecordBean rec = new RecordBean();
         rec.setAvg("80");
         rec.setGrade("");
         RecordDaoImpl.getInstance().insertRecord(rec);
-        System.out.println("------ Exam TABLE INSERT ------");
         exam.setScore(exam.getScore().split("/")[0]);
         exam.setSubSeq(
                 SubjectDaoImpl.getInstance().

@@ -3,10 +3,8 @@ package command;
 import javax.servlet.http.HttpServletRequest;
 
 import domain.MemberBean;
-import domain.ProjectTeamBean;
 import enums.Domain;
 import service.MemberServiceImpl;
-import service.ProjectTeamServiceImpl;
 
 public class RemoveCommand extends Command{
 	public RemoveCommand(HttpServletRequest request) {
@@ -21,10 +19,10 @@ public class RemoveCommand extends Command{
 		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			MemberBean mem = new MemberBean();
-			mem.setUserId(((MemberBean)request.getSession().getAttribute("member")).getUserId());
+			mem.setUserId(((MemberBean)request.getSession().getAttribute("user")).getUserId());
 			mem.setPassword(request.getParameter("password"));
 			MemberServiceImpl.getInstance().remove(mem);
-			request.setAttribute("pagename", "remove");
+			request.setAttribute("pagename", request.getParameter("page"));
 			request.getSession().invalidate();
 			break;
 		default:

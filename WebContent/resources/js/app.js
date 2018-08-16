@@ -45,9 +45,11 @@ var common = (()=>{
 				}*/
 				
 			});
-
 			document.getElementById('move_login_form').addEventListener('click',()=>{ //콜백함수
 				router.move({context : x,domain : 'member',action : 'move',page : 'login'});
+			});
+			document.getElementById('move_join_form').addEventListener('click',()=>{ //콜백함수
+				router.move({context : x,domain : 'member',action : 'move',page : 'add'});
 			});
 		}
 	}
@@ -71,29 +73,33 @@ var admin = (()=>{
 			service.addClass(document.getElementById('content_box_table'),'width80pt center marginTop30px textCenter borderCollapse ');
 			service.addClass(document.getElementById('content_box_meta'),'bgColorYellow ' );
 			service.addClass(document.getElementById('content'),'marginBottom150px ' );
+			document.getElementById("move_home").addEventListener('click',()=>{
+				location.href=x.context+"/common.do"
+			});
+
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(
 					i,'cursor fontColorBlue '
 				);
 				i.addEventListener('click',function(){
-				location.href = x+'/admin.do?action=retrieve&page=retrieve&userid='+this.getAttribute('id');
+				location.href = x.context+'/admin.do?action=retrieve&page=retrieve&userid='+this.getAttribute('id');
 				});
 			};
 			document.getElementById("search_btn").addEventListener('click',()=>{
 			     location.href = (document.getElementById('search_option').value==='id') ?
-		        x+'/admin.do?action=retrieve&page=retrieve&userid='+document.getElementById('search_word').value
+		        x.context+'/admin.do?action=retrieve&page=retrieve&userid='+document.getElementById('search_word').value
 		        :
-		        x+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
+		        x.context+'/admin.do?action=search&page=main&search_option='+document.getElementById('search_option').value+'&search_word='+document.getElementById('search_word').value;
 			});
 			for(var i of document.querySelectorAll('.pageNumber')){
 				service.addClass(
 						i,'cursor fontColorBlue '
 					);
 				i.addEventListener('click',function(){
-					if(searchOption===""){
-						location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id');
+					if(x.searchOption===""){
+						location.href=x.context+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id');
 					} else{
-						location.href=x+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id')+'&search_option='+searchOption+'&search_word='+searchWord;
+						location.href=x.context+'/admin.do?action=search&page=main&pageNumber='+this.getAttribute('id')+'&search_option='+x.searchOption+'&search_word='+x.searchWord;
 					}
 				});
 			};
@@ -186,50 +192,61 @@ var member =(()=>{
 			service.addClass(document.querySelector('body'),'fontDefault backgroundColorWhite margin0px padding0px fontColorGray ')
 			service.addClass(document.getElementById('footer-box'),'bgColorDgray fontColorGray width100pt bottom0px height100px positionFixed textCenter ')
 			service.addClass(document.getElementById('menu-box'),'menu-box ');
-			service.addClass(document.getElementById('menu'),'menu ');
-			switch(pagename){
+			service.addClass(document.getElementById('menu'),'menu cursor ');
+			document.getElementById("move_home").addEventListener('click',()=>{
+				location.href=x.context+"/common.do"
+			})
+			switch(location.search.substring(location.search.lastIndexOf('page=')+5).split('&')[0]){
 			case "add":
 				service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
-				service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
+				service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px cursor ');
 				service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
 				service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
 				document.getElementById('join_form_btn').addEventListener('click',()=> {
 					var form = document.getElementById('join_form');
-					form.action = x+"/member.do";
-					form.method = "post";
-					member.add(form.ssn.value);
-					var arr =[{name:'action', value:'add'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
-					for(var i in arr){
-						var node = document.createElement('input');
-							node.setAttribute('type','hidden');
-							node.setAttribute('name', arr[i].name);
-							node.setAttribute('value', arr[i].value);
-						form.appendChild(node);
-					}
-					alert("회원가입 완료");
-					form.submit();
-				})
+					var z = service.nullChecker([form.userid.value
+												,form.password.value
+												,form.name.value
+												,form.ssn.value]);
+						if(z.checker){
+							form.action = x.context+"/member.do";
+							form.method = "post";
+							member.add(form.ssn.value);
+							var arr =[{name:'action', value:'add'},{name:'gender',value:member.getGender()},{name:'age',value:member.getAge()}]
+							for(var i in arr){
+								var node = document.createElement('input');
+									node.setAttribute('type','hidden');
+									node.setAttribute('name', arr[i].name);
+									node.setAttribute('value', arr[i].value);
+								form.appendChild(node);
+							}
+							alert("회원가입 완료");
+							form.submit();
+						}else {
+							alert(z.text);
+						}
+					})
 				break;
 			case "retrieve":
 				service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
 				service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px cursor ');
 				document.getElementById('move_update_form').addEventListener('click', ()=>{
-					router.move({context:x, domain:'member', action:'move',page:'modify'});
+					router.move({context:x.context, domain:'member', action:'move',page:'modify'});
 				});
 				document.getElementById('move_delete_form').addEventListener('click',()=>{
-					router.move({context:x, domain:'member',action:'move',page:'remove'});
+					router.move({context:x.context, domain:'member',action:'move',page:'remove'});
 				});
-				document.getElementById('main_move_btn').addEventListener('click',()=>{
-					router.move({context:x, domain:'member'});
+				document.getElementById('logout').addEventListener('click',()=>{
+					router.move({context:x.context, domain:'member',action:'logout',page:'login'});
 				});
 				break;
 			case "modify":
 				service.addClass(document.getElementById('content-box'),'textCenter ');
-				service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px ');
+				service.addClass(document.getElementById('update_member_btn_style'),'btnStyle padding13px115px cursor ');
 				var form = document.getElementById('update_member');
 				var roll = document.getElementById('roll');
 				document.getElementById('update_member_btn').addEventListener('click',()=>{
-					form.action=x+"/member.do";
+					form.action=x.context+"/member.do";
 					form.method="post";
 					var node = document.createElement('input');
 					node.setAttribute("type","hidden");
@@ -239,15 +256,14 @@ var member =(()=>{
 					alert("변경 완료");
 					form.submit();
 				});
-				
 				for(var i=0;i<roll.options.length;i++){
-					if(roll.options[i].value===validationRoll){
+					if(roll.options[i].value===x.roll){
 						roll.options[i].setAttribute("selected","selected");
 					}
 				};
 				var team = document.getElementsByName('teamid');
 				for(var i=0;i<team.length;i++){
-					if(team[i].value===validationTeamId){
+					if(team[i].value===x.teamid){
 							team[i].checked=true;
 					}
 				};
@@ -255,14 +271,14 @@ var member =(()=>{
 			case "remove":
 				service.addClass(document.getElementById('content-box'),'textCenter ');
 				service.addClass(document.getElementById('delete_form'),'center width300px height50px ');
-				service.addClass(document.getElementById('delete_form_btn_style'),'btnStyle padding13px115px ');
+				service.addClass(document.getElementById('delete_form_btn_style'),'btnStyle padding13px115px cursor ');
 				var form = document.getElementById('delete_form');
 				document.getElementById('delete_form_btn').addEventListener('click',()=>{
 					var val = form.password.value
 					if(!service.nullChecker([val]).checker){
 						alert('비밀번호를 입력해주세요');
-					} else if(val==validationPassword){
-					form.action = x+"/member.do";
+					} else if(val==x.password){
+					form.action = x.context+"/member.do";
 					form.method = "post";
 					var node = document.createElement('input');
 						node.innerHTML = 
@@ -283,12 +299,12 @@ var member =(()=>{
 				for(var i of document.querySelectorAll('input')){
 					service.addClass(i,'width300px height50px textCenter ');}
 					service.addClass(document.getElementById('login_form'),'textCenter ');
-					service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px ');
+					service.addClass(document.getElementById('login_form_btn_style'),'btnStyle padding13px115px cursor ');
 					document.getElementById('login_form_btn').addEventListener('click',()=>{
 						var z = service.nullChecker([document.login_form.userid.value,document.login_form.password.value]);
 						if(z.checker){
 							var form = document.getElementById('login_form');
-							form.action = x+"/member.do";
+							form.action = x.context+"/member.do";
 							form.method = "post";
 							var node = document.createElement('input');
 							node.setAttribute("type","hidden");

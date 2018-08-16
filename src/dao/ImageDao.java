@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.Map;
-
 import domain.ImageBean;
 
 public interface ImageDao {

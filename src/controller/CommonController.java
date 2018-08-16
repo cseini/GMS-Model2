@@ -26,6 +26,9 @@ public class CommonController extends HttpServlet {
 								+r.toString().toLowerCase());
             i++;
 		}
+		request.setAttribute("domain", request.getServletPath()
+				.split("/")[1]
+				.split("\\.")[0]);
 		request.getRequestDispatcher(Path.WEBPATH.toString()
 												+request.getServletPath()
 													.split("/")[1]

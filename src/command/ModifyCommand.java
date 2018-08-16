@@ -19,7 +19,7 @@ public class ModifyCommand extends Command{
 		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			Map<Object,String> map = new HashMap<>();
-			map.put("userid", ((MemberBean) request.getSession().getAttribute("member")).getUserId());
+			map.put("userid", ((MemberBean) request.getSession().getAttribute("user")).getUserId());
 			String[] column = {"password","teamid","roll"};
 			for(int i=0;i<column.length;i++) {
 				if(!request.getParameter(column[i]).isEmpty()) {
@@ -28,7 +28,7 @@ public class ModifyCommand extends Command{
 					MemberServiceImpl.getInstance().modify(map);
 				}
 			}
-			request.getSession().setAttribute("member", MemberServiceImpl.getInstance().retrieve(map.get("userid")));
+			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().retrieve(map.get("userid")));
 			break;
 		default:
 			break;

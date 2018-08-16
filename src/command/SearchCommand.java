@@ -38,10 +38,10 @@ public class SearchCommand extends Command{
 		for(int i = 0; i < arr1.length; i++){
 			param.put(arr1[i],arr2[i]);
 		};
-		request.getSession().setAttribute("searchOption", param.get("column"));
-		request.getSession().setAttribute("searchWord", param.get("searchWord"));
-		request.getSession().setAttribute("member",MemberServiceImpl.getInstance().search(param));
-		request.getSession().setAttribute("page",page);
+		request.setAttribute("searchOption", param.get("column"));
+		request.setAttribute("searchWord", param.get("searchWord"));
+		request.setAttribute("member",MemberServiceImpl.getInstance().search(param));
+		request.setAttribute("page",page);
 		super.execute();
 	}
 }

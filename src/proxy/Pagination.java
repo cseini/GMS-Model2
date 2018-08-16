@@ -2,7 +2,6 @@ package proxy;
 import java.util.Map;
 
 import lombok.Data;
-import service.MemberServiceImpl;
 @Data
 public class Pagination implements Proxy {
 	int countRow, pageNumber,beginRow, endRow, pageSize, blockSize, pageCount, blockCount, beginPage, endPage, prevBlock, nextBlock, lastBlockPage;

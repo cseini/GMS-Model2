@@ -12,7 +12,7 @@ public class MoveCommand extends Command {
 	@Override
 	public void execute() {
 		super.execute();
+		request.setAttribute("domain", getDomain());
 		request.setAttribute("pagename", request.getParameter("page"));
-		System.out.println(request.getParameter("page"));
 	}
 }

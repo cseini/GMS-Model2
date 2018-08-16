@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import domain.MemberBean;
+import enums.Domain;
 import template.AddQuery;
 import template.CountQuery;
 import template.LoginQuery;
@@ -31,7 +32,7 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("subject", member.getSubject());
 		map.put("age", member.getAge());
 		map.put("gender", member.getGender());
-		map.put("table","MEMBER");
+		map.put("table",Domain.MEMBER);
 		q.play(map);
 	}
 	@Override
@@ -49,7 +50,7 @@ public class MemberDaoImpl implements MemberDao {
 		q= new RetrieveQuery();
 		Map<String, Object> map = new HashMap<>();
 		map.put("userid", seq);
-		map.put("table","MEMBER");
+		map.put("table",Domain.MEMBER);
 		q.play(map);
 		return (MemberBean) q.getO();
 	}
@@ -84,7 +85,7 @@ public class MemberDaoImpl implements MemberDao {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userid", bean.getUserId());
 		map.put("pass", bean.getPassword());
-		map.put("table","MEMBER");
+		map.put("table",Domain.MEMBER);
 		q.play(map);
 		return (MemberBean) q.getO();
 	}

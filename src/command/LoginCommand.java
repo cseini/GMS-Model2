@@ -19,10 +19,12 @@ public class LoginCommand extends Command{
 		mem.setPassword(request.getParameter("password"));
 		if(MemberServiceImpl.getInstance().login(mem)) {
 			request.setAttribute("match", "TRUE");
-			request.getSession().setAttribute("member", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
+			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
 			request.setAttribute("pagename", request.getParameter("page"));
-			if(ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("member")).getUserId())!=null) {
-				request.getSession().setAttribute("profile", "upload/"+ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("member")).getUserId()).getImgName() +"." + ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("member")).getUserId()).getExtension());
+			if(ImageServiceImpl.getInstance().read(request.getParameter("userid"))!=null) {
+				request.getSession().setAttribute("profile", "upload/"+ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("user")).getUserId()).getImgName() +"." + ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("user")).getUserId()).getExtension());
+			} else {
+				request.getSession().setAttribute("profile", "upload/default.jpg");
 			}
 		} else {
 			request.setAttribute("match", "FALSE");

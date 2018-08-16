@@ -20,7 +20,6 @@ public enum MemberSQL {
 					+")  " 
 					+"   VALUES    "
 					+"   (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-			System.out.println(ColumnFinder.find(Domain.MEMBER));
 			break;
 		case LIST:
 			query = " SELECT T.* "

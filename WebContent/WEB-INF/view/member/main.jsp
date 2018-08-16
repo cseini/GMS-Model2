@@ -10,7 +10,6 @@
 		<jsp:include page="../common/menuBox.jsp"/>
 	</div>
 	<div id="content">
-	이동페이지 : ${pagename}
 	<c:choose>
 		<c:when test="${pagename eq 'add'}">
 			<jsp:include page="add.jsp"/>
@@ -37,8 +36,13 @@
 	</div>
 </div>
 <script>
-	var pagename = '${pagename}';
-	member.main('${context}');
+	member.main(
+			{context : '${context}',
+             pagename : '${pagename}',
+			 user : '${user}',
+			 teamid : '${user.teamId}',
+			 roll : '${user.roll}',
+			 password : '${user.password}'});
 </script>
 </body>
 </html>

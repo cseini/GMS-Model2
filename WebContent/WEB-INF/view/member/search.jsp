@@ -52,6 +52,4 @@
 	</table><br />
 	</div>
 <script>
-	var searchOption = '${searchOption}';
-	var searchWord = '${searchWord}';
 </script>

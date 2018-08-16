@@ -24,8 +24,6 @@ public class CountCommand extends Command{
 			} else {
 				request.setAttribute("count",MemberServiceImpl.getInstance().count());	
 			}
-			
-			System.out.println("카운트 커맨드 진입");
 			super.execute();
 		}
 }

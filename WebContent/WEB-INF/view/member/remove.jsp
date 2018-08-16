@@ -9,6 +9,5 @@
 </div>
 </div>
 <script>
-	var validationPassword = '${member.password}';
 </script>
 

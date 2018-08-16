@@ -16,7 +16,9 @@
 	</div>
 </div>
 <script>
-	admin.main('${context}');
+	admin.main({context :'${context}',
+				searchOption : '${searchOption}',
+				searchWord : '${searchWord}'});
 </script>
 </body>
 </html>
