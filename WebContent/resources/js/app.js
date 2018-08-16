@@ -229,6 +229,7 @@ var member =(()=>{
 				break;
 			case "retrieve":
 				service.addClass(document.getElementById('mypage-table'),'textCenter center width400px height50px borderCollapse ');
+				if(x.domain==='member'){
 				service.addClass(document.getElementById('move_update_btn'),'btnStyle padding13px40px cursor ');
 				document.getElementById('move_update_form').addEventListener('click', ()=>{
 					router.move({context:x.context, domain:'member', action:'move',page:'modify'});
@@ -239,6 +240,7 @@ var member =(()=>{
 				document.getElementById('logout').addEventListener('click',()=>{
 					router.move({context:x.context, domain:'member',action:'logout',page:'login'});
 				});
+				}
 				break;
 			case "modify":
 				service.addClass(document.getElementById('content-box'),'textCenter ');

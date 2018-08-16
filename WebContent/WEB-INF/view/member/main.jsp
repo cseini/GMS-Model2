@@ -38,6 +38,7 @@
 <script>
 	member.main(
 			{context : '${context}',
+			 domain : '${domain}',
              pagename : '${pagename}',
 			 user : '${user}',
 			 teamid : '${user.teamId}',
