@@ -1,5 +1,7 @@
 package command;
 
+import java.lang.ref.ReferenceQueue;
+
 import javax.servlet.http.HttpServletRequest;
 import domain.MemberBean;
 import service.ImageServiceImpl;
@@ -18,6 +20,7 @@ public class RetrieveCommand extends Command{
 		request.setAttribute("pagename", request.getParameter("page"));
 		if(request.getParameter("userid")==null) { /*여긴 로그인했을때*/
 			request.setAttribute("profile", "upload/"+ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("user")).getUserId()).getImgName() +"." + ImageServiceImpl.getInstance().read(((MemberBean) request.getSession().getAttribute("user")).getUserId()).getExtension());
+			request.setAttribute("domain", getDomain());
 		} else { /*서치에서 리트리브 진입할 때*/
 			if(ImageServiceImpl.getInstance().read(request.getParameter("userid"))!=null){
 				request.setAttribute("profile", "upload/"+ImageServiceImpl.getInstance().read(request.getParameter("userid")).getImgName() +"." + ImageServiceImpl.getInstance().read(request.getParameter("userid")).getExtension());				
