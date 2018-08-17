@@ -7,11 +7,11 @@ public enum ImageSQL {
 		String query = "";
 		switch (this) {
 		case INSERT:
-			query = " INSERT INTO IMAGE(IMG_SEQ, IMG_NAME, EXTENSION, USERID) " +
+			query = " INSERT INTO IMAGE(IMGSEQ, IMGNAME, EXTENSION, USERID) " +
 					" VALUES (IMG_SEQ.NEXTVAL, ?, ?, ?) ";
 			break;
 		case READ:
-			query = "  SELECT IMG_NAME, EXTENSION, USERID   " +
+			query = "  SELECT IMGNAME, EXTENSION, USERID   " +
 					"  FROM IMAGE  "
 					+ "  WHERE USERID LIKE ?  ";
 			break;

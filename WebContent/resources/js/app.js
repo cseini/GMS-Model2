@@ -199,7 +199,7 @@ var member =(()=>{
 			switch(location.search.substring(location.search.lastIndexOf('page=')+5).split('&')[0]){
 			case "add":
 				service.addClass(document.getElementById('content-box'),'textCenter marginBottom150px ');
-				service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px cursor ');
+				service.addClass(document.getElementById('join_form_btn_style'),'btnStyle padding13px115px ');
 				service.addClass(document.getElementById('join_form_textbox'),'width300px height50px center ');
 				service.addClass(document.getElementById('join_form_otherbox'),'marginTop300px ');
 				document.getElementById('join_form_btn').addEventListener('click',()=> {
@@ -220,7 +220,6 @@ var member =(()=>{
 									node.setAttribute('value', arr[i].value);
 								form.appendChild(node);
 							}
-							alert("회원가입 완료");
 							form.submit();
 						}else {
 							alert(z.text);

@@ -60,7 +60,7 @@ public class RetrieveQuery extends QueryTemplate{
 				while(rs.next()) {
 					o = new ImageBean();
 					((ImageBean) o).setUserid(rs.getString("USERID"));
-					((ImageBean) o).setImgName(rs.getString("IMG_NAME"));
+					((ImageBean) o).setImgName(rs.getString("IMGNAME"));
 					((ImageBean) o).setExtension(rs.getString("EXTENSION"));
 				}
 				break;

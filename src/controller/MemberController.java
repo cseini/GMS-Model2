@@ -17,7 +17,11 @@ public class MemberController extends HttpServlet {
 		Receiver.init(request);
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case ADD:
-			Carrier.redirect(request, response,"/member.do?action=move&page=login");
+			if(request.getAttribute("idChecker").equals("TRUE")) {
+				Carrier.redirect(request, response,"/member.do?action=move&page=login");
+			}else {
+				Carrier.redirect(request,  response, "/member.do?action=move&page=add" );
+			}
 			break;
 		case SEARCH: case RETRIEVE:
 			Carrier.forword(request, response);
